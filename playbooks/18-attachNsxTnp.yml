@@ -1,0 +1,75 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/attachNsxTnp.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: attachNsxTnp.yml
+  tasks:
+    - name: attachNsxTnp_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
+
+
+                                          Ansible Playbook: {{ ansible_play_name }}
+
+                                         Target.Deployment: {{ Target.Deployment }}
+
+                  Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+
+          Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles.Name: {{ Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+      
+    - name: Attach NSX-T transport node profile to vSphere cluster
+      nsxt_transport_node_collections:
+        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        validate_certs: False
+        display_name: "{{ item.value.NSXT_TNP }}"
+        resource_type: "TransportNodeCollection"
+        description: "Transport Node Collections"
+        compute_manager_name: "{{ Nested_vCenter.VMName }}"
+        cluster_name: "{{ item.key }}"
+        transport_node_profile_name: "{{ item.value.NSXT_TransportNodeProfile }}"
+        state: present
+      loop: "{{ Nested_Clusters | dict2items }}"
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true
+        - item.value.Prep_NSX == true
+        - item.value.DeployHosts == true
+        - item.value.NSXT_TransportNodeProfile != ""
+
+    - name: Wait until the NSX-T API reports that the Transport Zones are in "UP" state
+      ansible.builtin.uri:
+        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/api/v1/transport-zones/status
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        method: GET
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: result
+      until: (result.json.up_count | default(0)) > 0
+      retries: 20
+      delay: 60
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge != true

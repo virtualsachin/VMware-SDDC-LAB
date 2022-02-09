@@ -1,0 +1,242 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/createNsxEdgeTn.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: createNsxEdgeTn.yml
+  vars:
+      LOCAL_EdgeTnTemplate: "{{ Target.TemplateFolder }}/vars_NSXT_EdgeTransportNodes.j2"
+  tasks:
+    - name: createNsxEdgeTn_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
+
+
+                                          Ansible Playbook: {{ ansible_play_name }}
+
+                                         Target.Deployment: {{ Target.Deployment }}
+
+                  Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+
+          Nested_NSXT.System.Fabric.Nodes.EdgeTransportNodes: {{ Nested_NSXT.System.Fabric.Nodes.EdgeTransportNodes }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+
+##
+## Get vCenter session ID
+##
+    - name: Authenticate to vCenter to obtain a Session ID
+      ansible.builtin.uri:
+        url: "https://{{ Nested_vCenter.FQDN }}/rest/com/vmware/cis/session"
+        headers: "{ 'vmware-use-header-authn':'test' }"
+        method: POST
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_vCenter.User }}"
+        url_password: "{{ Nested_vCenter.Password }}"
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: vcenter_auth_result
+
+    - name: Store vCenter Session ID for later use
+      set_fact:
+        vCenter_SessionID: "{{ vcenter_auth_result.json.value | default(None) }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+
+##
+## Get vSphere Cluster ID
+##
+    - name: Get the vSphere Cluster's Object ID (MoREF)
+      ansible.builtin.uri:
+        url: "https://{{ Nested_vCenter.FQDN }}/rest/vcenter/cluster?filter.names={{ Nested_NSXT.System.Fabric.Nodes.vSphereEdgeCluster }}"
+        headers: "{ 'vmware-api-session-id':'{{ vCenter_SessionID }}' }"
+        method: GET
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_vCenter.User }}"
+        url_password: "{{ Nested_vCenter.Password }}"
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: cluster_info
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+    - name: Store vSphere Cluster Object ID (MoREF) for later use
+      ansible.builtin.set_fact:
+        Cluster_ID: "{{ cluster_info.json.value[0].cluster | default(None) }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+
+##
+## Get all of the hosts in the vSphere cluster
+##
+    - name: Get ESXi hosts in vSphere Cluster
+      ansible.builtin.uri:
+        url: "https://{{ Nested_vCenter.FQDN }}/rest/vcenter/host?filter.clusters={{ Cluster_ID }}"
+        headers: "{ 'vmware-api-session-id':'{{ vCenter_SessionID }}' }"
+        method: GET
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_vCenter.User }}"
+        url_password: "{{ Nested_vCenter.Password }}"
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: cluster_hosts
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+    - name: Create list containing just the FQDN EdgeHosts
+      ansible.builtin.set_fact:
+        EdgeHosts: "{{ EdgeHosts | default([]) + [ item.name ] }}"
+      loop: "{{ cluster_hosts.json.value }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+    - name: DEBUG -- Display EdgeHosts
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          =================================================================================================
+
+          Variable: EdgeHosts (Length={{ EdgeHosts|length }})
+          ===============================
+          {{ EdgeHosts | to_nice_yaml }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - EdgeHosts is defined
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+
+##
+## Generate Data Structure for API call
+##
+    - name: Read the structure from template into a variable
+      ansible.builtin.set_fact:
+        var_EdgeTransportNodes: "{{ lookup('template', LOCAL_EdgeTnTemplate) | from_yaml }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+
+    - name: DEBUG -- Display Target Variables
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display var_EdgeTransportNodes Variable ===================================
+
+              var_EdgeTransportNodes: {{ var_EdgeTransportNodes | to_nice_yaml(indent=2) }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+        - var_EdgeTransportNodes != ""
+
+
+##
+## Provision Transport Nodes
+##
+    - name: Deploy and configure Edge Transport Nodes
+      nsxt_transport_nodes:
+        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        validate_certs: False
+        display_name: "{{ item.display_name }}"
+        description: "{{ item.description }}"
+        host_switch_spec:
+          resource_type: StandardHostSwitchSpec
+          host_switches: "{{ item.host_switches }}"
+        node_deployment_info: "{{ item.node_deployment_info }}"
+        tags: "{{ item.tags }}"
+        state: present 
+      loop: "{{ var_EdgeTransportNodes }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+        - var_EdgeTransportNodes != ""
+      async: 1800
+      poll: 0
+
+    - name: Wait 5 minute for the NSX-T API to process Edge Transport Node deployment information
+      ansible.builtin.pause: minutes=5
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+        - var_EdgeTransportNodes != ""
+
+    - name: Wait until the NSX-T API reports that no Edge Transport Nodes are in "PENDING" state
+      ansible.builtin.uri:
+        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/api/v1/transport-nodes/state?status=PENDING
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        method: GET
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: result
+      until: (result.json.result_count | default(1))  == 0
+      retries: 10
+      delay: 60
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+        - var_EdgeTransportNodes != ""
+
+    - name: Wait until the NSX-T API reports that no Edge Transport Nodes are in "IN_PROGRESS" state
+      ansible.builtin.uri:
+        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/api/v1/transport-nodes/state?status=IN_PROGRESS
+        validate_certs: no
+        timeout: 10
+        force_basic_auth: yes
+        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        method: GET
+        body_format: json
+        return_content: yes
+        status_code: 200
+      register: result
+      until: (result.json.result_count | default(1)) == 0
+      retries: 10
+      delay: 60
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true        
+        - var_EdgeTransportNodes != ""

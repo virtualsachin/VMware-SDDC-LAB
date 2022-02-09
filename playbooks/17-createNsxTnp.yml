@@ -1,0 +1,74 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/createNsxTnp.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml    
+  name: createNsxTnp.yml
+  vars:
+      LOCAL_TransportNodeProfiles_Template: "{{ Target.TemplateFolder }}/vars_NSXT_TransportNodeProfiles.j2"
+  tasks:
+    - name: createNsxTnp_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
+
+
+                                          Ansible Playbook: {{ ansible_play_name }}
+
+                                         Target.Deployment: {{ Target.Deployment }}
+
+                  Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+
+          Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles: {{ Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+
+    - name: Get list of Transport Node Profiles
+      ansible.builtin.set_fact:
+        TNPsToCreate: "{{ lookup('template', LOCAL_TransportNodeProfiles_Template) | from_yaml }}"
+      when: Deploy.Product.NSXT.LocalManager == true
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display TNPsToCreate Variable ===================================
+
+              TNPsToCreate: {{ TNPsToCreate | to_nice_yaml(indent=2) }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+        - TNPsToCreate != ""
+
+    - name: Create Transport Node Profiles 
+      nsxt_transport_node_profiles:
+        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        validate_certs: False
+        resource_type: TransportNodeProfile
+        display_name: "{{ item.display_name }}"
+        description: "{{ item.description }}" 
+        host_switch_spec:
+          resource_type: StandardHostSwitchSpec
+          host_switches: "{{item.host_switches}}"
+        state: present
+      loop: "{{ TNPsToCreate }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - TNPsToCreate != ""

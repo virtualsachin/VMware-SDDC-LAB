@@ -1,0 +1,84 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/createNsxIpPool.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml   
+  name: createNsxIpPool.yml
+  vars:
+    LOCAL_IPPools_Template: "{{ Target.TemplateFolder }}/vars_NSXT_IPPools.j2"
+  tasks:
+    - name: createNsxIpPool_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{Pod.Name}} ==================================
+
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+                                          Target.FQDN: {{ Target.FQDN }}
+                                          Target.User: {{ Target.User }}
+                                      Target.Password: {{ Target.Password }}
+                                       Target.Cluster: {{ Target.Cluster }}
+                                    Target.DataCenter: {{ Target.DataCenter }}
+                                     Target.Datastore: {{ Target.Datastore }}
+                                      Target.VMFolder: {{ Target.VMFolder }}
+
+             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+
+                       Nested_NSXT.Networking.IPPools: {{ Nested_NSXT.Networking.IPPools }}
+                         Pool_Static_Subnets Template: {{ LOCAL_IPPools_Template }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+
+
+    - name: Get list of IP Pools
+      ansible.builtin.set_fact:
+        IPPoolsToCreate: "{{ lookup('template', LOCAL_IPPools_Template) | from_yaml }}"
+      when: Deploy.Product.NSXT.LocalManager == true
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display var_IPPools Variable ===================================
+
+              IPPoolsToCreate: {{ IPPoolsToCreate | to_nice_yaml(indent=2) }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+        - IPPoolsToCreate != ""
+
+    - name: Create NSX-T IP Pools using Polcy API
+      nsxt_policy_ip_pool:
+        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        validate_certs: false
+        state: present
+        display_name: "{{ item.display_name }}"
+        description:  "{{ item.description }}"
+        pool_static_subnets: "{{ item.pool_static_subnets }}"
+        tags: "{{ item.tags }}"
+      with_items:
+        - "{{ IPPoolsToCreate }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - IPPoolsToCreate != ""

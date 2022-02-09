@@ -1,0 +1,64 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/registerNsxComputeManager.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: registerNsxComputeManager.yml
+  tasks:
+    - name: registerNsxComputeManager_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{Pod.Name}} ==================================
+
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+                                          Target.FQDN: {{ Target.FQDN }}
+                                          Target.User: {{ Target.User }}
+                                      Target.Password: {{ Target.Password }}
+                                       Target.Cluster: {{ Target.Cluster }}
+                                    Target.DataCenter: {{ Target.DataCenter }}
+                                     Target.Datastore: {{ Target.Datastore }}
+                                      Target.VMFolder: {{ Target.VMFolder }}
+
+             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+           Nested_NSXT.Components.LocalManager.VMName: {{ Nested_NSXT.Components.LocalManager.VMName }}
+
+                                  Nested_vCenter.FQDN: {{ Nested_vCenter.FQDN }}
+                                Nested_vCenter.VMName: {{ Nested_vCenter.VMName }}
+                                  Nested_vCenter.User: {{ Nested_vCenter.User }}
+                              Nested_vCenter.Password: {{ Nested_vCenter.Password }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+
+    - name: Register NSX-T Compute Manager
+      nsxt_fabric_compute_managers:
+          hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+          username: "{{ Nested_NSXT.Credential.admin.Name }}"
+          password: "{{ Nested_NSXT.Credential.admin.Password }}"
+          validate_certs: False
+          display_name: "{{ Nested_vCenter.VMName }}"                 # Using VMName as no need for full domain
+          server: "{{ Nested_vCenter.FQDN }}"
+          origin_type: vCenter
+          credential:
+            credential_type: UsernamePasswordLoginCredential
+            username: "{{ Nested_vCenter.User }}"
+            password: "{{ Nested_vCenter.Password }}"
+          state: present
+      when: Deploy.Product.NSXT.LocalManager == true
+      async: 1800
+      poll: 0

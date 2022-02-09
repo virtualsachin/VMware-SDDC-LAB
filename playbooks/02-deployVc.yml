@@ -1,0 +1,293 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/deployVc.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml  
+  name: deployVc.yml
+  vars:
+    ISOMountPoint: "{{ Target.ISOMount }}/{{ Deploy.Software.vCenter.Vendor }}_{{ Deploy.Software.vCenter.Product }}_{{ Deploy.Software.vCenter.Version }}"
+  tasks:
+    - name: deployVc_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ============================ Display Variables For Pod {{Pod.Name}} ===========================
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+                                          Target.FQDN: {{ Target.FQDN }}
+                                          Target.User: {{ Target.User }}
+                                      Target.Password: {{ Target.Password }}
+                                       Target.Cluster: {{ Target.Cluster }}
+                                    Target.DataCenter: {{ Target.DataCenter }}
+                                  Target.DatastoreSSD: {{ Target.DatastoreSSD }}
+                                      Target.VMFolder: {{ Target.VMFolder }}
+
+                                        ISOMountPoint: {{ ISOMountPoint }}
+
+                                               Vendor: {{ Deploy.Software.vCenter.Vendor }}
+                                              Product: {{ Deploy.Software.vCenter.Product }}
+                                              Version: {{ Deploy.Software.vCenter.Version }}
+                                       Location.Local: {{ Deploy.Software.vCenter.Directory }}
+                                                 File: {{ Deploy.Software.vCenter.File }}
+
+                                        Host Template: {{ Deploy.Software.vCenter.Template.ESXi }}
+                                     vCenter Template: {{ Deploy.Software.vCenter.Template.vCenter }}
+           Installation Configuration (From Template): {{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }}
+
+            =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+
+    - name: Create temp directory
+      ansible.builtin.file:
+        path: "{{ Target.TempFolder }}"
+        state: directory
+
+    - name: Check if vCenter is already installed
+      ansible.builtin.uri:
+        url: https://{{ Nested_vCenter.Address.IPv4.Address }}
+        validate_certs: False
+        timeout: 5
+      register: vcenter_check
+      ignore_errors: True
+      failed_when: false
+      no_log: True
+
+    - name: Create vCenter with embedded PSC installation template (Target=Host) - No Replication Partner
+      ansible.builtin.template: 
+        src:  "{{ Target.TemplateFolder }}/{{ Deploy.Software.vCenter.Template.ESXi }}"
+        dest: "{{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }}"
+        mode: "666"
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "Host"
+
+    - name: Create vCenter with embedded PSC installation template (Target=vCenter) - No Replication Partner
+      ansible.builtin.template: 
+        src:  "{{ Target.TemplateFolder }}/{{ Deploy.Software.vCenter.Template.vCenter }}"
+        dest: "{{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }}"
+        mode: "666"
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "vCenter"
+
+    - name: Mount vCenter ISO as read-only and do not automatically mount with 'mount -a'
+      ansible.posix.mount:
+        path:   "{{ ISOMountPoint }}"
+        src:    "{{ Deploy.Software.vCenter.Directory }}/{{ Deploy.Software.vCenter.File }}"
+        fstype: iso9660
+        opts:   ro,noauto
+        state:  mounted
+      when: vcenter_check.status != 200
+
+    - name: Notify user of vCenter install time
+      ansible.builtin.debug:
+        msg: "Deploying vCenter will take about 30 minutes, so go grab a tea/coffee!!!"
+      when: vcenter_check.status != 200
+      
+    - name: Perform vCenter CLI-based installation
+      ansible.builtin.command: "./vcsa-deploy install --accept-eula --no-ssl-certificate-verification --acknowledge-ceip {{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }}"
+      args:
+        chdir: "{{ ISOMountPoint }}/vcsa-cli-installer/lin64/"
+      register: vcdeploy
+      when: vcenter_check.status != 200
+
+    - name: Unmount vCenter ISO
+      ansible.posix.mount:
+        path:   "{{ ISOMountPoint }}"
+        state:  absent
+      when:
+        - vcenter_check.status != 200
+        - Deploy.Software.Options.UnmountISO
+
+    - name: Delete the temporary vCenter with embedded PSC installation template
+      ansible.builtin.file: "path={{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }} state=absent"
+      when: 
+        - vcenter_check.status != 200
+        - DEBUG.KeepConfigFiles != true
+
+    - name: Write annotation on the vCenter VM when Deployment is on Physical Host
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        cluster: "{{ Target.Cluster }}"
+        name: "{{ Nested_vCenter.VMName }}"
+        annotation: | 
+                    {{ Common.Annotation }}
+                    {{ Nested_vCenter.FQDN | lower }}
+                    {{ Deploy.Software.vCenter.Vendor }} {{ Deploy.Software.vCenter.Product }} {{ Deploy.Software.vCenter.Version }}
+                    Username: {{ Nested_vCenter.User }}
+                    Password: {{ Nested_vCenter.Password }}
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "Host"
+    - name: Write annotation on the vCenter VM when Deployment is on vCenter
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        cluster: "{{ Target.Cluster }}"
+        datacenter: "{{ Target.DataCenter }}"
+        folder: "{{ Target.VMFolder }}"
+        name: "{{ Nested_vCenter.VMName }}"
+        annotation: | 
+                    {{ Common.Annotation }}
+                    {{ Nested_vCenter.FQDN | lower }}
+                    {{ Deploy.Software.vCenter.Vendor }} {{ Deploy.Software.vCenter.Product }} {{ Deploy.Software.vCenter.Version }}
+                    Username: {{ Nested_vCenter.User }}
+                    Password: {{ Nested_vCenter.Password }}
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "vCenter"
+
+    - name: Create Datacenter on Nested vCenter
+      community.vmware.vmware_datacenter:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        state: present
+        validate_certs: False
+      when: vcenter_check.status != 200
+
+    - name: Create Clusters for SDDC Lab on Nested vCenter
+      community.vmware.vmware_cluster:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        cluster_name: "{{ item.key }}"
+        validate_certs: False
+      loop: "{{ Nested_Clusters | dict2items }}"
+      when: 
+        - vcenter_check.status != 200
+        - item.value.DeployHosts == true
+
+    - name: Enable DRS on each Cluster, if applicable
+      community.vmware.vmware_cluster_drs:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        cluster_name: "{{ item.key }}"
+        validate_certs: False
+        enable_drs: "{{ item.value.DRS }}"
+      loop: "{{ Nested_Clusters | dict2items }}"
+      when: 
+        - vcenter_check.status != 200
+        - item.value.DeployHosts == true
+
+    - name: Create Cluster for Physical host when Deployment is on Host
+      community.vmware.vmware_cluster:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        cluster_name: "{{ Target.Physical_Cluster }}"
+        validate_certs: False
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "Host"
+    - name: Add Physical ESXi Host to vCSA for SDDC Lab deployment
+      community.vmware.vmware_host:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        cluster_name: "{{ Target.Physical_Cluster }}"
+        validate_certs: false
+        esxi_hostname: "{{ Target.FQDN }}"
+        esxi_username: "{{ Target.User }}"
+        esxi_password: "{{ Target.Password }}"
+        state: present
+      when:
+        - vcenter_check.status != 200
+        - Target.Deployment == "Host"       
+
+
+##
+###############################################################################################################
+##                                  Create VM Folder Structure in vCenter Server                             ##
+##                                         Target.Deployment == "Host"                                    ##
+###############################################################################################################
+##
+
+
+    - name: Create Parent VM Folder
+      community.vmware.vcenter_folder:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        validate_certs: no
+        folder_type: vm
+        parent_folder: ""
+        folder_name: "{{ Target.VMFolder | regex_replace('^(.*)/.*$', '\\1') }}"                     # Extract parent folder from VMFolder full path"
+        state: present
+      register: vm_parent_folder_creation_result
+      when: Target.Deployment == "Host"
+
+    - name: DEBUG -- Display vm_parent_folder_creation_result
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          =================================================================================================
+
+          Variable: vm_parent_folder_creation_result
+          ==========================================
+          {{ vm_parent_folder_creation_result | to_nice_yaml }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Target.Deployment == "Host"
+        - vm_parent_folder_creation_result is defined
+
+    - name: Create Child VM Folder
+      community.vmware.vcenter_folder:
+        hostname: "{{ Nested_vCenter.FQDN | lower }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        validate_certs: no
+        folder_type: vm
+        parent_folder: "{{ Target.VMFolder | regex_replace('^(.*)/.*$', '\\1') }}"                     # Extract parent folder from VMFolder full path
+        folder_name:   "{{ Target.VMFolder | regex_replace('^.*/(.*)$', '\\1') }}"                     # Extract remaining folder name
+        state: present
+      register: vm_child_folder_creation_result
+      when: 
+        - Target.Deployment == "Host"
+        - vm_parent_folder_creation_result is defined
+        - vm_parent_folder_creation_result.failed != true
+
+    - name: DEBUG -- Display vm_child_folder_creation_result
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          =================================================================================================
+
+          Variable: vm_child_folder_creation_result
+          ==========================================
+          {{ vm_child_folder_creation_result | to_nice_yaml }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Target.Deployment == "Host"
+        - vm_child_folder_creation_result is defined
+

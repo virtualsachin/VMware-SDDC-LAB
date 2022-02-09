@@ -1,0 +1,103 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/license_vSphere.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  name: license_vSphere.yml
+  vars_files:
+    - ../licenses.yml
+    - ../answerfile.yml    
+  tasks:
+    - name: license_vSphere_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ============================ Display Variables For Pod {{Pod.Name}} ===========================
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+                                          Target.FQDN: {{ Target.FQDN }}
+                                          Target.User: {{ Target.User }}
+                                      Target.Password: {{ Target.Password }}
+                                       Target.Cluster: {{ Target.Cluster }}
+                                    Target.DataCenter: {{ Target.DataCenter }}
+
+                                         License File: {{ LOCAL_LicenseFile }}
+
+                                               vCenter Server
+                                               ==============
+                                               Vendor: {{ Deploy.Software.vCenter.Vendor }}
+                                              Product: {{ Deploy.Software.vCenter.Product }}
+                                              Version: {{ Deploy.Software.vCenter.Version }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+
+##
+## License vCenter Server
+##
+    - name: License Nested vCenter Server
+      community.vmware.vcenter_license:
+        hostname: "{{ Nested_vCenter.FQDN }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        validate_certs: no
+        license: "{{ License.VMware.vCenter.Licenses.KeyCode }}"
+        state: present
+
+##
+## License Nested ESXi Hosts
+##
+    - name: Assign ESXi License to Nested Hosts in Cluster-A Hosts
+      community.vmware.vcenter_license:
+        hostname: "{{ Nested_vCenter.FQDN }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        validate_certs: no
+        esxi_hostname: "{{ item.value.FQDN | lower }}" 
+        license: "{{ License.VMware.ESXi.Licenses.KeyCode }}"
+        state: present
+      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true 
+    - name: Assign ESXi License to Nested Hosts in Cluster-B Hosts
+      community.vmware.vcenter_license:
+        hostname: "{{ Nested_vCenter.FQDN }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        validate_certs: no
+        esxi_hostname: "{{ item.value.FQDN | lower }}" 
+        license: "{{ License.VMware.ESXi.Licenses.KeyCode }}"
+        state: present
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true 
+
+##
+## License vSAN
+##
+
+    - name: Assign vSAN License to the vSAN enabled Cluster 
+      community.vmware.vcenter_license:
+        hostname: "{{ Nested_vCenter.FQDN }}"
+        username: "{{ Nested_vCenter.User }}"
+        password: "{{ Nested_vCenter.Password }}"
+        validate_certs: no
+        cluster_name: "{{ item.key }}"
+        license: "{{ License.VMware.vSAN.Licenses.KeyCode }}"
+        state: present
+      loop: "{{ Nested_Clusters | dict2items }}"
+      when:
+        - item.value.vSAN == true
+        - item.value.DeployHosts == true
+

@@ -1,0 +1,224 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: undeploy.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: undeploy.yml
+  tasks:
+    - name: DEBUG -- Display Target Variables (Pause)
+      pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+                                          Target.FQDN: {{ Target.FQDN }}
+                                          Target.User: {{ Target.User }}
+                                      Target.Password: {{ Target.Password }}
+                                       Target.Cluster: {{ Target.Cluster }}
+                                    Target.DataCenter: {{ Target.DataCenter }}
+                                     Target.Datastore: {{ Target.Datastore }}
+
+                                       Target.vSwitch: {{ Target.vSwitch }}
+                          Target.PortGroup.Trunk.Name: {{ Target.PortGroup.Trunk.Name }}
+                          Target.PortGroup.Trunk.VLAN: {{ Target.PortGroup.Trunk.VLAN }}
+                     Target.PortGroup.Management.Name: {{ Target.PortGroup.Management.Name }}
+                     Target.PortGroup.Management.VLAN: {{ Target.PortGroup.Management.VLAN }}
+
+                                   Nested_Router.Name: {{ Nested_Router.Name }}
+                                Nested_vCenter.VMName: {{ Nested_vCenter.VMName }}
+           Nested_NSXT.Components.LocalManager.VMName: {{ Nested_NSXT.Components.LocalManager.VMName }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+
+
+    - name: Remove VyOS router VM
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        name: "{{ Nested_Router.Name }}"
+        force: true
+        state: absent
+      ignore_errors: true
+
+    - name: Remove vRLI VM
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        name: "{{ Nested_vRLI.VMName }}"
+        force: true
+        state: absent
+      ignore_errors: true
+
+    - name: Remove ESXi VMs
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        name: "{{ item.value.VMName }}"
+        force: true
+        state: absent
+      async: 7200
+      poll: 0
+      loop: "{{ Nested_ESXi.Host | dict2items }}"
+      ignore_errors: true
+
+    - name: Remove vCenter VM
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        name: "{{ Nested_vCenter.VMName }}"
+        force: true
+        state: absent
+      ignore_errors: true
+
+    - name: Remove NSX Manager VM(s)
+      community.vmware.vmware_guest:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        name: "{{ Nested_NSXT.Components.LocalManager.VMName }}"
+        force: true
+        state: absent
+      ignore_errors: true
+
+##
+## Remove Networking - Host Deployment
+##
+
+    - name: Remove trunk port group for the nested environment
+      community.vmware.vmware_portgroup:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: False        
+        esxi_hostname: "{{ Target.FQDN }}"
+        switch_name: "{{ Target.vSwitch }}"
+        portgroup_name: "{{ Target.PortGroup.Trunk.Name }}"
+        state: absent
+      ignore_errors: true
+      when:
+        - Target.Deployment == "Host"
+
+    - name: Remove management port group for the nested environment
+      community.vmware.vmware_portgroup:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: False        
+        esxi_hostname: "{{ Target.FQDN }}"
+        switch_name: "{{ Target.vSwitch }}"
+        portgroup_name: "{{ Target.PortGroup.Management.Name }}"
+        state: absent
+      ignore_errors: true
+      when:
+        - Target.Deployment == "Host"
+
+    - name: Remove VMware vSwitch on the ESXi host for the nested environment
+      community.vmware.vmware_vswitch:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: False
+        esxi_hostname: "{{ Target.FQDN }}"
+        switch_name: "{{ Target.vSwitch }}"
+        state: absent
+      async: 7200
+      poll: 0
+      ignore_errors: true
+      when:
+        - Target.Deployment == "Host"
+
+##
+## Remove Networking - vCenter Deployment
+##
+
+    - name: Remove a Management Distributed Port-Group in vCenter
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        switch_name: "{{ Target.vSwitch }}"
+        portgroup_type: earlyBinding
+        portgroup_name: "{{ Target.PortGroup.Management.Name }}"
+        vlan_id: "{{ Target.PortGroup.Management.VLAN }}"
+        num_ports: 32
+        state: absent
+      ignore_errors: true
+      when: Target.Deployment == "vCenter"
+
+    - name: Remove a Trunk Distributed Port-Group in vCenter
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        switch_name: "{{ Target.vSwitch }}"
+        portgroup_type: earlyBinding
+        portgroup_name: "{{ Target.PortGroup.Trunk.Name }}"
+        vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
+        num_ports: 32
+        state: absent
+      ignore_errors: true
+      when: Target.Deployment == "vCenter"
+
+##
+## Remove vCenter Child VM Folder - vCenter Deployment
+##
+
+# REMINDER: Can not remove parent folder because other Pods are using it
+    - name: Remove Child VM Folder
+      community.vmware.vcenter_folder:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: no
+        datacenter: "{{ Target.DataCenter }}"
+        folder_type: vm
+        parent_folder: "{{ Target.VMFolder | regex_replace('^(.*)/.*$', '\\1') }}"                     # Extract parent folder from VMFolder full path
+        folder_name:   "{{ Target.VMFolder | regex_replace('^.*/(.*)$', '\\1') }}"                     # Extract remaining folder name
+        state: absent
+      ignore_errors: true
+      when: 
+        - Target.Deployment == "vCenter"
+
+##
+## Cleanup Ansible Control Station
+##
+
+    - name: Remove static route on the Ansible Control Station
+      command: ./ip route del "{{ Net.Management.IPv4.Network }}.0/{{ Net.Management.IPv4.Prefix }}"
+      args:
+        chdir: /bin/
+      register: iproute
+      ignore_errors: true
+      when: 
+        - Deploy.Product.Router == true
+        - Deploy.Setting.IPv4 == true
+        - Nested_Router.Protocol == "Static"
+
+##
+## Remove Dynamic DNS Entries
+##
+
+- name: Remove DNS records for the Pod
+  import_playbook: playbooks/cleanupDNS.yml

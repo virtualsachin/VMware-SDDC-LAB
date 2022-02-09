@@ -1,0 +1,73 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/createNsxT0Gateway.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: createNsxT0Gateway.yml
+  vars:
+    LOCAL_T0Gateways_Template: "{{ Target.TemplateFolder }}/vars_NSXT_T0Gateways.j2"
+  tasks:
+    - name: createNsxT0Gateway_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
+
+                                     Ansible Playbook: {{ ansible_play_name }}
+
+                                    Target.Deployment: {{ Target.Deployment }}
+
+             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+
+                 Nested_NSXT.Networking.Tier0Gateways: {{ Nested_NSXT.Networking.Tier0Gateways }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+
+    - name: Get list of Tier-0 Gateways
+      ansible.builtin.set_fact:
+        T0GatewaysToCreate: "{{ lookup('template', LOCAL_T0Gateways_Template) | from_yaml }}"
+      when: Deploy.Product.NSXT.LocalManager == true
+
+    - name: DEBUG -- Display Target Variables (Pause)
+      ansible.builtin.pause:
+        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
+        prompt: |
+          ================================ Display T0GatewaysToCreate Variable ===================================
+
+              T0GatewaysToCreate: {{ T0GatewaysToCreate | to_nice_yaml(indent=2) }}
+
+          =================================================================================================
+      when:
+        - DEBUG.DisplayVariables == true
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true
+        - T0GatewaysToCreate != ""
+
+    - name: Create NSX-T Tier-0 Gateway
+      nsxt_policy_tier0:
+        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ Nested_NSXT.Credential.admin.Name }}"
+        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        validate_certs: False
+        state: present
+        display_name: "{{ item.display_name }}"
+        ha_mode: "{{ item.ha_mode }}"
+        failover_mode: "{{ item.failover_mode }}"
+        tags: "{{ item.tags | default(omit) }}"
+        locale_services: "{{ item.locale_services }}"
+      with_items:
+        - "{{ T0GatewaysToCreate }}"
+      when:
+        - Deploy.Product.NSXT.LocalManager == true
+        - Deploy.Product.NSXT.Edge == true

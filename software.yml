@@ -1,0 +1,101 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: software_sample.yml
+##
+---
+RootDirectory: "/HDD/Software"
+
+Software:
+
+  VMware:
+    vCenter:
+      Installers:
+        "7.0U3A":
+          Name: vCenter Server v7.00 Update 3A
+          File: VMware-VCSA-all-7.0.3-18778458.iso
+          Location:
+            Local: "{{ RootDirectory }}/VMware/vCenter/v7.0.U3A"
+            URL:
+          Version: "7.0"
+          FileExt: iso
+          vSwitch: 7.0.0
+      Patches: []
+
+    ESXi:
+      Installers:
+        "7.0U3":
+          Name: ESXi 7.00 Update 3
+          File: VMware-VMvisor-Installer-7.0U3-18644231.x86_64.iso
+          Location:
+            Local: "{{ RootDirectory }}/VMware/ESXi/v7.0.0U3"
+            URL:
+          Version: "7.0"
+          FileExt: iso
+          vSwitch: 7.0.0
+      Patches: []
+
+    NSXT:
+      Installers:
+        "3.1.3":
+          Name: NSX Transformers v3.1.3
+          File: nsx-unified-appliance-3.1.3.3.0.18844962.ova
+          Location:
+            Local: "{{ RootDirectory }}/VMware/NSX-T/v3.1.3"
+            URL:
+          Version: "3.1"
+          FileExt: ova
+        "3.2.0":
+          Name: NSX Transformers v3.2.0
+          File: nsx-unified-appliance-3.2.0.0.0.19067081.ova
+          Location:
+            Local: "{{ RootDirectory }}/VMware/NSX-T/v3.2.0"
+            URL:
+          Version: "3.2"
+          FileExt: ova
+      Patches: []
+
+    vRLI:
+      Installers:
+        "8.6.2":
+          Name: vRealize Log Insight v8.6.2
+          File: VMware-vRealize-Log-Insight-8.6.2.0-19092412_OVF10.ova
+          Location:
+            Local: "{{ RootDirectory }}/VMware/vRLI/v8.6.2"
+            URL:
+          Version: "8.6"
+          FileExt: ova
+      Patches: []
+
+  Ubuntu:
+    Server:
+      Installers:
+        "20.04.2":
+          Name: Ubuntu Server Live CD v20.04.2
+          File: ubuntu-20.04.2-live-server-amd64.iso
+          Location:
+            Local: "{{ RootDirectory }}/Ubuntu/Server/v20.04.2"
+            URL: "http://releases.ubuntu.com/20.04.2"
+          Version: "20.04"
+          FileExt: iso
+        "20.04.3":
+          Name: Ubuntu Server Live CD v20.04.3
+          File: ubuntu-20.04.3-live-server-amd64.iso
+          Location:
+            Local: "{{ RootDirectory }}/Ubuntu/Server/v20.04.3"
+            URL: "http://releases.ubuntu.com/20.04.3"
+          Version: "20.04"
+          FileExt: iso
+      Patches: []
+
+  VyOS:
+    Router:
+      Installers:
+        Latest:
+          Name: VyOS Latest Rolling Nightly Build
+          File: vyos-rolling-latest.iso
+          Location: 
+            Local: "{{ RootDirectory }}/VyOS/Router/Latest"
+            URL:   "https://downloads.vyos.io/rolling/current/amd64"
+          Version: "0.0"
+          FileExt: iso
