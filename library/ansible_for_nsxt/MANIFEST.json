@@ -1,0 +1,36 @@
+{
+ "collection_info": {
+  "namespace": "vmware",
+  "name": "ansible_for_nsxt",
+  "version": "1.0.0",
+  "authors": [
+   "Gautam Verma @ggverma (https://vmware.slack.com/archives/CTE293BSS)",
+   "Rahul Raghuvanshi @r-raghu (https://vmware.slack.com/archives/CTE293BSS)"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "vmware",
+   "ansible",
+   "nsxt"
+  ],
+  "description": "Ansible Modules for NSX-t",
+  "license": [
+   "GPL-3.0-only",
+   "BSD-2-Clause-FreeBSD"
+  ],
+  "license_file": "LICENSE.txt",
+  "dependencies": {},
+  "repository": "https://github.com/vmware/ansible-for-nsxt",
+  "documentation": "https://github.com/vmware/ansible-for-nsxt",
+  "homepage": "https://github.com/vmware/ansible-for-nsxt",
+  "issues": "https://github.com/vmware/ansible-for-nsxt/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "3f2a1f43a59fd05f09a47f0ec7127bdd18e12bedb251d29545220464d83626e5",
+  "format": 1
+ },
+ "format": 1
+}

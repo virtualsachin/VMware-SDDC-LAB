@@ -1,0 +1,63 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/34-createCloudUser.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  vars_files:
+    - ../answerfile.yml 
+  name: Create cloud  users for cloud connecter
+  tasks:
+    - name: Create NSXT user credentials to  connect NSXT Cloud
+      vmware.alb.avi_api_session:
+        avi_credentials: "{{ AVI.credentials }}"
+        http_method: post
+        path: "cloudconnectoruser"
+        data:
+          nsxt_credentials:
+              username: "{{ Nested_NSXT.Credential.admin.Name }}"
+              password: "{{ Nested_NSXT.Credential.admin.Password }}"
+          name: "{{ Nested_NSXT.Components.LocalManager.FQDN  }}"
+
+    - name: Create vCenter user credentials to  connect VMware vCenter/ESXi Cloud
+      vmware.alb.avi_api_session:
+        avi_credentials: "{{ AVI.credentials }}"
+        http_method: post
+        path: "cloudconnectoruser"
+        data:
+          vcenter_credentials:
+              username: "{{ Nested_vCenter.User }}"
+              password: "{{ Nested_vCenter.Password }}"
+          name: "{{ Nested_vCenter.FQDN }}"
+
+    - name: Check existing Policy_API_Endpoint
+      uri:
+        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
+        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
+        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
+        method: GET
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body: AviConnectionInfo
+      register: policy_api
+      ignore_errors: yes
+    - debug:
+           msg: "{{policy_api.status}}"
+    - name: Create Policy_API_Endpoint
+      uri:
+        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
+        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
+        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
+        method: GET
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: "{{item}}"
+        body: "{{ lookup('template', 'enforcement_point.json.j2')}}"
+      register: policy_api
+      with_items:
+      - "{{nsxt.method}}"
+      when: policy_api.status == 404 or nsxt.force_update == 1

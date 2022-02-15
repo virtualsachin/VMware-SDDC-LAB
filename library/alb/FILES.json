@@ -1,0 +1,3652 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "NOTICE",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d72f76168290778f982f390b9f5d4ca9d6c26b31e8eee4ae034f29b12c305b73",
+   "format": 1
+  },
+  {
+   "name": ".gitignore",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "79b6f8054f8ef5e9e78c18174bf57caf29b11410166b9268d6923e87520eb88f",
+   "format": 1
+  },
+  {
+   "name": "CODEOWNERS",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c12e55301b8dc729c55956bc3a698d7cb804c0b52da715d11a0c22cc28833c3e",
+   "format": 1
+  },
+  {
+   "name": "testing.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "29061717b64eaadf06fcfb8d30b7b942508dfadaa181abe8562f3c6f908c2512",
+   "format": 1
+  },
+  {
+   "name": "CODE-OF-CONDUCT.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c51e08a16f125d15bbff7dd7d308af1d50c9862e7e7ea3d841c73d81ad8d72f9",
+   "format": 1
+  },
+  {
+   "name": ".github",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".github/workflows",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".github/workflows/ci.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "880c509a63a6c62e7ae4c0e03eceb3dbe0c2320026ae64ac0b53a3b977a341e9",
+   "format": 1
+  },
+  {
+   "name": ".github/workflows/galaxy-importer.cfg",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cecbd21f353284dbabd0cf64793901d732b030ebda5dc1b899d762e7f5925d10",
+   "format": 1
+  },
+  {
+   "name": ".github/workflows/release.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "00f401fda95753453d228ae13db5cddba7c4f6a557f0e693918133cc8c26e9e7",
+   "format": 1
+  },
+  {
+   "name": "LICENSE",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fdb14dbc2f948458a0666083e5c7b7c1a3fd1c5600c049b35a16a95f26936e92",
+   "format": 1
+  },
+  {
+   "name": "docs",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "docs/avi_gslb.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "68f2bc94b904a2f74488210beabca0c6c92992c00a8c60b94df2753fcd852e71",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_pkiprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6bbce73f481d0f3fe9219d2b3a019825b8404a5e13f4a25a215f4890bca9ffcb",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_wafpolicypsmgroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5470d49c0515cfed64aaab0290de5924a6456fda5f17293e7174783c0fcee234",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_autoscalelaunchconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "56d5bf6f994c255c00f7ffb78736c9adebb11e35fb25835ecc249c74b2eb9741",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_cloudproperties.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "93974041adb2e7e3d74349f0005ea14087e5187160588f2f85739f6a7505ea94",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_inventoryfaultconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c4dd137e83b18af3ef0414e2518c158ef49f46849ef2429c55186a22e2f45100",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_l4policyset.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2195a2a3f4387124b06e4685ff94c8446a154cc9c8e4340570abb30d9f7d0102",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_errorpagebody.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64d9732265678bb828c1d27492ae0d1c383e2cd4b3bc2c20d9741132223f8117",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_alertconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e530f984ec07565604b370a09f1e18c2f603a2de0651fc533e7615dbc74957c0",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_ssopolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1f522772ba751ff81cabd360e5a08152d290d3364e6d0a0b7e3055e4cfbf0199",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_systemconfiguration.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b41ee9d627ca35787cda2b553caca2eb938f17e7731fbc93652431e50a0ce85b",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_trafficcloneprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ecce8ef04250d6656ed7511b9a77452d98e426d7ec640613e99c3046a1919b97",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_gslbservice_patch_member.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "937b8421c819c40a93519901bcd6230b8692a32022d5acd3ae232f83f354c180",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_poolgroupdeploymentpolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aec79a5f4f7418947df88226307ff888c93d26263b66f46ab985cb757069ea3a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_natpolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ef3703f38826cf19eb4ea0604009646babeec462db746a5adcfa39f784704ffe",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_stringgroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4e59e831563a36359e0118074a206582b246f33acad82bdb3e084325e45977de",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_customipamdnsprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2346fec080535f90df0fde121acbb52096323f7c1a8f7d9d5d1332fe69078df9",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_statediffsnapshot.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a43e5e17a0e71aa42541cabd506f5161d6b728355dc28675d18fc98224379bff",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_alertemailconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be94603b1a2d762139cd85a71cc232ba41c43dd16d86f132be4f39a1f94987db",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_testsedatastorelevel1.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "096faf36e53ad06f93fa244ff6d6a9b92b0377c6d220ede9da9265d87e290229",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_clusterclouddetails.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9cf7902fbda0dc75f33a5d6496ae4ab046371924545133824941f7bb84de30b2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_certificatemanagementprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "872f3a0f9fa749dc06666ed4a7f13de0c051132ebf9d4bd1c44bd66bc457fb7e",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_geodb.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2c944b0a8a61b7121fbe163d808f9418bcea0387aabbfb4b93410a61bdd31b99",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_upgradestatussummary.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d5a21c969ce8701152ab01d381d1c6305f438b5f7abbb0346dee81afb29c8437",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_wafapplicationsignatureprovider.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dfbafb65d0250d4a39784fdc9b8e2e676e49c77fba6fd62e5d5755ce02de6a1b",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_microservicegroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cab3696c98e934d343158cebb8e3210d0611c7a23fb51c0a32b82391c29e7b54",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_dnspolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fbe570c39dbdc1b54ff0cdc8bedb791781bf3b4a86079176ac169e623b910cf1",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_botdetectionpolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4cc2aae00c8451f6626b2864a33c039ad034d4bd245a5c494731cba4b46ff88c",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_hardwaresecuritymodulegroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8e902a8069065c71a58961392a8fb7e82997cedaddaedaccb59044e794d9cf47",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_api_session.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "37f792582bbac5ef399a90558aeef9e784254f546c0e81c33f3925ca000d3f25",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_bootstrap_controller.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dad3df7026025ee5104c790fac96a2bd4e1343305bde9de76cf85bb28461afd1",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_ipreputationdb.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cd20664c57c43528ba073bac93ccab558c24fd7c9a537374848ffdb7afb90d0f",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_applicationprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2f73ecca8f0b099919f5981e4926efce288d564f929f179fe6b86271c46c5ec8",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_vsdatascriptset.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc4239d60d11e60c6f49a75d61d2a31c903a649ac81e7ef4f8b976aeac77063a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_licenseledgerdetails.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f83663cd6697bda4324c179b3d34c26401f34123b9244a71e9b0e1f8e5636bdb",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_cloudconnectoruser.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9e72658e6757af7355e5e41eb6901009072a3b68a70321292d673ee0ce39cd9b",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_securitypolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1eb398340d18d2a272d6cb046b07f22dfae927ca18c2bedda0fc953fa011df98",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_ipaddrgroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b5d2db19279026cdc4e5f9825fc9b1b7ceb909241fd2ad88038dd33da210e95a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_sslprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a0560a0006d1aef0f8b47bedde2ffaa68e0c38094fa5ef1aad2a7cbc8352799",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_upgradestatusinfo.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd28421bd333ff713dcff63de40b98954ded3111f9456da3577cac83227b042d",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_controllerportalregistration.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3229b9c21c37fcf728df3a20c8e91281ec8d94f5c6dca01c6ef4f278a5a84441",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_albservicesconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5416f407fd167cf66c0c68da2255be5949ae6771667e3bba92f678ede633df84",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_vsgs.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e769cfd060e2fae12dd63c6f44018de45698183601dc5084960a89b803c20d69",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_useraccountprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f0cdb5f0c60967227a42a52eeaff6e3dd672bf1c82ad5f2cdf74424a961e286d",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_cluster.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a0a91a9d4dcc09ad0e68afa9ec7c885a84d32d3ece5c38d6c9bb686efe509e2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_wafprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "33c8efb0c46ae78ffff23abfc41eaf7e7ed888f6bf3beb56e8e7ec4ea2f7220a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_healthmonitor.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aaa8d7967635445666504effe872c93914d15b1a296a93323df765d79738df59",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_systemlimits.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5666a9532830e329fa5a2db2649f999d94c2c098cf7557d09707b7167addae78",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_statediffoperation.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d7af57502ed1632f9b0983b2025c351b0e903bdcd6879fc09975824e8bb9dc46",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_vsvip.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b0f5bc086cc481a1efacf869b02491420b0d1f355db963053337a68bfeb065d8",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_labelgroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1881da60429774c12864a8afe393fa967c1e5bd6f6f0490b08b05007e82ae467",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_memorybalancerrequest.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ec390904640c39a367177553e043acf75966d6f4fade00d4fcf1b330fbd1a133",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_webhook.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4851d0c50ddc357db6f267535839a088b350b16ef1862f0f1814939c314b2496",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_availabilityzone.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b1532ee27e9aab8c94a0c291eb917432d3e3e97e9abaaf283123031cc8dd16e2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_saml_api_session.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0b6d0a9424ce89ad9fa55ef71e03f17a551f65fd5d8cffa54a980f9b1fc3d716",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_dynamicdnsrecord.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dad0326f250446c465178ca3ca89fc277be2338c90aaa4d95ee0179ae4b01bec",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_api_image.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a2855e848276c873903dda4cc8a57dbb137dc37962366ba57eb71d4f55b7f16a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_snmptrapprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "edab54c3f104d505ba929de009a1560eead8ef55617d1c285b0289027016f232",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_api_fileservice.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e5a564860c39d24ccca1df01a7e8be992ef05ddbc89e5ba4669ff5689204d037",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_albservicesjob.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e2e1a1bbe53376f098e9ccf752cde962c1fa226c973a463fb536b7ac0a70704c",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_gslbgeodbprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "46d29a0c312f8dded06bed1521e2c8aa10b55a8a6c296550ed0716894d572996",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_ipamdnsproviderprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ff01f6ae3163e0b854964baa111aa1993eb3bcc902546bd777e414d028f2b6c2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_errorpageprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d78338dc73ff54c15bcc5a6a3a3e817e5201eb126602e37b697fe338a7ba73ff",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_update_se_data_vnics.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "adbd34881d57388ee1918d2879736274a571bcb16fa1269c40899331fd60c6f2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_actiongroupconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7fc7893c1a9d9c4645a26195bec26bea6418ea5d135546b074bc1df7c75241c7",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_botmapping.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b357f349dead6e9bc5dbad781a26a87f8e0acd60faf40af0d1e0165c08c279de",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_controllersite.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "078baf0dd433d8bdfced1c78c97f244995c29a5ca374c2f06e6328baaa07ae36",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_virtualservice.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dd3bc1d797e739f586da1991626eb37febe971c7784fa7d17e341f08bce9b80c",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_serverautoscalepolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d7caf946023ed7cde2bba4abbb8a8db9c66d3f0f0c0c6d4d278a4c6f8da5cf19",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_jwtserverprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "925676248bf7b60f7fb969b871bf9aec623257141e261a496c0e41bf87a6b5ed",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_applicationpersistenceprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6eee5ad399cb66c1f4600cc4b8b1ff6740d3be40aa0c3a208c7e0ce01e2bc009",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_sslkeyandcertificate.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "15ce63abb7abc77deb0ec8a9bfc68998e0e537d7b4b02353669612469475eca7",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_network.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "efbfaaeb6b295fc19a93ede375bc0ec4e573d7ebf3c7844aadff1b52e7ee2729",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_httppolicyset.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "40cf2660e153044070e80c8661e68db44bdb13c3e7c683d52c27cf4a0fcab8b9",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_api_version.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d28e1492274ac7e9179dca896e1665a126c83776ff0ffc22a63e838dcd92c731",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_alertscriptconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d853d82bd96454109e0205207316d1e7456326f6c8d0abd283258797ca0ee743",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_user.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bfebd4efee0f7d1d6501040f58040d58ff0ca6da7719be8fbffc639d48fb4c5c",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_poolgroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "586897f56041d25bdbdde2139cbf154c5ff8ca881efd85c8c97da9508abf5926",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_tenant.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bc959c153fbeb6e9a7e17b706bd1ad6ee707628721e7e3fdf4671ea666e56613",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_protocolparser.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a49a2cc3839d2e9e1015a984c64926a5b8055590c3d09c78d1545579c8bb4859",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_botconfigconsolidator.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4d391facdf8e60e1931574fccd9e1269ba42ddf15e0a63835e0b83ac8ce8e41e",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_backupconfiguration.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8a92f6123075e8ba9b091c64da2115d8d35688edeac5af673cef8d364091f0ad",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_siteversion.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ad0eae326350e45f0024dc4b97e919cea1afa3c2321acf05769c86bbde084d79",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_wafpolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "acb05429d0159728c24545f27e88a3a7c9c03f0ddb7c52cb1b4b7fa52b9424af",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_deploy_controller.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "74b716534c35361c52e1780d324b634e768246355ad1a4adcc89a37b5e491b43",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_prioritylabels.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "76baf7a8697b4dc5db6f05c00046ad38d3502405348a83d5e37c63c171bc2c21",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_networkprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ae1319a332bfe60cfc4173ee16879bc8369d76e1fe53e9601c71136858fb3a63",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_testsedatastorelevel3.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "60bbb6da5990f7ff26761cd5faaaba8d2b76235fa9e62ffb29ea01d32f3f8c73",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_fileobject.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "933efbd74f21663e416604bcc61a2444b6d727b5438a0d4d9533c727eabdec26",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_scheduler.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ea1fd59c800a88ca3a6c015a06c0243403aeb77c85b9fac603079cfe54fedea",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_analyticsprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3eef5f46daa4e40c0bc7b55f54f5effebeaea1ac300c37149d511b31ba3b219a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_federationcheckpoint.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "53f1bdc68b1ba8ff7006508dd5f535c99ed2989fe9590908fd55dbe5a373b6ba",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_role.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "863f99c95bcdb61f14abacd639b768cfa415e0e7c8721fd640b444d7504fe8c3",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_gslbservice.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a4a2e0fa6c42503126f7c633b18044e83c8a744ec41711d30bcfb540cbfb15ce",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_alertsyslogconfig.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5692c46501ddd6bc1b0d969ad8233513e1ed2c1db23fdf65b75e83d054a28402",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_networksecuritypolicy.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d04d63fc1789cb74bba3fe63352658e5aa9227b982185598e051d1cc9db4323a",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_cloud.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "31308b47cc5dd42e197869e4fbbbcf94920253731a375ffc77f93bd8c0bdf15d",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_networkservice.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "810ff32b01ebbd8d24eeff99e4f90dd324c9e4eec21f37e8a622f8041e3a46a1",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_serviceengine.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "61a23c725cd2c4263f57ecd2ba9cee132b2badf4c768167af28d98c4094f0fd4",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_authprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a4402a695477cb31f584f9ca4d095f8d2c5bddf70778fa71b5eb2ff9c2bd6f3f",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_useraccount.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ab33d998155f19f0bd15fe774a28fc3d6ad9715c3b9fcfec6608ef2a1379bd0b",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_testsedatastorelevel2.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "870acc0a5752939b2681a25dc13f66be08299f15d7e8fb1122888ec6b22398fe",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_serviceenginegroup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7506da1da0e23be2aa8558bbd0ef3d7fb6df0606276190f29989be99a2885dda",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_licensestatus.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "325c087cc1eba628eae9b348f12749c9af729fc6eabcc7ee4a23b1553bda95b2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_pingaccessagent.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fa053e2e5761049425253c5d5aca9b608a2c9810f849208053b785c686499bda",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_nsxtsegmentruntime.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "28ae424c43ef9d4f54d79ebc9fa784f3518fa1b21fd6fc3b126616f56c2089e9",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_seproperties.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f53a716390a8416468d1f8174e8644fdabfc7b9081b88dcdae4b4a26883ca687",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_icapprofile.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c5b8fc7b182078395e17fd6e35eb2069fa66a1ec782cd8c2b5a1c62cb8ba226d",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_vrfcontext.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b5ca64f0b78179b35fbcfeb77e4230eaadefc549551bb4dfa8f6cc1fb73e54c",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_vcenterserver.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf1767c72208ef89d5a60cfcefe46ea8717d4e742fdb56b314411644cc9382e8",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_image.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "38bd84019d6e52a518cab04dad65e22d5bc2fd9146eed5eacb94974469cab4b9",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_albservicesfileupload.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f8a4e73ffba5e6d429f083c21f92111b69dd49534c23e6f8c66443ee57de6df6",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_pool.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7af6dbbbb9db219d09649a0c5af6466eb243660a1b63ba041214becbbce0e0d3",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_backup.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6acb4025291b7aedaeb976f8b977ef0a96e2d71664181c75fa0a43e2405ce7e5",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_securitymanagerdata.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "698587b26ef938027f3d99866f0af10515460b4629aec08c52af947b5db54359",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_botipreputationtypemapping.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a89a75bdcbcd70181c1acd447c1cc95b51d74b0bbda24978bac122f37a0cdbf2",
+   "format": 1
+  },
+  {
+   "name": "docs/avi_controllerproperties.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "880c13306d0a6cfb83b203278335749e1ece94e21593d853293e3e92bc0f1679",
+   "format": 1
+  },
+  {
+   "name": "meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta/runtime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "df18179bb2f5447a56ac92261a911649b96821c0b2c08eea62d5cc6b0195203f",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/saml_avi_api.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f5311638bcddadb6f4af9f2510008c1af37d2286ac4305a3bc4ae9c16d487344",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/utils/ansible_utils.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2bee2b2de7aea5867bacfb825ff54197df39137f64807e91b4d2b7b94e0c36ac",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/avi_api.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bc3a35cffeea1d579ad16f4c0b49aa8d226848932f964b5ee63538c369d15376",
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/avi.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6074f41c31ff647c24c982b88b1eebd2bb41aac7059b7e08642d95c0fe29687b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_botmapping.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b99a900a5057afd16d90d741e90f1e0f9c934be9a832a13cda3629f2ef78216",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_gslbservice_patch_member.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "93a371e3cff87a4bef7208f68e9dd3a97211f4323ac6ad4325845b99161402e2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_serviceenginegroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1dfbba113fdd3d57e488423574cf173ca72c76d81b678146c8c0db1fd9adc172",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_pkiprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f957e47174796210b4124be9204398a02eeb466dd6a55438c62278f0ca9c8827",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_vsgs.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a7fa468723b2a005fdf4e92df57c455d27b8d4a78c896aaa229c96c1f6ef8c0c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_trafficcloneprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fccffbb6388b85f6a1e30a93c56d5db54b78dc000a759f0f9fc3cab2157d430c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_ipaddrgroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ffa8f4f2da053c64f66ca489774e0a467b779e85a8f9a1bdc8e1b65e6ba3f5f5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_tenant.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "14d39d83a314afb161ed9d2bb97fd049af586c08b0788315eaa6e0175aa1d656",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_hardwaresecuritymodulegroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "938478a172737e43d685859a4b8f664d613199df975bc84f2e5486dafb36515b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_vsvip.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27eddb9fd538baa0544ae8cd186d09b776f28eec0d49e2b423813ab74b453ecf",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_certificatemanagementprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0b9cf2be423d536750328421770074fb24293762750fe15d127c71b1704604c4",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_botdetectionpolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d03e10a3e1aee4e80b8d4cb478db4c706abb0f4a6348a5ef2b90035016e5d4f2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_systemconfiguration.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c16e61497c8a9b8367cbec96586199293834aceede3e5f0fa64e7f10575bf8e3",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_actiongroupconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b256f3dd42c9963bfa98620b9ed2a6761a75160c33d5dc85f14ca75e911dd44e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_botconfigconsolidator.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5f140e43d3e8e0494434ef75022ef18b188cd8655ae1bd4544506726a409d8a9",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_statediffsnapshot.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f2fcd861ae69d8d18bcb9457a5262fd3f89b69007d7bfe9407b2f1b0be6bbead",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_vcenterserver.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c6c9b9200efef18c83e0f7c9cdeeea426d90c5d41eeb132bce0b74e0b14bf287",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_prioritylabels.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2f483a4e5e63794cf17c349a76f8bf1196b2cfcf79d8cc2befb3fc207c9cf88b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_api_image.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fa46c882a56776b4f3aec043b3821ca18a11e9cb470685eafe014bf2547d551b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_gslbservice.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fb298e1990dc1110a1db51cadf75c6bc895ab100eb8b205d7c4884154077d4c0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_analyticsprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4765a7d010544e7c65a94564c5fdc1970d61d3f7fc586450c91d92579dea006b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_labelgroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20f73ce06dd4754345d4bc6102b7ed05ebb54a56eb1b68b180e7fb78295053cd",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_useraccountprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "990bd5ffec1ff5dd0b6267bc1e1097f5b29248fc0a5dc0c7726169ea1d0ee2e3",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_virtualservice.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5fc34f3091aa7e2c5db13b0928e303edde754fdf2a74c43184c44d8015f377d1",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_vsdatascriptset.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9315f2d000f075f9049c17a05c7de81e69012cfc63cde705e49fde706f772676",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_healthmonitor.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1d8202e9aac21ee65b9b631ebecadcadabab2400e28f8e6f6bb6c77d330868dd",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_api_fileservice.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e70f1278a94b929e5cdc1f3e20605c58f9386f4fe2ad57e1c2b2aa9a0d10c154",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_sslprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1c70ac4d533000a355ad061061bcd6103eff8a6ea5f9f8c8f6d7577b1ffadecc",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_alertemailconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d5950069b11d15187b845760e83dad8864e15540e0412c093de6baae7e3c682",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_ssopolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "182b3cb0ff44bbf168b86237ddde277e5218e2fdfbbe1b67769d06757ad2f3b0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_bootstrap_controller.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1438694bf604edc87919599888a147de342ef8897279ff9f440ea3d83f9ad713",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_webhook.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fd3dedb8f521ff0efbc145fe4f339c936da5c84654d71a6cde4108e7aac75238",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_alertsyslogconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "12e82ac3c51615d3c16e70ad12f5d3f4ef12568102aed82090b3a134ec4b3eb4",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_sslkeyandcertificate.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0711fcd6f168102414464bd41e335d14fae088542a581be404963fff32afa8c0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_albservicesconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a4546f3955104690846421c1c0b87eb6c573b9a8fdc4e38c6c8a1629e0d9ee85",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_autoscalelaunchconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4f50656dc1326a340eac099bc5f9c3678426d039477d0d59cd30cc6b88a44377",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_update_se_data_vnics.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "375160a8defd0907a6f8b0b50bcec4a5c8326d9f2bcf97f307aacc3b97212922",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_testsedatastorelevel2.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "405a94739ebbb8158b6b9f4acd36ffc09685ce1f934ce0bdda284fb8a6d888e5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_siteversion.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2b2c5e3d1dd0984f1d5128df61e4ebaf22f3b58a921bd717e2b2d5e986f52db2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_seproperties.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "23d75f160378816c1c3ada7f1253b668367d4e9c0d69a7d65e10a408255caa23",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_customipamdnsprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e233cfcc3380534fa1dd5574db03b9ae943bccb0c36577f37b59145fc5bc2fc5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_controllerproperties.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ae307b9ea8cd38fbfbc9cf65a15e96f3c63e8dd74f2366ce0de146dcbc28f8fe",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_serviceengine.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6ed0e980d0b9cfd7015616b9e172d8db8b51bb9c7dd4e084d5780613c1ea226a",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_api_session.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "768b012c98e1ef45d1ffd0a93d99437d0e7cdee7798257136b01f58865e09a20",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_federationcheckpoint.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c1e240a7cc72e06ddeb45a3121af498a1a7233c1431753312f944d8bda5e9ce2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_ipreputationdb.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db9696f95a1d8b20be9fd98a4b7cfd6ca6e1e0ab7347aebfc23082c6f3df1564",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_dnspolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "708a4f8802a43d6b28741432b976f6cfc2fce0c31964ba5eeac21997bd49d8ec",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_gslb.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a453e97524acc2d7e852d6891bf1c5098e60c633d234500519af23a6d1780c7",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_icapprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd5cd8400658d37e6d5f9347b60c46f8abdd4529bcc98e37bd508cd69bf0e554",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_fileobject.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "39fd72aa024e3e212d3030788fb40d54a27a2988564f7fbe29d485cb37aff503",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_availabilityzone.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "46df96f275aec9a014d98d00ed2951b903e8ee5c1975e176c6a8d9c512f89c27",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_wafpolicypsmgroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd4427a8d17b93a13ce9423db09063c4c59728c0da55ae79ebee5476aed93fa0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_cloudconnectoruser.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2ccec1ae86cf98ba6159758faf58d3ca6062da5205d83b6f6bc4f91e01140184",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_wafapplicationsignatureprovider.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a0aa364268d7cc154e6deeff213afac2460c759d934ae843a5df8d85ec5eaf3f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_vrfcontext.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "75ce6d89c6513db7ead8c6b9c5901469a99fa059422cf4b97d633e6bb4e60a3b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_networkprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ccb1117ba31339b1dcbebad3633a807d050418f34719146e91f53d2a10b7aee4",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_natpolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0ae37e0756b529c921533a9673154d6bee462f753391ff4ee74ebbf3597f4947",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_snmptrapprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b98325a427ad1e7d350f1f2dca545a6e930d22142fc7ec0f14310d1663f1f129",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_controllersite.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6a28cb4d367d9724318d2a757f80562e1d141d1396bfb27bbfc0a148f6ac19f3",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_albservicesfileupload.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64332a9070bb870ef18c18f617e2ae629c7ab96f89753227fda59ab1b6d9dcbc",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_testsedatastorelevel1.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a1ba37eb6c1dd8865b748041f72b61fe9c149114e81ec38708be5374c8998072",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_networksecuritypolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f9889b2a2cc58c595d64fc1e7f3094c462c5b478da9b62b5d3f9764053db0c46",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_upgradestatusinfo.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "16b4fb2fa3b90cccecc5f831488ca6f99afcbcc69bf6c96b211caafe9db0c4fb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_albservicesjob.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d8f7a50f289fdfe1b57358c70a0a66255ea3c9f5beea1d7d2b2b27c9f7a58ee0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_systemlimits.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7dda067381631a5485ad80d2bb38cca4c3fb840917f56cd477fe52f8d060a98b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_pool.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b00d14f1fcb1c15a5444cfc3f4bd65bf86fcb8016d168521f3cc4e2c7ba8a4c5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_statediffoperation.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8997706a5c8be8f54a7fc4b889be40fcf65b448737c242dd02d7f3f380093e26",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_ipamdnsproviderprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "585a0a2ab7e852b625932f3bebaa781e6d4e388e7423b6536926e0abaf051e68",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_networkservice.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "744248e87d9d8fe27ffdaa2b16751751ec76216c922ce3ccd789f897554aef5f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_httppolicyset.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1e18a4ddd73a135635069657ee13665d0b1f0f72a9aa537c6f5d7f8678e9c358",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_useraccount.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "feafcad34d9d484cc62cf83a2e9465e908ffd0f119b77936003b8a2062f9605e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_testsedatastorelevel3.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "626748eea2a4ef2442810c638b98da723fb785990d167a8da5f89e5ba5989e64",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_licensestatus.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "66f1e6f6bcde6a81fde7afddde4f4214a6581bcaeea3fc23303d41e8b1b875fe",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_securitymanagerdata.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "49ac8077a067ce042a3e9294a72f98171e38e5013be7cb7bbbda1559c73f2769",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_controllerportalregistration.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3889b5d96f3457c4ac328383fb3d6fd4491cf7c5891527e47622a5831b808475",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_errorpageprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bfab7c5a529577ed80ea06ab94c1ada3d0a1f3a5a6d669675e9f97ccc567243f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_upgradestatussummary.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b113f7e0ab5090a2a332da9ce8a9458a350dba90d3c92d8f0ad8b6774b90ca5a",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_wafpolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e5c11dff60a6874c1040b22e0bad0bc76f13e7440962d889204810ade615b9c0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_stringgroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2148fd50e5c8fee22c3e2b3067257647f56788a2f2ea0a9c16f4375c41cd691c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_user.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f97172b89e75287059ce2a8f597be0521034a6118b5a87dcc78387ff427f4d8d",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_clusterclouddetails.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d527d9ffbff9e744e8648794a73a5a7545be34e44bb51a04eafe010c51b6697c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_dynamicdnsrecord.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e9778c57f980fafda156c4160435c6ef2a93fd2342a6096be0ce71c5cc64a614",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_role.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0ea611ef14d67fbf0c3d77a67788c9dc07d69fb4627f0361e684d9dae75cc544",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_network.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3aca7d24a49579bcbac2f22b35e212b8b6c2b5489abce62f34b3802af2ec5eb0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_cloudproperties.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd721c8b24adaa4ad3f7285bd9750ac56d8b25b84bd356c71214019ac03df32a",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_gslbgeodbprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1f65a7d1193977f6060099cf7c93b60f619714fc9e7d94a2ea5e6b6407f5190",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_backup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e999f1c500abe795544aaf426dd8bb0bb77d0e110b8f2d06140125c4bebf0c97",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_deploy_controller.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "471333dd5fe845173ad385e6973d5fd3b437abbac5418e6a26d2d76674c8d6dc",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_api_version.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c561e3834dc6433c9c9327e21e75dd34dd716fef0fcb04503286e7916fb414b0",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_saml_api_session.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "22292cbf66d6e8bbc5fce90c075555949dafb1979cfa8e8c1867dbf849711857",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_inventoryfaultconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b6badc4f9af99d33c6f4a8993084625d9592e386cc6da8a5c83ca5c1978cfec3",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_errorpagebody.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "66a3020b35d73ecdd5815afdc7b3a4df3a3d9bf02526ee81b5b39a72d8f57f3f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_geodb.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a5978b6e34fb7c8328f258f8b4d2cb37da3c206412888b33c2bb09cf30b285d5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_backupconfiguration.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4fb6a83a8d057bfdb376fcf6e329756e68aa890b193b34a5800e593c6158caeb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_alertconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "59114166aa8b786cb579114038b115f60e841881af6b3ab52e05ee1e782c6b49",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_applicationpersistenceprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "afb074750d335941c59b5f5fb9b64595e04598b1e7e1b9c52214fb8e16f9186c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_wafprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1f315d037a42c8cb94c733c0c187be37a8a2d0c4651d208e79f02b5c2b6efe1a",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_applicationprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a1e9c9082e3b7e18766714c9ef11366db031a3f87996bfade3ee46bd73a96f25",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_scheduler.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e58b914caaf1ad1eb2e27788af1d328fa4ebb5bc6d01badb8d2c00ad9e96516e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_poolgroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b94f0e947ee95713f778d44dfd9e605bade62df527a8fc265aa5c440e474a6fb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_securitypolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "79e7dd9bfd8011e0b83065f260455ecfde43f8de45f7c15e473e8ecb3d80800d",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_licenseledgerdetails.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "75a22fed94ed8e9a967a3b7d041d84eec08bb978b56cf5d7c4b6d5c0ece021f6",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_pingaccessagent.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ff3ddc5e8b442b4ab765e8b7881bab29859903bf587f6e63ba3081c67b1dbf2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_authprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9af2678cee259c9d1e17a065141911036c613b8b0f362b2ae0d99a18b83aa085",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_jwtserverprofile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5f83e92347d3d24bbbf47eaa4bb9394f89245c0aefcd659b5974d02e7ed86186",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_cluster.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6237fe8d77c5f0243ab59ccd65a5b766b79beb1b771a21ec6eb06982edf074aa",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_l4policyset.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "76dd96e57c573e25d11ce6ad4c8fc7a67e35a3dc4c7d43a0f3c64aa629cadec9",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_poolgroupdeploymentpolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "13031cc2fbec60c1ff655803a70bd07ef47913fea205672b46ad648d495de43e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_alertscriptconfig.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9cee743e130909d7577728a048c3533772e6e67a1fad7b69aa5fcd71730d166e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_protocolparser.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0f9702857bb9e1c1f2ba0010b538ba16a0c9627e0d56b7b9fa251712a8050905",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_image.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "97f0de7cb784ecfb775302432c44bf4e0d41d1f257e78d02c17552bbd29cc3f5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_nsxtsegmentruntime.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "21acc6207c3762120f4b8fe31bfa0928f73e973b3e8a7ab93c0e3231e06b1607",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_cloud.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ccd31d162c50570fc6f0f5c75710a6ec2bbef95d2983987705edb898c7c1fd84",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_memorybalancerrequest.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "833dceeea7010800150a4b8e47de71dfc190f1d8c154c5b010db0f5078a938f3",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_microservicegroup.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "133363f6b7847c899bdaf7376bc5ce9c8e164e97ea852c85d8be96753dd4dde1",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_botipreputationtypemapping.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c141edb9438dde2cdafbff16a8966ac82e502bc84f017d49c6ae0f85fa2c25a4",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/avi_serverautoscalepolicy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ca3c6da89c9bec13acf32ab40b1be671bb8f5e596de80fcb86e8af2bab44d0df",
+   "format": 1
+  },
+  {
+   "name": "plugins/lookup",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/lookup/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/lookup/avi.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "54ef3c7a2e3a61639e5993d40780c0c68ea764557df1fa87932db3d070a899a1",
+   "format": 1
+  },
+  {
+   "name": "roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/avicontroller_vmware",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/avicontroller_vmware/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/avicontroller_vmware/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c21d5997c583d3bae18d7c95c13b856c20f332138add1c450f8a30aa1b2f338e",
+   "format": 1
+  },
+  {
+   "name": "roles/avicontroller_vmware/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "911365baf989003b2d0b43f945b4f3a546bc161f21114f0a60d87bbcaa72e934",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networkservice_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ec2895eaabcfc852ddadc0cb831baf82d40d7249336a30f0f3db0420d93b659",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/availabilityzone_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e155f79698877d257c47b17736895d8ee1554bca5bf5f1e85fe1ffbc42da2fd7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsdatascriptset_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9769c27bf26e7419c8312b04fb0fd657763720adcf524ae564acfaf373367547",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/errorpageprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "49b7e5a8e96e2d1bec0bc838fbb0f2a4dde05ec35b654ab909072e1f1b590e99",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloud.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "410957ec01c19bae21bb5100fd95305825578610dc8a36574125c4260b301534",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/natpolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "34c83c35470b703c31cf21627ea6164b32223b498af9743c782d05a30cea736a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9a6af18d6015852f2f18d7058aef45684f8362b3ace64f26e7af973591f9cc88",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pkiprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "183143d1021f5a99d14b847f3ba8dcc7fc487b88e9e85747952a011a3c00efe9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/systemconfiguration.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "04ac71c3f7e130ff9fc416b7f70e3c8cc22239157983f59f6e0e3a4138981499",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/clusterclouddetails.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f1b956015fe2b43c4417fc1eb59d062eaa7220e9d62c3608d783e0accca0e0c2",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/errorpageprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1522c2c1685583764f01e3656459146f6443d989b27e40f3a525a2358679a34d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/customipamdnsprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "22aed97f4449eb41d554f600081f031ae23e1bc59099875646658f665c1fb9b1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/virtualservice.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a2705800e4a859763bb09d4874cfb526a7e54c937e43d1b1ccc9c3b5586a1c0a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/trafficcloneprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc5c5d94041341fa296451776ada23bc3e7c636457b30ebf0549842e5f98c278",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/snmptrapprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "baf881afdd18d7c248443fa52f3ad2097b70ffbcb679c9c1c15fa7c4d45043e4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/jwtserverprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eb149466b3286c5e1609d52ff522e9aeba56805c175021d71c6aec1ea9e40e9c",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/applicationprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8d2662e896f80a4fb0cbbbf8baeb63b0f48a47a216b31070070757dc51454d9d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botdetectionpolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c0ff5a74ccd770f91037b02bfbc85bd2120359fdec21d10008cc86aa5ad7fc8a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllerportalregistration.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2775653c4dc7cd839e78a49e6768c7bf5f953a8fcff7f6f62c7a5fc0012f1727",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloudproperties.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "202311519553bd2819de8db047acc512a08189c7778d1cdf140efa8b8f83b38d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsdatascriptset.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5735d9e3cd7d2f16998371c9efa28e901b7f88f8060417f71220c79a9ed83e58",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/certificatemanagementprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5786905f99eb4eb85530c669b095155fb751d9d9a5a90b8ce6e97824a6813145",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vrfcontext_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8244cc5d00f64d011a44dbe35175345ff41378cc858bfa8afe719136bdd5b5b8",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/seproperties.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3d77609145a605180b605c751f50b091336c9910047347c1db2d987d316e3373",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllerproperties_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "076829389c265f5d6abe7f5df240cc769f27a1ab95d49037b6fcbfb13d79fa36",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/licenseledgerdetails.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9436735a94813df4f0f34d49ba365a48d7f92a8a65fe508ea2816479258118a4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslbgeodbprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "005798987248f9754ef6c97d540e8fe559734d750bc1768b9e31f4ebb131f2d0",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel2.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9fce08d729b45d9a697f72437d29b7e7ba6a79e26b0085d9bf59a345e6fc1437",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/dynamicdnsrecord_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ca146ff46f3c68c99a01fa5943eb77d032b4b37648c1d2ad555d5d32afd08ac5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serverautoscalepolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "09907e0a0662cec2041fe786d45b5213bf1874bbcef7ab55809abb78edb6e163",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/icapprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b89dd5486ec3030d213344fcdbdd9ec89a0fdb1324e38b209e709b874440519a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/backup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8bd5657a65e9e9f2c44d51b3141ee9c3c9b5cb156c325c1c6bf6d3a2b39192ec",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel2_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9ebae0490704a285047c8dd49ddf0975f19f19e3b586d1aad8a5d07756c0f880",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/useraccountprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a8fd57672e8b9ef11f5c60df805909ff9f94bf1f8a54aa255f75252dbbfa8db4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/scheduler.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a05b29a27017cf801acff56ab396535345f6794caa72220501b5513739626478",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/securitypolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "00a7b93520243cc98f13ba5e4895eeeeb7714c6a6b6d01824f5bb94a77f3f1fc",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/backupconfiguration_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "da3bdf91d60cbce5709a3d2768a495f853b31390c011f76b961c3485e06f169d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/webhook.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "893cbcf1a218c1e45afd0c60554cf8f69b4d8f48ba65ef8807aa3f32bbd4d5ad",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/licensestatus.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "437c5fd7ee1743d4e71c82dc2a0443c96651b67aae7e4ecf5b5428a693f0e9c6",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/federationcheckpoint.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "43f2099db20b59c5e91b49f161c667ee6c25b5831540d76415b7b35a9e79da6a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networksecuritypolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a9d6ebabe91da709823659efd8399f4e8861877419acd804a1f56f0af082cd0",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/useraccountprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "24f9efd7563bff090ee9c7878b98c64ab0acb40970dcf8c16db31b5a679e9495",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslbservice.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5d87ae83212d56f29b3e299630564373d08b438bfcc8087042387f7396b44f2e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serviceengine.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c25606c3aac357fbabb6a206de1e7974154c92b89c45277e43764858ed8c133d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/dnspolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "abbe9b9cfec5d0944993d62eea5d6cce5a83b89eb610140dac9da92084032905",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel1_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "147577aa873956153045ccc8ef2724bd878881bfc94b706f1f3cca027eea7347",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networksecuritypolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "38d96adf4f99e4c0b6237fe358f3a281a6c16296bb7fea7a933d6c1b98ee7b89",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/applicationpersistenceprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cae08388acbca5596d73aae61e131eb2be6e1e6c16afda480d4ca66af3b41fd3",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslbservice_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a6cbbf2c4b46fe906e66fd8f798d2ad91f45db15713e9c3ff1137f41bf110042",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/licensestatus_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "addc80ead0b86fc722da2726dc3d5b0cd7edb0dc8429f9e086655f5447fc6da1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pingaccessagent.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fdd97f81e3a351c7e136bc95d0fefc5dbfe182b0126e0459cfb808ad278b8fa9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/authprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "163b7a2b260d852effa69003a6fe3c683fb19344a78c6de94b90041e86f1d514",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/poolgroupdeploymentpolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "69fefa290180cbd69b3bf93cecc2347eadcffc5d6d6f2f5b02ffbecf554ae7d6",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/network.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a7fee5cc463d670bd8fe056ab68ba36af60c4c8868f55db16de7b101e319cbb2",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertscriptconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c32ad66c2b6a92083d15b48edc17976f88897f9a6726f13466be088feaad070",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/upgradestatusinfo.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "490386e9e618e059ec6fe982eda8c095bf9ee045d014a3e52a2eace6808e91fa",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafapplicationsignatureprovider.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea2ca1b337ed873b8a5a8dc5c6f8087073401607a3c394d7e8fe84235b2e9d82",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pkiprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c126a74219159d45aadc48dbbd54e9b8819272800bcea67590a1d6c9d4c7b34",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/dynamicdnsrecord.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aa85002ded6f2bb2875ff761e665a295c8a56fa2dc332bcaf7c9c14f15fcf5d0",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/nsxtsegmentruntime_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "085879dc6da36fa3bbca546130e15bedb57711e44bf1572d739dcfa5800e9720",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/l4policyset.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f11d77a7241aae15cd55a1267ca58b49024d27b8045ed21472897ff97ab915bd",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/natpolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aeb8ec2f24fca3ef701dafb0271c5861e48914b4efe12882a52bf247a5413ec5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "557a082c16381cb74b872146b43a4656f6d56f9e8b7b06403914ab47d8642081",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/statediffoperation_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "66d324b9394e0e3bee0c7b94bdaa8c52273e0b33d9d9fdce123056d57e586923",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ssopolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27609b18355193c68cb8649e178b0dafb9ba9384dff8c4142a83d7f20914d4e9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/trafficcloneprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf63ee215815ecbda1c3ef9b73931bc616160d3565d10c6717c93e03f6913fd7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cluster.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "737d395ab58f20d423e07c5c9b9e908ac6279e84e9bf8eef9f5826dc6e3c1e5c",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/applicationprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2635b1f7a2c4cd18a9d3578155950db317ac61d45f5c621cc311731e7eddc072",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsgs.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "099ada0e016ff0fb6e86c8b612323e6a47952f265117e7a65f93cef950bc7cb1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/inventoryfaultconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "949ef03805d3d443833d4b46e8df63baeff2a52e71557046fdc87661c0dfd0b5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/systemlimits.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6c13a02a962c1e5027012161c7eca63f95d7fabff3d12ffe383c62049537ac11",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/actiongroupconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e007456f536c01a33b2a541a79d58e8a27b2389b643b493d6784e6a135444eee",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botmapping_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "291653edf40236dca19d482edc81848d6baa30a3ec2e25b20877eb587f850113",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ed7ef0380be7dbaf77df8f7051d0ff0d45726e79b983f19becd96832187ee8e2",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/poolgroupdeploymentpolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ae073789942db85f8b580cfe8cb6190e15ed181ace7b05539bd4b5178f7f9638",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/hardwaresecuritymodulegroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5c5bb3a2f726861309621d34ccc7ced50368ec2067f74a6143e8f86ae332b674",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipreputationdb.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bbd60919476e573218452728e4bc9954e81403ccc1b67b35beb785ee9c022304",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/webhook_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b0358e647140d5351ee979984ebd6b578700b0f96fc523d5dcf3b1da4ce199fb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/poolgroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "83abc04079ddf159e9f6d050738bbd6b35995b712ccaaf8eec580313333a0409",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/inventoryfaultconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ee6eed5158ed2441e6d0076c1e6c8de78c41dfde3228226e7a787e7881140bff",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/geodb.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "14665c09e14d5b8e022d77f75b5e7fde2f21ac0600668dd014bad5deb674f749",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesjob_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3714a5b645cdf357227aa57d767335056454ba5f2969f095b77b135f723e292a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/fileobject.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f9e2030faccafe625d5eaf41f897895332e689a6e828dcc751fe8c832cf4dd7c",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/image_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aa3c55988f47bd2e41e2e3f9b0d4b6a1ffd2b0a786fc581b06348c0216d74bb9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipamdnsproviderprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d8bea24754c0c6f00480df8f1b135dd6b98820f86b73693bf8946b1efa69ef3f",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/customipamdnsprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c019b56c5b8df1de708589ae6aa438f4e3a7cda659e7fade5c8d35045c524204",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesfileupload_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1d32cb9355a6e3cf57a5759c01b077dd6c02413291ae128fbd2e8befc356e118",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d310d178fff590c0f87c817de1db65b8833a580fbdc8933120867125b6204994",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/tenant.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7623be3a54f1689715f6ed7e3230d41f891c252b54e977474bc8069b8cb9ad1e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/seproperties_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a492b0af43f47b3f619cc59454b749d25478ac1e2ce5130d6dbf7f93368fbce9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesjob.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b468ab47eeb3dc49069133369a1b8fcedc9a0093c5ce7f7bfb27226cb56da7d7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/upgradestatussummary.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "77f8cf716d2725d0a8815f42b46709f187d2b600c2bf4908d39e49a5ee850452",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/siteversion.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3e3fbf77022f0c30e3e8959cd2718d3c56e9d59dfd0a4de26e354a191e1fd44c",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/analyticsprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c7afb8604ee1409c460e6df9609c069e8f67d7e53c027b7f43fad8219f0739c4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vrfcontext.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "74b3582b14692717085101ab2028495eca9ad7e1c1096c8e817b0df7ddae25ec",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/federationcheckpoint_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "934a6fd77dc92751ee91f871d6d9a9acc06df5b57b6fe0a59a1a5ee7a086a41b",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/systemconfiguration_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c39f99adaf146f98d95f6fd9b854f80aa144a79d8580cb2c099b619b8eec50b4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/errorpagebody.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e84054f58899f5df7e1d1a6de7b3da9bd07449d4013c5537bc16a96f9a808104",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/dnspolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "79bc554d39bac8b26a4068e1be0adfa950583479358d34070c34881ffdb41659",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/securitymanagerdata.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6986994e1833a02d484b2248d2ab993ae33697d3ce766609ff9c14e5025c3b83",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/geodb_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b834e64d7f644f88a9aebf4062f2f9ae40e9ca7350f7f1f64361c34c4221de56",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/sslkeyandcertificate.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4b296540e72da6b0420b22cc8ed00fd8235efc6555bfef9d60e0dfa50b7726e7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serviceenginegroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "41050847226ec7fe27ad2253e052fa86a61a0418707f949caa86685a0c4d5b41",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/securitypolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3eca849924b6edd1e9b573b75a2d181a64b4455e23523e9d5ce1672fd7bd8609",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/network_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0417d68bd53fa0d7cddb71e21428fa4bd8129966b0ddbb2251da73b5c29292f3",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/backup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f540db547f1039257b233557f257c2502e6296b40c3fd907dd6e33c9b1dd0d8d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/l4policyset_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7540d933878b4fe3c3e3c3c040be8fd09949213e017eb0009e4f6bc6ad9e0959",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/hardwaresecuritymodulegroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8ab3cf65cec11bba2dbe32ef75c43470ca8192f9e61a0d57594184ac40a459ab",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ssopolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d6c6ed8b69ca6262d5bca3f5e93f64f908400429d7ae6ed89950e960dcfa53d1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/upgradestatussummary_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8f6b6d2596868a765fa693261b770be1871b4ac58acd93c51324e98f38b92983",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertemailconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "35bb8ff998edd15ba5df87ccd1dc29ee19fa1bc004b6d7109eab1859b190584b",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloud_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e33ccaed4e7ce5da00ee39b003eb76d596bcd4981208e456c42012126a53702f",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesfileupload.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d588708464abca7259b0be031268a5135aefe557f46cd25c963932985ff4a7d4",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertscriptconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "38b15cdb91eacbba450469b178ff7f9fade7776e4a86e1c0c09f2dd60cf924a1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/securitymanagerdata_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5a75734b1af6ee82df7c449efd80ddfeae13f8aed2f1f73b520e6e6e47255aea",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel3_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "af95add495c4aca2c8fc8de53ee58674aea6761b5d491c0e26c896fcf1c8d8bb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/certificatemanagementprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bc9791f1aef8b37f0eaf1f7f549c29d05c959703e01659d3eb46881d7df5bb4f",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/errorpagebody_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a4234d15a50e4e2df3c113f276fd51ae792bc20838f904e97104892bf9c6e28a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllersite_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3a659f10dc67f698518760a7f7eae43318e87c7712b18a7c521466cf4e6ddb4a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botconfigconsolidator.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "825a4c19a325dd757e89a9202c0c7e87b849fa8b4be58cce8cabe762fc4967a8",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/httppolicyset.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "776b4e032bbee578c1bac12a06d1a17d4ed869680f4e9e851adad7e4da3834db",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/healthmonitor.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d1763dbd9ca5f813a790ffb2b1c16de295e2cc3e92861a0ab2b0ebe3972cea75",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vcenterserver_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cbc6c70ec0ed57c9a4a7c78fd70c564ba4fffc3f3f83f1ab3ce4265dc26a3b60",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/systemlimits_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5e8652307e3cb8bd280388dfde77cc7e795d3f016ffc7a619f27345cb8d4d606",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel1.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5ab3e17d03ccf9463a4e332934241d00cafe59479ba219efea8d46b042e0e407",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllersite.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a75fa9bb4ae3b9c8d72d01126158372c20eca83ef8c5d82bc6631d1c2ea3d4bb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertemailconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3e699badd08b4ee602184d511be630fb7f9613249f6366c11d3fb0d6dce77f99",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipaddrgroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db8e7a265a70d50988cb9b8225a0e88408a421da64af25b657ec5a930073dd93",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/availabilityzone.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "97b972280733bc1015a082011276ea38e405b086d8dbf6ac5ff87523af79f83f",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5fd9475328ab5ba320598a58e8c1b63fad0784db340a299dc7e536f46c6f6146",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipaddrgroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b573e4822846829705155c7bbc937fbdd8197170e9854c40188afb602fae99a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/snmptrapprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8f9467f08973933d7c8018a44e82d82d6654e7578ed9419519f7d91c4805ff37",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botdetectionpolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ef7763033e94c19dd6e8634a0ed678f32c01aefcbdb8af89d1c8680d1868d44e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/nsxtsegmentruntime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "13402a14b6a6119b6af171bf3ebad9b708c16f2866e75899c4d8b56bfaf08e85",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsgs_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e93289636f9c85d807ff8d430f78fe2d006b6f3bb83ef5ef5960b59fda17c527",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/upgradestatusinfo_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7145caa9285bcc2bdbc7b22e6ea016b04bde973287a9615d884869ebed867ca7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cluster_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1bc6db4ae19da5252ec7cc98f73231e6790025e42a52ecec8789cdbf3223f956",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllerproperties.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "de14494840ed0281cd59e202f7692aa2a41920006ca8440d5e21779ac965a58d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsvip_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "424b3bd7f061ce25c32dd68168e26f7d78bc6b39736f6618af97914526c37000",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/statediffsnapshot_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6fe426f1da69529297bd82de826a8616aec4407fb3c020394599329db0a73137",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/analyticsprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "439f3ef8a8192898154100833d4e4ab7b2bc6f5e18a565dcbb2e01df81bd3a5d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafpolicy_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fd949bb3148171808a6adecbc19ab7bf2ef6f2a692094c70cb8b547858b01fa7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networkservice.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eb98fde23745ccc55dcb7a622dbc07d2b21859cd624d6f21e6d119dcaae857b0",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloudproperties_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "06aa7caf78c480929cb864ee45932407cf06bb402512409329f0badafc3e5f54",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafapplicationsignatureprovider_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "058e5c103fdedfd2a35f0a320b2dcfd7ce7fe6fdcfb0a941b3afbd14e1ab6678",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/memorybalancerrequest_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "841e2d46f5bd1505c0d1b3268f6d2a7fef4289daec335fd58e495df88e98df9d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botconfigconsolidator_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "88f4638e1a9dd9d65c3dd2d3cf1e29de3f6e836e374da1850c9fb2523a1ac20d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/microservicegroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5582014cdb25bddbb732919df53418515342d47ec5a679745c0d9d2e56b098c8",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "534459bfd14987c757bc1abdd2abc2d6f654108590ab7f63efe6e0511d8479f2",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botmapping.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d16314043dab26e4e12d8483b7dd51d85569583792ee7761566ff474784907cb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/sslprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4152a7591bf07fa282cf46635120eeebc0b569cfbd4b41f0576a623b9f8a79a9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/autoscalelaunchconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aafe9b5c1530b8fb871e5554cc287ab850c46434af9da11b9cc35e1da536b081",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslb.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ff5e457d5ec7fd16e61a850b452ecf8cf0fc2359259da8bca60f35c87130a873",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/autoscalelaunchconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "683a85e00a5b75009cd50effcf688bbb5842b604f2d638de99c821a052539cbc",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertsyslogconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0bb95357dd47d6fea1b416d69a1cca8391f4d4832466b0bd59fc3bdbca37fbf3",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/statediffsnapshot.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "379461bdb72a11446e6488ad1cfdaa1c8102ee6ea05cf420354cbca51a5498dd",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloudconnectoruser_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cca4deb7b8176fac14000de53854ab036d3cf8f682f0f629d418632f19af4eec",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serviceenginegroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "62395256d7a22639da0f80b8c42c9d307befca05d225eda6a9f992f5f11fdba5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/labelgroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8560264b1964733b0897a4d4a2026ed9390bbed565f2d7510d3dca8787add810",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/protocolparser_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "80d87ce753d6045eff7d6bcb36d545d42262c20769dad4c0d481938c407ae75d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/authprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2061e20c2c639ab0698cdcb0d784dc813261ee767e5172b3c26011c405fbe82d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/siteversion_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d07768fdaec7982fd2eb6fc93f130d13547c61ab8c354acae50d5406242d3b3a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafpolicypsmgroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dcc11305f990082c1ad041f2c413ec811f86872c399618e98a434856181fcba1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/testsedatastorelevel3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5409c81e9705c263c9ba524662e322449facb683b4b0616c4912ccaaea3064be",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslbgeodbprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a598da955827041d92137ba12f978471f88ffa00dc91a903518eb341d30fea24",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serviceengine_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f31678f7076c75a082df25c52cd16810722ab79f5fa79dd0a70557e00061a021",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/virtualservice_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "30333a22d400f538451cad86a991f595c4bfe6b558beabd66fb6ceaacccca75c",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/tenant_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "45fa5ba6f1c218ef0237a8824f5e57e1395b1edb4cd30c9ef623a2c120cf70d6",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pool.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf7537b88b55a8b92673ad57b5951701559739c38c7f7a7888f3241ae29eb5e1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/role_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6e7b069701a85ee844991fb923e19f9e2795758d2ade41344c440589195fab81",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/icapprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9025cb773d9fddd48249d3beffc8ea75a5aa072cb3b8054e5f0d44bd43ccf923",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/microservicegroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20646c1978c64647005d75f59f656b00d6d4134d45917472608cd877943768f8",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networkprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fa4fed08f4edcc56721c23ca721a19fcc096e3c751bfdc6b6631c8cbc03bbb45",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafpolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c572cd5ed60f335a88276ba04aec378984946f4b3f4be0309b62d9247e340941",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/cloudconnectoruser.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f4f5cf982bb355c5f8ca386c1a9e155e987aa311d37f82e8fa0d9996b53dabb2",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/serverautoscalepolicy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27ea29ea7a67c91d0231f3fec82e18133e8186d41103184bd828e39c56721992",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertconfig.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dc9ba98eb687ed914b7792a897e0a1b5d7fbc77f5b41aa61b4b19c32a058727b",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/prioritylabels_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "25b64e9bd4eb78749e11a6b0d582a69b7aa68a4f81f7fa07aa536a7c0072caa1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/labelgroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c27f8f28010d76013107a072343d0d31fae05977b9cea36e14b365fe0d7c864e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipamdnsproviderprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d388de20208f6192e5a96d6cd7a992e18e1b94530881b1d438aba34a5b5b66d9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/protocolparser.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cba12cab521f9f7facfff9aca81f930961d4abb5b6e8a8141914312b52be40d9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/scheduler_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e959e50f94916e7974ec2149763f5b0e0468007aabb147f5a5a305fd4d730aa7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/ipreputationdb_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0cd86f3a55b31e0fc2b91aa91dcf8d961fb9e4f4ef61926f32dc9103e414a9a7",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/sslprofile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8038d9b3ba785d0f09682b72b7780eee09d60f6b685ed8fb5ed4812ae14aa647",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/fileobject_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db3aa34a328d91fa4276d2529b9f36e1069e5dba3c84c878f7fdd1be14284d25",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/httppolicyset_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ead0071cbc020215856c7eebc202043695b1763e502d071898ab9a367a33632",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/albservicesconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "94ba318bcb207ff8f90fc0b7bdf7eb524bea9dc8ca311e12b0ee2c683efcda8b",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/actiongroupconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "40e08bca8379dd5c52a330a61cc1b68567d86f90aef9ab1d5ff04a9a0d470d5f",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/controllerportalregistration_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b545afb1c6ea657d0633515a7c82948763027528777232c6a68bc3e314a7ca7e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vcenterserver.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3d205677d9269fa2ead5ffeaf172743aa596b6ff80bc5aeb54babd2b20df1e3d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/wafpolicypsmgroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ad8d268d693247f36c14a1e0f9a93bf8532ed84f69f7d1d234958ee6ddbc5802",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/networkprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "92390e307280e6f687b041faae3df018d5cfcd3fc84d392bee12b2632c17cfdb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/jwtserverprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "52c9b77a73c726176fe9cbb2ba41f7e7fdd473f61aa85060da71be77d1d102c5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/backupconfiguration.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cef81e48bbdeda9f64d888f4afdc0e462d41497937e947ed0160d7210fd597fb",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/clusterclouddetails_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "16f9b82123e89dbd826bf23fb014f641ce6b58db4df7669d8b89374a0ad608e6",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botipreputationtypemapping.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7d2f192684fd375c5452dab02e52ebd2b8e76be99fdb9facfa70064d2831dc71",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pingaccessagent_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e0433cd30b5ca02928b4700352ffb146b77ee7e2bc35876cd549c3f20ac00ba5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/vsvip.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aa468dcc0e9c334a79389540684cefd85b4117c79b29d9b43b010c195b850934",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/no_access_cloud.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e96c55d8ab67a5a5bf0f4dfbc798616926f9ce874ed561e57c4c900aa0f62f32",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/healthmonitor_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "13d0b66457da57259c0589bb00fd79068edacabe27454d924c2aa158be1a9bc9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/sslkeyandcertificate_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9f40273f085c56d6902baa0c5682da529b9e064b038b3a0defe63978d1732438",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/pool_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e86c56007b2d74f15af19deb01e56845c4edf399bcc5581fc0f0b0e2a6217d19",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/stringgroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "157b52774b426252a861ffcd65dd8117a0864c0b6d0242caaae083be7933b2a5",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/applicationpersistenceprofile_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d0b233b356e3f1d4812a4ffa019ab04c1fc46329a789aca95219d8821ba7d0fe",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/poolgroup.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "470812f4c521b82eec61140ef2a400463d3ecd1fdd208d716addd75cee308a29",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/image.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "47766dee42737062243d14c7bdb190cd76fcc206e1cdd3ab0ff0c16d8b25157e",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/gslb_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "78eb4a5b24c41960b2a011635517f2201ead4c72d107e5cca5ed8454ab1ddf0d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/memorybalancerrequest.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8d72b7db5331c3bbaf2b2785ad0825c59b29828b374b72f8ffa98548e47c36a9",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/stringgroup_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "da4e687878c00a8e2dd2ff741ed66061ab138ffc259ae6338648f74552e8314d",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/prioritylabels.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9efb8497d71013fa6fe5afb1ec8689205b1ee5f01fa0b5ca949444c611cb44d8",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/botipreputationtypemapping_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4821e7d7217d7049b28733e88b62df5691ae9ed8269d2aa545b1a02e0917aafd",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/statediffoperation.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4dcf6f6d976bdfe4346743600d697343accf374d9f48c2f88d53f0f301b28749",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/alertsyslogconfig_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eaba290024d6f73788002bdf6dca5699845296c817c596afaca2d0eff9dc2b76",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/tasks/licenseledgerdetails_delete.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "52412fdd80ee515a4961755d952e9f1df7cae614074642c7ee8d6b59910e18e1",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "27fead1008f53c5554073eea205eb872d2485143b817e4493f6a1587ec331565",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c1e9ec04852cfde3b177a99c691b20b78bd25fb0cc261e3f5932603a96c178a",
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/aviconfig/vars/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "95ec17cfdc3a3a47bc81ddd46c2e714bfeac657eb9cb7b8dbd7e2f42fe27fb55",
+   "format": 1
+  },
+  {
+   "name": "requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b7c240e2d7ab048e4b043cc6f74ee7d5c29e4c2c6f05ebdc8d77490616048a29",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3d6733023def7b20825e9d1d2341a341e2630134185bd565ad081e62a3c477ed",
+   "format": 1
+  },
+  {
+   "name": "tests",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.11.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3a9367da9cec4241021a1dd7f0a3a411f5de607f1850a1163662eccf2b6ab265",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.10.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b55679ae812f236b9025edc63b1aeca2f198a238cf72cd8766569cae437b6139",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.9.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "010fe0cacfc6a62f875428c8f10144d50eb75f1f5c183192b83170cf2477250e",
+   "format": 1
+  },
+  {
+   "name": "tests/unit",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/module_utils/test_ansible_utils.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e78d43f2390a9f5d90463dfc63c3d98ff0614d64843e9fab965b93d39d5b13e1",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/modules/test_avi_pool.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "077a24f638a126451a888a8b667e680cec1b2e56ae6b276a605ce3611135a3ca",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/modules/fixtures",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/modules/fixtures/avi_pool.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "720767e078ecf149a6f0cda80d73b1062156d77d022c056a075c55eb94664d25",
+   "format": 1
+  },
+  {
+   "name": "tests/integration",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/integration_config.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eb479236248a05d2c0df5c221d9d3eb4838ca7d2981fede800d32f19121edb2d",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_serviceenginegroup",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_serviceenginegroup/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_serviceenginegroup/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b8dec3d10051ae39af6306d8827f6790fc52698951b3a38e87cb0bd9f7afecef",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_healthmonitor",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_healthmonitor/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_healthmonitor/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c353c36aae7c54121b63da2d7a295b6156ace96bf92d6e43e1074e6f2f24b4fa",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_deploy_controller",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_deploy_controller/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/test_avi_deploy_controller/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6a4a5d056a810e52be9a61f8ef1d5dcf7418c02e9a06ca4d2c249c73f8e28efd",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b7c240e2d7ab048e4b043cc6f74ee7d5c29e4c2c6f05ebdc8d77490616048a29",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/run_tests.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "933785613786bfea0744af31124394acf0d98edfce8ac5f9ff9cbab0388402a8",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5466fea81c34e36c2d1bd2cf825e7137f6cd0823af8745f35a2f894c20d15e75",
+   "format": 1
+  },
+  {
+   "name": "tests/requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7a3a92a53f414d98cf41ba797c069960c94e553bc71e790f96458bae4d2cd19b",
+   "format": 1
+  },
+  {
+   "name": "CONTRIBUTING.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4c7c52cc57eea273dc7234b11479d39335118ac8c175f99eebf2a166025bbe49",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

@@ -1,0 +1,1629 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta/runtime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aa2e34142e05cac25ebdf95790050adccca8011fdeb0aec65425c2547fd80f39",
+   "format": 1
+  },
+  {
+   "name": "LICENSE.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "08853f3486c8d1d1a45622bdefc50b788d3d5169ec53467c6a568844a229addd",
+   "format": 1
+  },
+  {
+   "name": "tests",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/test_nsxt_base_resource.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b54f575f745149b73cc7db10dce88dee059bbc85dda7f0b48e27a8dd43662e9",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/test_policy_communicator.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f54d0c5c645ee4aa70e50937cc1472a0da9d91ab4682ee26232f3d6060af5ed1",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_bfd_profile.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3fc50d6ffe61ed9311e56d8476f75f3c46f3bd50b9cb12033f64ee0333208ec2",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_group.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0db17be7dae56cec810174515ea09db25aeee10dd73630964e6febaac446077c",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_ip_block.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "35c9d094c93bcc26e2f56f301918bc6a604d05f93338b709f0d652d30af24745",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_segment.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "12f26237411421b17d590ddbce7590cf5755b4c13b926da7eb4b672ed043e7b5",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_ip_pool.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "492428ee4a851486f8233a48b0a0cff9692f91d6d290a6bd1bda00432185b3ab",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_vm_tags.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c74f65c386b83b25054ba41d8e9c5e0846c26367cd6a44d90e6522eed1ec4c0",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_tier0.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0f1334cdf98bdbe24870e0350f49114edc245bfeb41b65455ca9e914456d8ddc",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_tier1.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f4999629b7f419ffcdadf68e6cf68886d5e0d573e209a713666532c29c935a59",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_security_policy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0b77f8d3f544c160e012e380df44c0a167e9548d88729fcf77cb51dc21eebc31",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_gateway_policy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cba194b462829a34f455306ad96d8634aa6e61b6c3147d901790952f05bc2cfa",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/policy/test_nsxt_policy_l2_bridge_ep_profile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e65543c35f86efee0d74015def7085869979a474906a472734cd9347a0f11721",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_edge_clusters.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "24eac402b64464af45c3e9ab52317a81418d32ced5f5de9c96afe6e367b77d32",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_pre_post_checks_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b7390891da958b72d0ef8f37d190bd41c67ae4e5a4265efb3dc58751a94df2e7",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_router_static_route.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6ec28ad11c8e83806514e052f6e6e31c1690399990f9446f7a51c42d2bdf21b8",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_licenses.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "93ee60356c61a7fc49971cf54ebfde6a24bf4f029c754e446d9be8bb87333e01",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_prechecks.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "76b4be74c742071e418f00bcc386d91bf40d512e5ef4932aaf48f4af9e8034d9",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_ip_pools.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2aab2103aac2fc3e3417a35fcf9806f39aafd39b9d96e848a8dfad75046e6f3a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_repo_sync_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "50b7f7f0bff5eafcbb8c782f5c0de559c70ea13bea65bbdbc78ef04ad2bb060f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_zones_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fd6c880841711220bb6c328e53fcb38284e8f1005e235bd75fd178971ffe554a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_plan.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "12431b5682868a568baffe8eb422e5a26d08ced7fc7cbc6337fdbef92779fa9e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_routers_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c34f7937007c43a257910646ffe016d66998b6614f5d195920bbbd54850bd153",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_groups_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "96738ec52a26afd4c46208b019f6d6880b5cc944193db735c6865231d30aef7e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_upload_mub_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b088791a7eae29d3b409a97ef024e1d757f0c291c7ed7789c7944eb81ee540d3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_compute_managers.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c40e9c8bac3a56e07d598b27dd17220d247d43c478a000ede226bc0e3e8dc352",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_certificates_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0086c6a599630c933dba82d175b2e140ff8d1d2cf82d1a0b1e5c18afe505e552",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_routers.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "08fd10e4056dbf353c13cb449f4e933ae8bfc1c5fa75b1a06f97dc8c403a6866",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_nodes_host.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cacbfe9a2cbf8bab3f19a0ceb53363926aaf13779dcd152fbc92eb277348b6cf",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_virtual_ip.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "07f59f60528a4162612559643a5769a9a95e9b3567d5a6bdcd842afb3c4df108",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_history_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4d25ad526ef4ff902b5f5ed3a7b82d34195b438ad60323c4b997c54898588c11",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_ovf_deployment.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bce7e14d1137577209a541be442ce7e8ce88594ea66bfcf411ffdef28699d603",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_ip_blocks.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "32e7972724c1d8470ae6984eb7dc4127becd86c1be15e259e9b53c7d44d57d66",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_node_collections.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b079b3e556fef88c310680a015bf9df608deaa769110edc2a3152d6306248770",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_certificates.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "68aa04a5cbc1f333739ca9dffdae313c0434a3d58ea69223afc953cf68959c8d",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_switches_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3fc0d7fbb175559dce2b5d4ea0ff265c7ab4afa8d44ed14c28bd01bf48e05f53",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/answerfile_attach_tnp_to_cluster.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8514240d442f491ef239c925c5412b521aae9aec4ec2f747a4dd2bed8e1a2510",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_node_profiles_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "988e534745bed3f22524dcac8b994afeae1f6a23122de7697725b37ce050791b",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_upload_mub.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "84398cb611c15bd2b7ef266f5c924a2c71bfef638565a69a3c696405d1f14069",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_licenses_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "93ba430c3a98a93d61f282fa5bd0cfda0bd68082f7b9e794851ad68259051b01",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_zones.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8aa268350afc69b4fda9925a53f10dffeee64d889504f32ba55b1d91e7a0080f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_uc_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4d8e9e604764b3d5769d4deb6671692069c7515d5b3da8bbd867ab9c4b33a55c",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_run.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "44691286329963e6b2ac8a13ba6847c0aace3123bad235126c773b0d7b8fd5e2",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_principal_identities_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "93a2056fc1f961b9a5f0e785f86d9da4336ea99c91d62ba38d53a12760585a4c",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_uplink_profiles_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4660e1452b7a300c6a448644363385023296cf8f322bb885a6456886dbf06582",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_attach_tnp_to_cluster.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb118bdd5afce436778cf18251e97681df686072ebb945bd932faf1298e2b7de",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_node_profiles.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1963a1a0f0328b03de7ee750145ea670a7666a663de24d25ccab116384f1b27",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/answerfile.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fdc2787c02d1955610698e547b5570bb00a00a285de1ac4532a67c86ea29009f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_uplink_profiles.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "09f6f906e9dffe76c53b8fe525f5cc84fd775917bfdbb2f2c1c605db73d85f0e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/answerfile_tn.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5c1d3c927402aa034cfab3bcb5c3e8c3c45ed9d733d7489dc2d169e46f5562d3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_manager_auto_deployment.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1d8cece0f4f68f1012f69cf7e693ee2c4ce318e036505b290c454f76bc074a53",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_router_ports_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "53b1bf7079fff3e1b63bf72fb532067e65ed362b9bf33b76e5774130eebc2a09",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_edge_clusters_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "53c7bff7707bb684a3787e536acffdb448684209a1e954659f29d769a34bf583",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_cluster_profiles.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f2f56e7937f753b889a31dfdd5dd68cf252b8936f04e8c72d9c752aa828e562b",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_compute_managers_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2774c8541bc36c9064eebc57ed472e8591e92bf04a1a459247156a99c06d8d3a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_ports_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "59cdce1b6ecb00f3b077c14af2555ae3acfe0b211d8281810a6f49552ac68f84",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_uc.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "165ef28c68e3528af8de485e848e478a3b183b6b3c8113cb74034325df83e9b3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_eula_accept_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "10985c7d4069d0ea0ed567bd2ab661181ed3bf674ace6aa3d439eca08ee763ba",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_nodes_edge.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ec6cf377e5d21ef777b1e6079bbf76c799e895db0c624f50e9a23e7a6e3e24c3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_ports.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "986af80d2e07f1e74556be42460c4ae965dd6956edea420d3834910847963007",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_ip_blocks_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "573232fb2b6001ab53ae9b6aa063be7942933086f69c32fcf02024203bb00954",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_basic_topology.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "42cbe2d095d99d7f7ed95ad5a87fb59c3edebda9ebbf214427740aa3357acbf3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_nodes.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "412b638fb71ee7e0716e83c5592593e44b6e3e7bd2e23ad281b506c1cefd8c84",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_repo_sync.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c667f016dd1724b0f849f69dc381f47eece1414461ab4511f04dc70cd12da53f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_eula_accept.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a3473806354c0d5d44b9f41bbdce163ae2003c9de51de1bdef8c6bd34c003ab0",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_route_advertise.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d45e6ad5d05ac6184ff31e6e8f335accfbb50518d451b34baaf48c7a24b2cd32",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_router_ports.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8e5ba41d22c56643b7352e871ccc2edd7e10b51ce97ce3fb44ca0cb2ff4a3f3e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_logical_switches.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "29b0bb5fbff85d181e1a7d4cb94cd84b057c29ca8cf6c3fc96073d3f0471256d",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_vidm.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "231cae0c3e9e3cefe251d4d181a6c25377d844e39a5617839e1df1efbd6e4a58",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_nodes_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "34798a957a8e4d9f429c0d248e7ca2ee04c870117c9162c9eb80b7e6cec2c526",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_principal_identities.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "632a42883493a3af4e505dca4800b6477c3f242c3a60f3f0437c9816d96f2d5f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_ip_pools_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f8939c34bc1d3f14cf2c99ae671fd70e2617b20cfe1c862b320c9bd94416c760",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_status_summary_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1413ab8b4a6776413bdfb0056ecdf160a238469348c135b052d65270bf39a621",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_cluster_profiles_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2d439f2864237ce6f6d625a685809098d840a82b638291453c788d44973ff7a1",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_manager_status.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "00325ff3381cecc1c5c1920fe78db9c3a588fc3101a2064084bd4393dd1664f4",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_groups.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6be00b019743742ebf5c4f928c32a447320e247d791e7ea60deb7ad01742e581",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_transport_node_collections_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "305af246e0f993aaa3af81a21c92f97bb84f1fdd128c60a8cde30294d0960ffd",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_configure_transport_node.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b29eb3c7cb36fe14138d1e6e08575d87254bbdc243223d07d3df481325ba27e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_virtual_ip_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2372649e76ac64ea8a5c8e95c6f88afb2f37591fb90f2d27376e3ddfcc5f6b12",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_plan_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9159219910b0f3a61d060e1a717e2dfffa496b5632ba04e727eb73ebf2aa2dc8",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_rest.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "23d6908f23de51bd25f156c232fa40be688bd12c6868527550707e7ef427c5b0",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_manager_auto_deployment_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "97d32d7542ef3205eb1811188cb61eedbac3911295226ef1d69b43d83d28d6c0",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/mp/test_upgrade_postchecks.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4c1a6ca715106bba87d5cb094268276128b039ef9464af8c5420e9b5aefa2336",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/upgrade_vars.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "378cac8753ca6ec123ff69204c53ca867c50d305dc32a2994d77e7e00d24f8ea",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/01_upgrade_upload_mub.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "68608e3a86c5e035e3d5bb5de0eceaa7623c64a137e8616ea9c58986aa12fd06",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/07_upgrade_run.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1599b1760e8ce6ebbcb115755150c16e8bd90d8c6a285b1250cc5a2aefc28dec",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/05_upgrade_update_groups.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "33a599e43be573a1cdc8117dd9d170149fa9d9e1c824ed4f2db0b99e0dafe1ab",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/04_upgrade_update_plan.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0879f9d1cf92b103a62352920e468fddeb9013b44453ee9f159aaf2eeb12b650",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d92bb1c8fc14a18e37bfeb66fa9fcf0c562c25ab30579d24ad42d85e67eb4af1",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/06_upgrade_prechecks.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "86cecb8a5fee7413e352a1438224c412c144a1707ef209485df68694b0740126",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/02_upgrade_accept_eula.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "56874511623a8094409576a694af5f332696bbfeef6441c0029410f036048192",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/03_upgrade_uc.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "868a4884d3a01189984b054e8189688702689dae61faf4b18cb44cf1f3c5e2f3",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/check_upgrade_groups_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db2e45b898fa5986aba4532ec9b7ea4c7f2421ddebbd8c0c7ee67a30c09b396a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/check_upgrade_pre_post_checks_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f84b110914fc0fe803ef5d18f5764791f9a9276148d2f0ca09e5931dd9eb4e7d",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/upgrade/check_upgrade_status_summary_facts.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b0fcbb83ecd73a74313919a9b56d4c45d3f0abbecd1cdfa0c1572470c7438e9a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/02_setup_TEP_IP_Pools.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a5f5d926df973330acf8e629260522309fc1df72d9b960ad877fa8dfea731ba7",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/03_setup_transport_node_profiles.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a38c81d0d955334a825f35eebfa4a3f8c84319c9191a81347daec7b13a3b29d",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/04_setup_transport_nodes.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d3f6201e9bd5509011a37b852309ff18f171fbc5786df60512f922d0a1e166ac",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "da883c25f70aff538399cf01435d143b5d8327d465394b22ce3d24ef741a872e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/06_setup_transport_node_collections.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5e42fc794fc368b8c8fd96851e8731687d7cfa4e02ceffa3bbb499d7bdede65e",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/05_setup_edge_cluster.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "772cd239f583d197bd86bf50e48205fc5cf177310a48cc1557898ffa45e56839",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/setup_infra_vars.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a45c50a1aadf4f310206831ac45b1f978a03819ca489b8a4895b3f7706c5f209",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/setup_infra/01_setup_transport_zones.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cbb5d43e0aef9f0ffa4e82d0fe1742d04ce68227f61305e53aa1c3aab896cf8a",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/misc",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/misc/create_and_attach_t0_t1_routers.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "814bc8014a764360235d95ca864db2e9553a2172ec17fba2c26c5688a92de542",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/02_configure_compute_manager.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "af40b4392da49fbd15db22b21fadc7305981df8c68812f543d10945f844de377",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e9980a28ca115f3579f826faf2a478a96a3ad1fd46b87d9fd9459e653062e7c9",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/03_deploy_second_third_node.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ee386ae643c83fb19e5be6935bfdf6794997d518c479fdfb2f40173766490c32",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/01_deploy_first_node.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "292d7b98d7951856c9455798c9a1cd46d564d3fdb46c27c4b6359ceeb1449671",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/04_add_nsx_license.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7c6be8aede07d0f2ef5a0d443ec096f91800d3e6be160a78d1633fb9c0757a0c",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/deploy_nsx_cluster/deploy_nsx_cluster_vars.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "13780484eb45dbdaab32e3dd8c4aee1b721bab01fedcf727522858648f1ebb58",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/02_create_t1_gateway.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a026e404791f26f9ea78e078b44ef873d65648f753851db6e76d4c52a308bb45",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/01_create_t0_gateway.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "44192ebb6e7ec61f1da64f483cc759eeb72728d9c0987373ced9d91f127f3f84",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/03_create_segments.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b5f96e9a25d9d7e7bc926bca60e8cab30ea85c5d7c745a696d9f9aa27e05b55f",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c70a74f614760a44ae2c3a19b66d12fab9259db5728c1fad12e4def41a567166",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/04_create_groups.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1f38b5d8cbae7eb2673ae617feb049e9add47de35c5dbc46a05ba41d5162d8e0",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/build_topology_vars.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ac146fac561326a731239930d65dede2ce62966707f06e9806f2259904d68030",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/build_topology.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2c3e1ab8c3fb844b7b1ad6c583655188b61febe2c6f22187f0ff5924e1686119",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/cleanup_topology.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8c79d57fa84fcbf6f6aadeb415db956ddb79cb41aa6c5bbd5cc39f2f204e8246",
+   "format": 1
+  },
+  {
+   "name": "tests/playbooks/topologies/policy_modules/05_create_security_policy.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eb7bbc0f970cb9e6ad39a633773746bc81f7ecaa96b5d2654df66abfa637d79e",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_uplink_profiles.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf2f2048a284b71c4765477405f6ed3d6fc9148977666d54cb4fd53467fef48e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_postchecks.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c16e79d29d0b5bbb54420c9dd025fc431a5a34a90be85f72d0b282811e953da8",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_principal_identities_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6a955c6f023af9c260266f824692dbebf8a877a0006a862ed195d27272a17dfd",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_switches.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fc66d30cd00c6ae0f4c2485c3ec996a34cf3d451b81677183da6f915fce66933",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_route_advertise.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "774d35d6468024e2dc915f2bfac203874a9ef9b6c16c3bb03c579e7444846e76",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_manager_auto_deployment.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5327c2f82331288a4f2ac88986245a9f4c0c99dab89c51956a8131688b9e91bc",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_principal_identities.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cdbc33bb07f4d7cf517c59ee7c454439899e25e4b6616ba903a91537904361fa",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_cluster_profiles.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b8d283f5842c240d9487090734a5265b66a90437a79491d0f695b9a8167cce05",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_ip_block.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8ba40f366ea3a2b803cfac270a780cf7f81facaa54abfbb3776edf4062229bac",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_ip_pools.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e76e8a7398131956b95568c1a89424b1230ea530057c143c33a00d4617f46f90",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_fabric_compute_managers.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "96094a86990022629d8a7e34e5c5dc4cb7cac2506dd767211f9fa7f11ed27f80",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_licenses.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "50fa51fd97bba9ebd4e0fa15b94384d0fbf49aab4790b702d995f40c9e68ce01",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_ip_blocks_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea3f2b6579923dc1104967bc6eb0065eabc2c29575af6fe4c41b60fc0298287a",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_edge_clusters_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d76750e85799b12e3437813a77d39db938b148fb0af26ebe6675b0c53c024688",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_ports_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cd20aff1786272d6f0b7ffbe52231e71566215f5256f2633abf6f8ed16d17bb6",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_prechecks.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d9ceb54749a3cb4def4a79e7d23d6dac0570130362d744aa545302a3eb4f99ba",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_groups.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a110828729f3fdda9df89b6b26b922cd7dbe946878cbafc44c39355b65cb0ebb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_bfd_profile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a12eeb14ae35fe5dad222a596534bb1fee14582e56707ace3759c3031e8913de",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_rest.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a932cc4986397a29837d1a343b07b8b80d482ff9f9d2ad1c91e483519b935206",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_router_static_routes.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "764b740fca76455a9446b127da0a7e070f647c018bd23b9b75bf639a2a4deee2",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_repo_sync.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5ee5728e3acfeb7cc3e26c4df9f0c76fba111500ddb123c9b72b812cf39a012c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_vidm.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ebd9044fcc1bbecdb7f709211089bf73f0fbc9d140f6db84b6ec0f2996c483d5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_zones_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d8ae93bf0bd2e6e1ac891129b40e12cd2bc3bfdf2310108ca3e2f1fb0ed618c5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_fabric_compute_managers_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "909c6fe0c225ec3f3000f6acb51fd88fea5480c5c7373ff714e8e8ba0a0bf697",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_switches_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b20f5decd7aec835a30f12cb8b2bebfc859a85900ed93d4d87d56a1b8821df20",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_pre_post_checks_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "993e7b4a6829355c2cdda031127e6b97cb38a82166fd72f242357be460dc398c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_nodes.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "78be65b8e6183129711d4235899361f23581fffab33fd25e747523acfafa3fdb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_node_profiles.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "aeb2b0f2cbf2e27b10aaeeda9c37e9449b6c01e1737a77a150899f1905bbcee6",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_node_collections.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "587426c95b8794a6f4053a9ad7a3000492462f3da81edc8466c33b895f9735b8",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_cluster_profiles_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "edb687e8c0e6b3bc5739a71a796e314c2e4ea757a9858da6daddfc4fb77ea92d",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_security_policy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e62331e60edb9021edea1c68e7af818026e896ac351d099015f4e71e90f2c866",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_tier0.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "819ef83a6d3da39bb5efed72c9c065ba6a2efa448884c7e2da119e20e6caf3de",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_nodes_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8fad011a9b939062715e3eba90de2c500e1b7fa056600bca1df87b29e47f8f2f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_ports.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5e709152fe580c120789b8faa902573f18c6a8fe3ee4ebdaa57dbe53225226de",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_uc.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "04eb328fac5a905fb8f184666f4b9e2dda2c4a460401cb0b6749b8e96f2fe241",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_plan_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e6ccc50237444779579dc2ecb86c62020da1e7214dce5d54e406816bc75a6559",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_status_summary_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "59250d7d7be6acc29aa353105c3f36b1b0eb6d5bc88400563b172a4607396031",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_ip_pool.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1fec412ee47251b48ccaceace2e495a0864407e753301ace663612b122f9ffb1",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_segment.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e90ac8de341c77284de6234533036858f272746a926b58eb0db16156266d559c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_certificates_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2cb1d6e61cd436ef3ad550cca657976bf6f50997c2c0f6de43a7bfbaef22f3f5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_edge_clusters.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5b6b394fe24002015c90315033c7cb1b2cf65549e6850127c73a4bdd077058b7",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_manager_auto_deployment_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c6428d1e259a224f4f7f5406bdd422ec8e40290b2364faa47fb4de5804ab1d21",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_eula_accept_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "14cb08003b61ca2730d247ecdc7e5f94bc0acaa7558db44702c1382a6f1335b5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_group.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "46e0dc1fe90211340621fdd630b0a61e4ff7b48496453a3648cddad1fedf6279",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_manager_status.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4995635a343d2b97053c4e6894680f9875dedd3159586d8215f3a7706b915fc5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_routers_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "556d1d667ad9721a5cf9518ae6333d99d200f225d46d7f6c8447d012490d88fb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_licenses_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ceda2180d424bed4a98266ef523f55f8deb5a41eec003d692b6a615c01f78a4e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_router_ports_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f51faf20092a00c4bad0f1b44248d54bbb92fd31d1caaf7083f64daba8c38064",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_routers.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5f8073ee83b2d578e2b29fc8d1592c87b9701ec25a643e650fb707de30bac3b5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_deploy_ova.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "49caf5d6466633656a107add847e5b66948986a6a96f4e440d6cc63ef9e58da5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_node_collections_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7e114d799e975be40533573038a58bae5a5e0f2079d2a81f7d730d6f5b36b969",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_run.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "53299ee48a85f167379d27cfefdbe490d79c601b42d2335a28806f412c3fd793",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_uc_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a0ad3b6bef69c197ce1a590d4cd0df1a7aa22449a1ddc96b0a99327c6cf2bc76",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_ip_pools_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "949eff8a1ac2b2162a3addc2c8d0d841dd5e25e63d9f6d1ad7de2101e2f8a3ae",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_uplink_profiles_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b033f162792985a8b74962a603abf1a0558223f7df98840b1569bd7ec56c00db",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_ip_blocks.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c6d36a723dea686561796c1f6081367b8ab1f35865452ef27e47fda7e62a8b1e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_logical_router_ports.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "13f51be9575af3186bf687217042adedec6cf8b1c650b7021872902c41c4ed1f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_history.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "afc31964161a97225218a4f506ce733cab882f0e3478b5988b78d6d47ac7f21b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_zones.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c2d0051efd904380b5db37ab00fc31c39553e2dd06065e84c282cd58ada39b01",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_groups_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6bae8c8dfae538f699b28ad445dd04a3c9e159b09107a6fe0f748e780f4ccfa1",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_upload_mub.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "70a1e994e8c66bf2fd54c80593c62018e53135420db8682b194da12da850b73f",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_virtual_ip_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e6a8eddc310cd562fc8c9b247992beda3e92e67a9c0e6d00345e30851e3a9608",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_certificates.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "91a66d9504759972f79d9de444f0ed854829c00abd4db1d3054602fec6ef4aec",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_eula_accept.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db31f4daf7ba951d79a5675d9c3cfbabda1b8b6202d6b169b010106ee68f3493",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_tier1.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fdb5e0146597797e4977841d34b24a805ff17227853ab74fe47c97e725e9e840",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_virtual_ip.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c456d8f812c5e1c392c44b570b805f4cffa1989cb38bd52b1780d93a0f7a54d",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_l2_bridge_ep_profile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e56a30a772c3416066896285aadf63b1ff4ee9b7faece4d5b9d6bea5f0233d12",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_repo_sync_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "01e3f404f5725a4dd922d8bdd4170dee5dd8e97cc6585b5bf7f30b8117d565ed",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_plan.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db0f1355d903169739f4345455b3dbcf8307de1607b10535cba4b3ab4c488363",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_upgrade_upload_mub_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "064148aa5fddd88f31e33303127e21912ad0b26d5e8926897fefd164cc111435",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_vm_tags.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fbd39ff0728e24289423586178261863e51b431f4a28655abfa39e6899129377",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_policy_gateway_policy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "361790a4a548e1f36aa00f11906560a5c46aff1147cc0f7653b31d043fd189ef",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/nsxt_transport_node_profiles_facts.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb503893e8a98d2140c522fa264b398a892474ec7e1e85bafac3242747ea952f",
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/vmware_nsxt.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5942cf39c9a07a761e88efd4e20b094697950f801704081822070c82561d5d25",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/vmware_nsxt.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9574f707299e77be252f8cfcb4694439221e5058828eb02e50bc69a203e2e299",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/policy_communicator.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "722053b6b329519e6223a5fb2f00ec2335ae4159c27c7c8683178efb515b82d5",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/vcenter_utils.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "501c2b523f3d8602f4e67bea75641221babd40622d412261c6950b4b8ef16383",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/nsxt_base_resource.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3307ad50063652e80380c239c0dd2f87105f60cac6c5e13e5ce190ad9782a795",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/nsxt_resource_urls.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cf248cd9f7c8431a0a2f4f00b1f773d9b906329a03055bd7f03dde689a07383a",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/policy_resource_specs",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/policy_resource_specs/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/policy_resource_specs/security_policy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2cb78fcdc6adb10673a5e4cdbbb167faa16c6436fda39cd63811edd40fea4b7b",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/policy_resource_specs/l2_bridge_ep_profile.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64aa1afced46b9124eaa3becf988dd4bd96b7b2e29f26c3ebf0db80ac995c8f7",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/common_utils.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8be4876c8b4a708c051ae13760336b55c1309b40d15fc19061e0be531fcb0535",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e232024e9627118c2053351c2d6a983e4757b9ba170cee6c5e448bbde1215bce",
+   "format": 1
+  },
+  {
+   "name": ".gitignore",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2169068517313603041fbf2417e3d7da8d00c3aa4cd04b5578b5201fecd04e6a",
+   "format": 1
+  },
+  {
+   "name": "CONTRIBUTING.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4ce19087cf932b52a3809fbe1e729a181b7da71c7795bee02f2107e4819c8f65",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

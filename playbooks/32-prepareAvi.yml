@@ -1,0 +1,85 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/prepareAvi.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  collections:
+    - vmware.alb  
+  vars_files:
+    - ../answerfile.yml 
+  name: Prepare NSXT Advance Load balancer (AVI)
+  tasks:
+    - name: Change admin default password
+      avi_useraccount:
+        controller: "{{ item.value.IP }}"
+        username: "{{ AVI.credentials.username }}"
+        password: "{{ AVI.credentials.password }}"
+        api_version: "{{ AVI.credentials.api_version }}"
+        old_password: "{{ AVI.old_password }}"
+        email: "{{ AVI.admin_email }}"
+      with_dict: "{{ AVI.Cluster }}"
+      async: 7200     # Temp for testing
+      poll: 0         # Temp for testing
+
+    - name: Wait 10 seconds
+      pause: seconds=10
+
+    - name: Initial Controller System Configuration
+      avi_systemconfiguration:
+        controller: "{{ item.value.IP }}"
+        username: "{{ AVI.credentials.username }}"
+        password: "{{ AVI.credentials.password }}"
+        api_version: "{{ AVI.credentials.api_version }}"
+        email_configuration:
+          smtp_type: SMTP_LOCAL_HOST
+          from_email: "{{ AVI.admin_email }}"
+        global_tenant_config:
+          se_in_provider_context: true
+          tenant_access_to_provider_se: true
+          tenant_vrf: false
+        portal_configuration:
+          use_uuid_from_input: false
+          redirect_to_https: true
+          disable_remote_cli_shell: false
+          enable_clickjacking_protection: true
+          enable_http: true
+          enable_https: true
+          password_strength_check: true
+          allow_basic_authentication: false
+          disable_swagger: false
+        dns_configuration:
+          search_domain: "{{ Common.DNS.Domain }}"
+          server_list:
+            - type: V4
+              addr: "{{ Common.DNS.Server1.IPv4 }}"
+            - type: V4
+              addr: "{{ Common.DNS.Server2.IPv4 }}"
+        ntp_configuration:
+          ntp_servers:
+            - server:
+                type: V4
+                addr: "{{ Common.NTP.Server1.IPv4 }}"
+            - server:
+                type: V4
+                addr: "{{ Common.NTP.Server2.IPv4 }}"
+        default_license_tier: ENTERPRISE_18
+        welcome_workflow_complete: true
+        linux_configuration:
+          motd: "{{ Common.Motd }}"
+          banner: "{{ Common.Banner  }}"
+      with_dict: "{{ AVI.Cluster }}"
+
+    - name: Set Backup Passphrase
+      avi_backupconfiguration:
+        controller: "{{ item.value.IP }}"
+        username: "{{ AVI.credentials.username }}"
+        password: "{{ AVI.credentials.password }}"
+        api_version: "{{ AVI.credentials.api_version }}"
+        name: Backup-Configuration
+        backup_passphrase: "{{ AVI.backup_passphrase }}"
+        upload_to_remote_host: false
+      with_dict: "{{ AVI.Cluster }}"

@@ -1,0 +1,57 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/33-clusterAvi.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  collections:
+    - vmware.alb  
+  vars_files:
+    - ../answerfile.yml 
+  name: Prepare NSXT Advance Load balancer (AVI)
+  tasks:
+    - name: AVI Cloud Cluster Configuration
+      avi_cluster:
+        controller: "{{ AVI.Cluster.controller1.IP }}"
+        username: "{{ AVI.credentials.username }}"
+        password: "{{ AVI.credentials.password }}"
+        api_version: "{{ AVI.credentials.api_version }}"
+        virtual_ip:
+          type: V4
+          addr: "{{ AVI.controller_cluster_vip }}"
+        nodes:
+            - name: "{{ AVI.Cluster.controller1.Name }}" 
+              ip:
+                type: V4
+                addr: "{{ AVI.Cluster.controller1.IP }}"
+            - name: "{{ AVI.Cluster.controller2.Name }}"
+              ip:
+                type: V4
+                addr: "{{ AVI.Cluster.controller2.IP}}"
+            - name: "{{ AVI.Cluster.controller3.Name }}"
+              ip:
+                type: V4
+                addr: "{{ AVI.Cluster.controller3.IP }}"
+        name: "{{ AVI.avicluster_name }}"
+        tenant_uuid: "admin"
+
+    - name: Wait 2 minutes before start checking AVI controller/Cluster Status
+      pause: seconds=120
+      when:
+        - Deploy.Product.AVI == true 
+
+    - name: Check the AVI controller/Cluster Status
+      uri:
+        validate_certs: false
+        url: "https://{{ AVI.controller_cluster_vip }}/api/initial-data"
+        method: GET
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 10
+      delay: 60
+      when:
+        - Deploy.Product.AVI == true

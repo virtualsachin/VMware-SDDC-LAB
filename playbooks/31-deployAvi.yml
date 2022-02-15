@@ -1,0 +1,63 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/deployAvi.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  collections:
+    - vmware.alb  
+  vars_files:
+    - ../answerfile.yml 
+  name: Deploy NSXT Advance Load balancer (AVI)
+  tasks:
+    - name: Deploy NSXT Advance Load balancer (AVI) from OVA using nested vCenter
+      vmware.alb.avi_deploy_controller:
+        ovftool_path: '{{ AVI.ovftool_path }}'
+        vcenter_host: "{{ Nested_vCenter.FQDN }}"
+        vcenter_user: "{{ Nested_vCenter.User }}"
+        vcenter_password: "{{ Nested_vCenter.Password }}"
+        con_datacenter: "{{ Target.DataCenter }}"
+        con_cluster: "{{ Target.Physical_Cluster }}"
+        con_ova_path: "{{ Deploy.Software.AVI.Directory }}/{{ Deploy.Software.AVI.File }}"
+        con_vm_name: "{{ item.value.Name }}"
+        con_disk_mode: thin
+#        con_disk_size: "{{ con_disk_size | default(omit) }}"
+        con_vcenter_folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"
+        con_datastore: "{{ Target.DatastoreSSD }}"
+        con_mgmt_network: "{{ AVI.con_mgmt_portgroup }}"
+        con_power_on: true
+        con_mgmt_ip: "{{ item.value.IP }}"
+        con_mgmt_mask: "{{ AVI.con_mgmt_mask }}"
+        con_default_gw: "{{ AVI.con_default_gw }}"
+        con_sysadmin_public_key:
+        state: present
+      with_dict: "{{ AVI.Cluster }}"
+      async: 7200
+      poll: 0
+      when:
+        - Deploy.Product.AVI == true
+    - name: Notify user of AVI install time
+      ansible.builtin.debug:
+        msg: "Deploying AVI CLuster VM  will take about 10 minutes, so go grab a tea/coffee!!!"
+
+    - name: Wait 5 minutes before start checking AVI controller/Cluster Status
+      pause: seconds=300
+      when:
+        - Deploy.Product.AVI == true 
+
+    - name: Check the AVI controller/Cluster Status
+      uri:
+        validate_certs: false
+        url: "https://{{ item.value.IP }}/api/initial-data"
+        method: GET
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 10
+      delay: 60
+      with_dict: "{{ AVI.Cluster }}"
+      when:
+        - Deploy.Product.AVI == true
