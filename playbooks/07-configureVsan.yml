@@ -34,9 +34,9 @@
                                       Target.VMFolder: {{ Target.VMFolder }}
                                     Target.TempFolder: {{ Target.TempFolder }}
 
-                                  Nested_vCenter.FQDN: {{ Nested_vCenter.FQDN | lower }}
-                                Nested_vCenter.VMName: {{ Nested_vCenter.VMName }}
-                              Nested_vCenter.Password: {{ Nested_vCenter.Password }}
+                                  vCenter.FQDN: {{ vCenter.FQDN | lower }}
+                                vCenter.VMName: {{ vCenter.VMName }}
+                              vCenter.Password: {{ vCenter.Password }}
 
           =================================================================================================
       when:
@@ -65,9 +65,9 @@
         #datacenter: "{{ Target.DataCenter }}"
         #folder: "{{ Target.VMFolder }}"
         validate_certs: false
-        vm_id: "{{ Nested_vCenter.VMName }}"
+        vm_id: "{{ vCenter.VMName }}"
         vm_username: "root"
-        vm_password: "{{ Nested_vCenter.Password }}"
+        vm_password: "{{ vCenter.Password }}"
         copy:
             src: "{{ Target.TempFolder }}/{{ item.key }}"
             dest: "/tmp/{{ item.key }}"
@@ -87,11 +87,11 @@
         #datacenter: "{{ Target.DataCenter }}"
         #folder: "{{ Target.VMFolder }}"
         validate_certs: false
-        vm_id: "{{ Nested_vCenter.VMName }}"
+        vm_id: "{{ vCenter.VMName }}"
         vm_username: "root"
-        vm_password: "{{ Nested_vCenter.Password }}"
+        vm_password: "{{ vCenter.Password }}"
         vm_shell: /usr/bin/rvc
-        vm_shell_args: '{{ Nested_vCenter.User }}:VMware1\!@{{ Nested_vCenter.FQDN | lower }} -s /tmp/{{ item.key }}'
+        vm_shell_args: '{{ vCenter.User }}:VMware1\!@{{ vCenter.FQDN | lower }} -s /tmp/{{ item.key }}'
       loop: "{{ Nested_Clusters | dict2items }}"
       when:
         - item.value.vSAN == true
@@ -107,9 +107,9 @@
         datacenter: "{{ Target.DataCenter }}"
         folder: "{{ Target.VMFolder }}"
         validate_certs: false
-        vm_id: "{{ Nested_vCenter.VMName }}"
+        vm_id: "{{ vCenter.VMName }}"
         vm_username: "root"
-        vm_password: "{{ Nested_vCenter.Password }}"
+        vm_password: "{{ vCenter.Password }}"
         copy:
             src: "{{ Target.TempFolder }}/{{ item.key }}"
             dest: "/tmp/{{ item.key }}"
@@ -129,11 +129,11 @@
         datacenter: "{{ Target.DataCenter }}"
         folder: "{{ Target.VMFolder }}"
         validate_certs: false
-        vm_id: "{{ Nested_vCenter.VMName }}"
+        vm_id: "{{ vCenter.VMName }}"
         vm_username: "root"
-        vm_password: "{{ Nested_vCenter.Password }}"
+        vm_password: "{{ vCenter.Password }}"
         vm_shell: /usr/bin/rvc
-        vm_shell_args: '{{ Nested_vCenter.User }}:VMware1\!@{{ Nested_vCenter.FQDN | lower }} -s /tmp/{{ item.key }}'
+        vm_shell_args: '{{ vCenter.User }}:VMware1\!@{{ vCenter.FQDN | lower }} -s /tmp/{{ item.key }}'
       loop: "{{ Nested_Clusters | dict2items }}"
       when:
         - item.value.vSAN == true
@@ -152,10 +152,10 @@
 
     - name: Modify all Cache drives in the clusters to be 'Flash' type devices
       set_drive_type:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter: "{{ vCenter.DataCenter }}"
         cluster_name: "{{ item.key }}"
         drive_capacity: "{{ (Nested_ESXi.HardwareSettings[item.key].vSAN.CacheSize |int) * 1024 }}"
         set_drivetype_to_flash: true
@@ -166,10 +166,10 @@
 
     - name: Modify all Capacity drives in the clusters to be 'HDD' type devices
       set_drive_type:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter: "{{ vCenter.DataCenter }}"
         cluster_name: "{{ item.key }}"
         drive_capacity: "{{ (Nested_ESXi.HardwareSettings[item.key].vSAN.CapacitySize |int) * 1024 }}"
         set_drivetype_to_flash: false
@@ -180,9 +180,9 @@
 
     - name: Enable vSAN
       enable_vsan:
-        vcenter: "{{ Nested_vCenter.FQDN | lower }}"
-        user: "{{ Nested_vCenter.User }}"
-        passwd: "{{ Nested_vCenter.Password }}"
+        vcenter: "{{ vCenter.FQDN | lower }}"
+        user: "{{ vCenter.User }}"
+        passwd: "{{ vCenter.Password }}"
         cluster: "{{ item.key }}"
       ignore_errors: true
       loop: "{{ Nested_Clusters | dict2items }}"
@@ -192,9 +192,9 @@
 
     - name: Claim disks for vSAN
       claim_vsan_disks:
-        vcenter: "{{ Nested_vCenter.FQDN | lower }}"
-        user: "{{ Nested_vCenter.User }}"
-        passwd: "{{ Nested_vCenter.Password }}"
+        vcenter: "{{ vCenter.FQDN | lower }}"
+        user: "{{ vCenter.User }}"
+        passwd: "{{ vCenter.Password }}"
         cluster: "{{ item.key }}"
         datastorename: "{{ item.value.vsanDatastore }}"
       ignore_errors: true

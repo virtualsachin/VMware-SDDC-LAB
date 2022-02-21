@@ -48,9 +48,9 @@
 ##
     - name: License Nested vCenter Server
       community.vmware.vcenter_license:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         license: "{{ License.VMware.vCenter.Licenses.KeyCode }}"
         state: present
@@ -60,9 +60,9 @@
 ##
     - name: Assign ESXi License to Nested Hosts in Cluster-A Hosts
       community.vmware.vcenter_license:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         esxi_hostname: "{{ item.value.FQDN | lower }}" 
         license: "{{ License.VMware.ESXi.Licenses.KeyCode }}"
@@ -72,9 +72,9 @@
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true 
     - name: Assign ESXi License to Nested Hosts in Cluster-B Hosts
       community.vmware.vcenter_license:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         esxi_hostname: "{{ item.value.FQDN | lower }}" 
         license: "{{ License.VMware.ESXi.Licenses.KeyCode }}"
@@ -89,9 +89,9 @@
 
     - name: Assign vSAN License to the vSAN enabled Cluster 
       community.vmware.vcenter_license:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         cluster_name: "{{ item.key }}"
         license: "{{ License.VMware.vSAN.Licenses.KeyCode }}"

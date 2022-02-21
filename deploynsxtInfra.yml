@@ -1,0 +1,69 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: deploynsxtInfra.yml
+##
+---
+
+# Deploy NSX-T
+- ansible.builtin.import_playbook: playbooks/11-deployNsxManager.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+ 
+- ansible.builtin.import_playbook: playbooks/12-license_NSXT-LM.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/13-registerNsxComputeManager.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/14-createNsxTz.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/15-createNsxIpPool.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/16-createNsxUplinkProfiles.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/17-createNsxTnp.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/18-attachNsxTnp.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/19-createNsxEdgeTn.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+    - Deploy.Product.NSXT.Edge == true
+
+- ansible.builtin.import_playbook: playbooks/20-createNsxEdgeCluster.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+    - Deploy.Product.NSXT.Edge == true
+
+- ansible.builtin.import_playbook: playbooks/21-createNsxVLANSegments.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+
+- ansible.builtin.import_playbook: playbooks/22-createNsxT0Gateway.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+    - Deploy.Product.NSXT.Edge == true
+
+- ansible.builtin.import_playbook: playbooks/23-createNsxT1Gateway.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+    - Deploy.Product.NSXT.Edge == true
+
+- ansible.builtin.import_playbook: playbooks/24-createNsxOverlaySegments.yml
+  when: 
+    - Deploy.Product.NSXT.LocalManager == true
+    - Deploy.Product.NSXT.Edge == true
+

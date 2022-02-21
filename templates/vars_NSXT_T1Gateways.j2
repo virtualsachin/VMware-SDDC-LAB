@@ -7,7 +7,7 @@
  #
  # Documentation: Ansible module documentation can be found at: https://github.com/vmware/ansible-for-nsxt/blob/master/library/nsxt_policy_tier1.py
  #}
-{% for Gateway in Nested_NSXT.Networking.Tier1Gateways %}
+{% for Gateway in NSXT.Networking.Tier1Gateways %}
   - display_name:  "{{ Gateway.Name }}"
     description:   "{{ Gateway.Description }}"
     failover_mode: "{{ Gateway.FailoverMode | default(omit) }}"

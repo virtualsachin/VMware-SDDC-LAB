@@ -1,4 +1,6 @@
 
+Infrastructure Code is still in progress.. goal is to build a production lab end-to-end deployment with various topologies products in a single click of button, the same can be used in specfic prod automations. 
+
 ## Description
 
 This repository contains Ansible scripts that perform fully automated deployments of complete nested VMware SDDC  contains:
@@ -37,7 +39,7 @@ The following are recommendations based on our experience with deploying SDDC:
   * VMware Paravirtual SCSI controller
   * VMXNET 3 network adapter
 * Deploy the pre-configured DNS server for DNS name resolution within SDDC instead of using your own.
-
+ 
 ## Preparations
 
 * Configure your physical network:

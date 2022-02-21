@@ -7,28 +7,21 @@
   vars_files:
   - ../answerfile.yml 
   tasks:
-    - name: Check existing Policy_API_Endpoint
-      uri:
-        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
-        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
-        method: GET
-        force_basic_auth: yes
+    - name: Wait until the NSX-T API reports that the NSX-T Manager cluster is "STABLE"
+      ansible.builtin.uri:
+        url: https://{{ NSXT.Components.LocalManager.FQDN | lower }}/api/v1/cluster/status
         validate_certs: no
+        timeout: 5
+        force_basic_auth: yes
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
+        method: GET
         body_format: json
-        body: AviConnectionInfo
-      register: policy_api
-      ignore_errors: yes
-    - debug:
-           msg: "{{policy_api.status}}"
-    - name: Create Policy_API_Endpoint
-      uri:
-        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
-        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
-        method: GET
-        force_basic_auth: yes
-        validate_certs: no
-        body_format: "{{item}}"
-        body: "{{ lookup('template', 'enforcement_point.json.j2')}}"
-      register: policy_api
+        return_content: yes
+        status_code: 200
+      register: result
+      until: result.status == 200 and result.json.detailed_cluster_status.overall_status == "STABLE"
+      retries: 5
+      delay: 60
+      when: 
+        - Deploy.Product.NSXT.LocalManager == true

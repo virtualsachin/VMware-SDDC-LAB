@@ -110,9 +110,9 @@
 
     - name: Deploy nested ESXi hosts on vCenter when Deploement is Host for Cluster-A
       community.vmware.vmware_guest:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         datacenter: "{{ Target.DataCenter }}"
         validate_certs: false
         name: "{{ item.value.VMName }}"
@@ -245,9 +245,9 @@
 
     - name: Deploy nested ESXi hosts on vCenter when Deploement is Host for Cluster-B
       community.vmware.vmware_guest:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         datacenter: "{{ Target.DataCenter }}"
         validate_certs: false
         name: "{{ item.value.VMName }}"

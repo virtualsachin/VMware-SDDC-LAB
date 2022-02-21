@@ -27,7 +27,7 @@
                                     Target.Deployment: {{ Target.Deployment }}
 
                              Deploy.Product.NSXT.LocalManager: {{ Deploy.Product.NSXT.LocalManager }}
-             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
                                          License File: {{ LOCAL_LicenseFile }}
 
@@ -95,9 +95,9 @@
 ##
     - name: Install All NSX-T Licenses
       nsxt_licenses:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: no
         license_key: "{{ item.KeyCode }}"
         state: present

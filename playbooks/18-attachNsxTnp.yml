@@ -25,9 +25,9 @@
 
                                          Target.Deployment: {{ Target.Deployment }}
 
-                  Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+                  NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-          Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles.Name: {{ Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles }}
+          NSXT.System.Fabric.Profile.TransportNodeProfiles.Name: {{ NSXT.System.Fabric.Profile.TransportNodeProfiles }}
 
           =================================================================================================
       when:
@@ -36,14 +36,14 @@
       
     - name: Attach NSX-T transport node profile to vSphere cluster
       nsxt_transport_node_collections:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: False
         display_name: "{{ item.value.NSXT_TNP }}"
         resource_type: "TransportNodeCollection"
         description: "Transport Node Collections"
-        compute_manager_name: "{{ Nested_vCenter.VMName }}"
+        compute_manager_name: "{{ vCenter.VMName }}"
         cluster_name: "{{ item.key }}"
         transport_node_profile_name: "{{ item.value.NSXT_TransportNodeProfile }}"
         state: present
@@ -56,12 +56,12 @@
 
     - name: Wait until the NSX-T API reports that the Transport Zones are in "UP" state
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/api/v1/transport-zones/status
+        url: https://{{ NSXT.Components.LocalManager.FQDN }}/api/v1/transport-zones/status
         validate_certs: no
         timeout: 10
         force_basic_auth: yes
-        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
         method: GET
         body_format: json
         return_content: yes

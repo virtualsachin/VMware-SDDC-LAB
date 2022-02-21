@@ -33,13 +33,13 @@
                                      Target.Datastore: {{ Target.Datastore }}
                                       Target.VMFolder: {{ Target.VMFolder }}
 
-             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
-           Nested_NSXT.Components.LocalManager.VMName: {{ Nested_NSXT.Components.LocalManager.VMName }}
+             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
+           NSXT.Components.LocalManager.VMName: {{ NSXT.Components.LocalManager.VMName }}
 
-                                  Nested_vCenter.FQDN: {{ Nested_vCenter.FQDN }}
-                                Nested_vCenter.VMName: {{ Nested_vCenter.VMName }}
-                                  Nested_vCenter.User: {{ Nested_vCenter.User }}
-                              Nested_vCenter.Password: {{ Nested_vCenter.Password }}
+                                  vCenter.FQDN: {{ vCenter.FQDN }}
+                                vCenter.VMName: {{ vCenter.VMName }}
+                                  vCenter.User: {{ vCenter.User }}
+                              vCenter.Password: {{ vCenter.Password }}
 
           =================================================================================================
       when:
@@ -47,17 +47,17 @@
 
     - name: Register NSX-T Compute Manager
       nsxt_fabric_compute_managers:
-          hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-          username: "{{ Nested_NSXT.Credential.admin.Name }}"
-          password: "{{ Nested_NSXT.Credential.admin.Password }}"
+          hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+          username: "{{ NSXT.Credential.admin.Name }}"
+          password: "{{ NSXT.Credential.admin.Password }}"
           validate_certs: False
-          display_name: "{{ Nested_vCenter.VMName }}"                 # Using VMName as no need for full domain
-          server: "{{ Nested_vCenter.FQDN }}"
+          display_name: "{{ vCenter.VMName }}"                 # Using VMName as no need for full domain
+          server: "{{ vCenter.FQDN }}"
           origin_type: vCenter
           credential:
             credential_type: UsernamePasswordLoginCredential
-            username: "{{ Nested_vCenter.User }}"
-            password: "{{ Nested_vCenter.Password }}"
+            username: "{{ vCenter.User }}"
+            password: "{{ vCenter.Password }}"
           state: present
       when: Deploy.Product.NSXT.LocalManager == true
       async: 1800

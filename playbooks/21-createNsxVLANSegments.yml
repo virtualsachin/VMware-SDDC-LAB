@@ -27,9 +27,9 @@
 
                                     Target.Deployment: {{ Target.Deployment }}
 
-             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-                      Nested_NSXT.Networking.Segments: {{ Nested_NSXT.Networking.Segments }}
+                      NSXT.Networking.Segments: {{ NSXT.Networking.Segments }}
 
           =================================================================================================
       when:
@@ -57,9 +57,9 @@
     ## Create only VLAN-backed Segments in SegmentsToCreate  ##
     - name: Create NSX-T Segments
       nsxt_policy_segment:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: False
         display_name: "{{ item.display_name }}"
         description:  "{{ item.description }}"
@@ -72,4 +72,4 @@
       loop: "{{ SegmentsToCreate }}"
       when: 
       - Deploy.Product.NSXT.LocalManager == true
-      - Nested_NSXT.System.Fabric.TransportZone[item.transport_zone_display_name].Type == "VLAN"
+      - NSXT.System.Fabric.TransportZone[item.transport_zone_display_name].Type == "VLAN"

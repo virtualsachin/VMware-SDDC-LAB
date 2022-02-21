@@ -2,8 +2,8 @@
 #    Authors: VirtualSachIN
 #    RVC script for silencing vSAN warnings
 
-vcenter_name = "{{ Nested_vCenter.FQDN | lower }}"
-datacenter_name = "{{ Nested_vCenter.DataCenter }}"
+vcenter_name = "{{ vCenter.FQDN | lower }}"
+datacenter_name = "{{ vCenter.DataCenter }}"
 cluster_name = "{{ item.key }}"
 
 

@@ -17,33 +17,6 @@
     - name: preparePhysical_Playbook
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{Pod.Name}} ==================================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                     Target.Datastore: {{ Target.Datastore }}
-
-                                       Target.vSwitch: {{ Target.vSwitch }}
-                          Target.PortGroup.Trunk.Name: {{ Target.PortGroup.Trunk.Name }}
-                          Target.PortGroup.Trunk.VLAN: {{ Target.PortGroup.Trunk.VLAN }}
-                     Target.PortGroup.Management.Name: {{ Target.PortGroup.Management.Name }}
-                     Target.PortGroup.Management.VLAN: {{ Target.PortGroup.Management.VLAN }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
 
 ##
 ###############################################################################################################

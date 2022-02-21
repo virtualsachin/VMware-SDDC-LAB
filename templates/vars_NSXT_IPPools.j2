@@ -7,7 +7,7 @@
  #
  #}
 {% set ns = namespace(CIDR="") %}
-{% for Pool in Nested_NSXT.Networking.IPPools %}
+{% for Pool in NSXT.Networking.IPPools %}
   - display_name: "{{ Pool.Name }}"
     description:  "{{ Pool.Description }}"
     state: "present"

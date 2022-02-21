@@ -16,9 +16,9 @@
     - name: Deploy NSXT Advance Load balancer (AVI) from OVA using nested vCenter
       vmware.alb.avi_deploy_controller:
         ovftool_path: '{{ AVI.ovftool_path }}'
-        vcenter_host: "{{ Nested_vCenter.FQDN }}"
-        vcenter_user: "{{ Nested_vCenter.User }}"
-        vcenter_password: "{{ Nested_vCenter.Password }}"
+        vcenter_host: "{{ vCenter.FQDN }}"
+        vcenter_user: "{{ vCenter.User }}"
+        vcenter_password: "{{ vCenter.Password }}"
         con_datacenter: "{{ Target.DataCenter }}"
         con_cluster: "{{ Target.Physical_Cluster }}"
         con_ova_path: "{{ Deploy.Software.AVI.Directory }}/{{ Deploy.Software.AVI.File }}"

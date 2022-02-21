@@ -26,9 +26,9 @@
 
                                     Target.Deployment: {{ Target.Deployment }}
 
-             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-                 Nested_NSXT.Networking.Tier1Gateways: {{ Nested_NSXT.Networking.Tier1Gateways }}
+                 NSXT.Networking.Tier1Gateways: {{ NSXT.Networking.Tier1Gateways }}
 
           =================================================================================================
       when:
@@ -58,9 +58,9 @@
 
     - name: Create NSX-T Tier-1 Gateway
       nsxt_policy_tier1:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: False
         state: present
         display_name: "{{ item.display_name }}"

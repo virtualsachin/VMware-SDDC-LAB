@@ -33,28 +33,28 @@
                                   Target.DatastoreSSD: {{ Target.DatastoreSSD }}
                                       Target.VMFolder: {{ Target.VMFolder }}
 
-                                           NSX-T Role: {{ Nested_NSXT.Components.LocalManager.Deployment.Role }}
+                                           NSX-T Role: {{ NSXT.Components.LocalManager.Deployment.Role }}
                                         NSX-T Version: {{ Deploy.Software.NSXT.Version }}
-                                   NSX-T Manager FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
-                                         NSX-T VMName: {{ Nested_NSXT.Components.LocalManager.VMName }}
+                                   NSX-T Manager FQDN: {{ NSXT.Components.LocalManager.FQDN }}
+                                         NSX-T VMName: {{ NSXT.Components.LocalManager.VMName }}
 
 
                                                 OVF Variables
                                                 =============
 
-                                         NSX-T VMName: {{ Nested_NSXT.Components.LocalManager.VMName }}
-                                           NSX-T Size: {{ Nested_NSXT.Components.LocalManager.Deployment.Size  }}
+                                         NSX-T VMName: {{ NSXT.Components.LocalManager.VMName }}
+                                           NSX-T Size: {{ NSXT.Components.LocalManager.Deployment.Size  }}
                                     Network PortGroup: {{ Target.PortGroup.Management.Name }}
 
-                                           Audit User: {{ Nested_NSXT.Credential.audit.Name }}
-                                       Audit Password: {{ Nested_NSXT.Credential.audit.Password }}
+                                           Audit User: {{ NSXT.Credential.audit.Name }}
+                                       Audit Password: {{ NSXT.Credential.audit.Password }}
 
-                                             CLI User: {{ Nested_NSXT.Credential.admin.Name }}
-                                         CLI Password: {{ Nested_NSXT.Credential.admin.Password }}
+                                             CLI User: {{ NSXT.Credential.admin.Name }}
+                                         CLI Password: {{ NSXT.Credential.admin.Password }}
 
-                                 Network IPv4 Address: {{ Nested_NSXT.Components.LocalManager.Address.IPv4.Address }}
-                                      Network Netmask: {{ (Nested_NSXT.Components.LocalManager.Address.IPv4.Address + '/' + Nested_NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}
-                                      Network Gateway: {{ Nested_NSXT.Components.LocalManager.Address.IPv4.Gateway }}
+                                 Network IPv4 Address: {{ NSXT.Components.LocalManager.Address.IPv4.Address }}
+                                      Network Netmask: {{ (NSXT.Components.LocalManager.Address.IPv4.Address + '/' + NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}
+                                      Network Gateway: {{ NSXT.Components.LocalManager.Address.IPv4.Gateway }}
 
                                    Network NTP Server: {{ Common.NTP.Server1.IPv4 }}
                                    Network DNS Server: {{ Common.DNS.Server1.IPv4 }}
@@ -69,7 +69,7 @@
 
     - name: Check if NSX-T Local Manager is already installed
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}
+        url: https://{{ NSXT.Components.LocalManager.FQDN }}
         validate_certs: False
         timeout: 5
       register: nsxman_check
@@ -89,9 +89,9 @@
         folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"         # For vCenter deployment, VM Folder path must be the FULL path: /<DataCenter>/vm/<ParentFolder>/<ChildFolder>
         datacenter: "{{ Target.DataCenter }}"
         cluster: "{{ Target.Physical_Cluster }}"
-        name: "{{ Nested_NSXT.Components.LocalManager.VMName }}"
+        name: "{{ NSXT.Components.LocalManager.VMName }}"
         ovf:  "{{ Deploy.Software.NSXT.Directory }}/{{ Deploy.Software.NSXT.File }}"
-        deployment_option: "{{ Nested_NSXT.Components.LocalManager.Deployment.Size }}"
+        deployment_option: "{{ NSXT.Components.LocalManager.Deployment.Size }}"
         networks:
           "Network 1": "{{ Target.PortGroup.Management.Name }}"
         disk_provisioning: "{{ Common.DiskProvisioning }}"
@@ -101,21 +101,21 @@
         wait_for_ip_address: yes
         inject_ovf_env: yes
         properties:
-          nsx_cli_audit_username: "{{ Nested_NSXT.Credential.audit.Name }}"
-          nsx_cli_audit_passwd_0: "{{ Nested_NSXT.Credential.audit.Password }}"
-          nsx_cli_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-          nsx_cli_passwd_0: "{{ Nested_NSXT.Credential.admin.Password }}"
-          nsx_allowSSHRootLogin: "{{ Nested_NSXT.Components.LocalManager.Deployment.EnableSSH }}"
-          nsx_isSSHEnabled: "{{ Nested_NSXT.Components.LocalManager.Deployment.EnableSSH }}"
+          nsx_cli_audit_username: "{{ NSXT.Credential.audit.Name }}"
+          nsx_cli_audit_passwd_0: "{{ NSXT.Credential.audit.Password }}"
+          nsx_cli_username: "{{ NSXT.Credential.admin.Name }}"
+          nsx_cli_passwd_0: "{{ NSXT.Credential.admin.Password }}"
+          nsx_allowSSHRootLogin: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
+          nsx_isSSHEnabled: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
           nsx_dns1_0: "{{ Common.DNS.Server1.IPv4 }}"
           nsx_domain_0: "{{ Common.DNS.Domain }}"
-          nsx_gateway_0: "{{ Nested_NSXT.Components.LocalManager.Address.IPv4.Gateway }}"
-          nsx_hostname:  "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-          nsx_ip_0:      "{{ Nested_NSXT.Components.LocalManager.Address.IPv4.Address }}"
-          nsx_netmask_0: "{{ (Nested_NSXT.Components.LocalManager.Address.IPv4.Address + '/' + Nested_NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}"
+          nsx_gateway_0: "{{ NSXT.Components.LocalManager.Address.IPv4.Gateway }}"
+          nsx_hostname:  "{{ NSXT.Components.LocalManager.FQDN }}"
+          nsx_ip_0:      "{{ NSXT.Components.LocalManager.Address.IPv4.Address }}"
+          nsx_netmask_0: "{{ (NSXT.Components.LocalManager.Address.IPv4.Address + '/' + NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}"
           nsx_ntp_0:     "{{ Common.NTP.Server1.IPv4 }}"
-          nsx_passwd_0:  "{{ Nested_NSXT.Credential.admin.Password }}"
-          nsx_role:      "{{ Nested_NSXT.Components.LocalManager.Deployment.Role }}"
+          nsx_passwd_0:  "{{ NSXT.Credential.admin.Password }}"
+          nsx_role:      "{{ NSXT.Components.LocalManager.Deployment.Role }}"
       delegate_to: localhost
       when:
         - Deploy.Product.NSXT.LocalManager == true
@@ -127,18 +127,18 @@
 
     - name: Deploy NSX-T Local Manager from OVA when deployment options is Host
       community.vmware.vmware_deploy_ovf:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         datastore: "{{ Target.DatastoreSSD }}"
         allow_duplicates: no
         folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"         # For vCenter deployment, VM Folder path must be the FULL path: /<DataCenter>/vm/<ParentFolder>/<ChildFolder>
         datacenter: "{{ Target.DataCenter }}"
         cluster: "{{ Target.Physical_Cluster }}"
-        name: "{{ Nested_NSXT.Components.LocalManager.VMName }}"
+        name: "{{ NSXT.Components.LocalManager.VMName }}"
         ovf:  "{{ Deploy.Software.NSXT.Directory }}/{{ Deploy.Software.NSXT.File }}"
-        deployment_option: "{{ Nested_NSXT.Components.LocalManager.Deployment.Size }}"
+        deployment_option: "{{ NSXT.Components.LocalManager.Deployment.Size }}"
         networks:
           "Network 1": "{{ Target.PortGroup.Management.Name }}"
         disk_provisioning: "{{ Common.DiskProvisioning }}"
@@ -148,21 +148,21 @@
         wait_for_ip_address: yes
         inject_ovf_env: yes
         properties:
-          nsx_cli_audit_username: "{{ Nested_NSXT.Credential.audit.Name }}"
-          nsx_cli_audit_passwd_0: "{{ Nested_NSXT.Credential.audit.Password }}"
-          nsx_cli_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-          nsx_cli_passwd_0: "{{ Nested_NSXT.Credential.admin.Password }}"
-          nsx_allowSSHRootLogin: "{{ Nested_NSXT.Components.LocalManager.Deployment.EnableSSH }}"
-          nsx_isSSHEnabled: "{{ Nested_NSXT.Components.LocalManager.Deployment.EnableSSH }}"
+          nsx_cli_audit_username: "{{ NSXT.Credential.audit.Name }}"
+          nsx_cli_audit_passwd_0: "{{ NSXT.Credential.audit.Password }}"
+          nsx_cli_username: "{{ NSXT.Credential.admin.Name }}"
+          nsx_cli_passwd_0: "{{ NSXT.Credential.admin.Password }}"
+          nsx_allowSSHRootLogin: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
+          nsx_isSSHEnabled: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
           nsx_dns1_0: "{{ Common.DNS.Server1.IPv4 }}"
           nsx_domain_0: "{{ Common.DNS.Domain }}"
-          nsx_gateway_0: "{{ Nested_NSXT.Components.LocalManager.Address.IPv4.Gateway }}"
-          nsx_hostname:  "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-          nsx_ip_0:      "{{ Nested_NSXT.Components.LocalManager.Address.IPv4.Address }}"
-          nsx_netmask_0: "{{ (Nested_NSXT.Components.LocalManager.Address.IPv4.Address + '/' + Nested_NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}"
+          nsx_gateway_0: "{{ NSXT.Components.LocalManager.Address.IPv4.Gateway }}"
+          nsx_hostname:  "{{ NSXT.Components.LocalManager.FQDN }}"
+          nsx_ip_0:      "{{ NSXT.Components.LocalManager.Address.IPv4.Address }}"
+          nsx_netmask_0: "{{ (NSXT.Components.LocalManager.Address.IPv4.Address + '/' + NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}"
           nsx_ntp_0:     "{{ Common.NTP.Server1.IPv4 }}"
-          nsx_passwd_0:  "{{ Nested_NSXT.Credential.admin.Password }}"
-          nsx_role:      "{{ Nested_NSXT.Components.LocalManager.Deployment.Role }}"
+          nsx_passwd_0:  "{{ NSXT.Credential.admin.Password }}"
+          nsx_role:      "{{ NSXT.Components.LocalManager.Deployment.Role }}"
       delegate_to: localhost
       when:
         - Deploy.Product.NSXT.LocalManager == true
@@ -191,19 +191,19 @@
 
     - name: Wait until the NSX-T API reports that the NSX-T Manager cluster is "STABLE"
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN | lower }}/api/v1/cluster/status
+        url: https://{{ NSXT.Components.LocalManager.FQDN | lower }}/api/v1/cluster/status
         validate_certs: no
         timeout: 5
         force_basic_auth: yes
-        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
         method: GET
         body_format: json
         return_content: yes
         status_code: 200
       register: result
       until: result.status == 200 and result.json.detailed_cluster_status.overall_status == "STABLE"
-      retries: 5
+      retries: 20
       delay: 60
       when: 
         - Deploy.Product.NSXT.LocalManager == true
@@ -217,30 +217,30 @@
         cluster: "{{ Target.Cluster }}"
         datacenter: "{{ Target.DataCenter }}"
         folder: "{{ Target.VMFolder }}"
-        name: "{{ Nested_NSXT.Components.LocalManager.VMName }}"
+        name: "{{ NSXT.Components.LocalManager.VMName }}"
         annotation: | 
                     {{ Common.Annotation }}
                     {{ Deploy.Software.NSXT.Vendor }} {{ Deploy.Software.NSXT.Product}} {{ Deploy.Software.NSXT.Version }}
-                    Username: {{ Nested_NSXT.Credential.admin.Name }}
-                    Password: {{ Nested_NSXT.Credential.admin.Password }}
+                    Username: {{ NSXT.Credential.admin.Name }}
+                    Password: {{ NSXT.Credential.admin.Password }}
       when: 
         - Deploy.Product.NSXT.LocalManager == true
         - Target.Deployment == "vCenter"
     - name: Write annotation on the NSX-T Local Manager VM when Target Deployment is Host
       community.vmware.vmware_guest:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: no
         cluster: "{{ Target.Physical_Cluster }}"
         datacenter: "{{ Target.DataCenter }}"
         folder: "{{ Target.VMFolder }}"
-        name: "{{ Nested_NSXT.Components.LocalManager.VMName }}"
+        name: "{{ NSXT.Components.LocalManager.VMName }}"
         annotation: | 
                     {{ Common.Annotation }}
                     {{ Deploy.Software.NSXT.Vendor }} {{ Deploy.Software.NSXT.Product}} {{ Deploy.Software.NSXT.Version }}
-                    Username: {{ Nested_NSXT.Credential.admin.Name }}
-                    Password: {{ Nested_NSXT.Credential.admin.Password }}
+                    Username: {{ NSXT.Credential.admin.Name }}
+                    Password: {{ NSXT.Credential.admin.Password }}
       when: 
         - Deploy.Product.NSXT.LocalManager == true
         - Target.Deployment == "Host"
@@ -250,12 +250,12 @@
 ##
     - name: Obtain NSX-T Local Manager User List
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN | lower }}/api/v1/node/users
+        url: https://{{ NSXT.Components.LocalManager.FQDN | lower }}/api/v1/node/users
         validate_certs: no
         timeout: 15
         force_basic_auth: yes
-        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
         method: GET
         body_format: json
         return_content: yes
@@ -266,12 +266,12 @@
 
     - name: Disable Password Expiration Of All NSX-T Users (except for 'root')
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN | lower }}/api/v1/node/users/{{ item.userid }}
+        url: https://{{ NSXT.Components.LocalManager.FQDN | lower }}/api/v1/node/users/{{ item.userid }}
         validate_certs: no
         timeout: 15
         force_basic_auth: yes
-        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
         method: PUT
         body_format: json
         body: '{ "password_change_frequency": 0 }'

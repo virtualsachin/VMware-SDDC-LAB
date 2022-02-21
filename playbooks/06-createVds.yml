@@ -24,22 +24,22 @@
 
                                      Target.Deployment: {{ Target.Deployment }}
 
-                                   Nested_vCenter.FQDN: {{ Nested_vCenter.FQDN }}
-                                   Nested_vCenter.User: {{ Nested_vCenter.User }}
-                               Nested_vCenter.Password: {{ Nested_vCenter.Password }}
-                             Nested_vCenter.DataCenter: {{ Nested_vCenter.DataCenter }}
+                                   vCenter.FQDN: {{ vCenter.FQDN }}
+                                   vCenter.User: {{ vCenter.User }}
+                               vCenter.Password: {{ vCenter.Password }}
+                             vCenter.DataCenter: {{ vCenter.DataCenter }}
 
-                                          vSwitch.Name: {{ Nested_vCenter.Networking.vSwitchA.Name }}
-                                    vSwitch.Config.MTU: {{ Nested_vCenter.Networking.vSwitchA.Config.MTU }}
-                        vSwitch.Config.NumberOfUplinks: {{ Nested_vCenter.Networking.vSwitchA.Config.NumberOfUplinks }}
-                            LinkDiscoveryProtocol.Type: {{ Nested_vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Type }}
-                       LinkDiscoveryProtocol.Operation: {{ Nested_vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Operation }}
+                                          vSwitch.Name: {{ vCenter.Networking.vSwitchA.Name }}
+                                    vSwitch.Config.MTU: {{ vCenter.Networking.vSwitchA.Config.MTU }}
+                        vSwitch.Config.NumberOfUplinks: {{ vCenter.Networking.vSwitchA.Config.NumberOfUplinks }}
+                            LinkDiscoveryProtocol.Type: {{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Type }}
+                       LinkDiscoveryProtocol.Operation: {{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Operation }}
 
-                                          vSwitch.Name: {{ Nested_vCenter.Networking.vSwitchB.Name }}
-                                    vSwitch.Config.MTU: {{ Nested_vCenter.Networking.vSwitchB.Config.MTU }}
-                        vSwitch.Config.NumberOfUplinks: {{ Nested_vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}
-                            LinkDiscoveryProtocol.Type: {{ Nested_vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}
-                       LinkDiscoveryProtocol.Operation: {{ Nested_vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}
+                                          vSwitch.Name: {{ vCenter.Networking.vSwitchB.Name }}
+                                    vSwitch.Config.MTU: {{ vCenter.Networking.vSwitchB.Config.MTU }}
+                        vSwitch.Config.NumberOfUplinks: {{ vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}
+                            LinkDiscoveryProtocol.Type: {{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}
+                       LinkDiscoveryProtocol.Operation: {{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}
 
           =================================================================================================
       when:
@@ -49,79 +49,79 @@
 ############################################################################################################
     - name: Create distributed switch in the nested vCenter for Cluster-A
       community.vmware.vmware_dvswitch:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
         validate_certs: false
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         switch_version: "{% if Deploy.Software.vCenter.vSwitch == Deploy.Software.ESXi.vSwitch %}{{ omit }}{% else %}{{ Deploy.Software.ESXi.vSwitch }}{% endif %}"
-        mtu: "{{ Nested_vCenter.Networking.vSwitchA.Config.MTU }}"
-        uplink_quantity: "{{ Nested_vCenter.Networking.vSwitchA.Config.NumberOfUplinks }}"
-        discovery_proto: "{{ Nested_vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Type }}"
-        discovery_operation: "{{ Nested_vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Operation }}"
+        mtu: "{{ vCenter.Networking.vSwitchA.Config.MTU }}"
+        uplink_quantity: "{{ vCenter.Networking.vSwitchA.Config.NumberOfUplinks }}"
+        discovery_proto: "{{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Type }}"
+        discovery_operation: "{{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Operation }}"
         state: present
         
     - name: Create Management port group in the nested vCenter for Cluster-A
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.Management.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.Management.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.Management.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.Management.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create vMotion port group in the nested vCenter for Cluster-A
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.vMotion.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.vMotion.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.vMotion.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.vMotion.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create vSAN port group in the nested vCenter for Cluster-A
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.vSAN.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.vSAN.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.vSAN.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.vSAN.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create IP Storage port group for NFS in the nested vCenter for Cluster-A
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.IPStorage.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchA.PortGroup.IPStorage.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.IPStorage.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.IPStorage.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on vCenter
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchE.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
         vlan_trunk: true
         vlan_id: "0-4094"
         num_ports: 8
@@ -132,12 +132,12 @@
 
     - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on vCenter
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchE.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
         vlan_trunk: true
         vlan_id: "0-4094"
         num_ports: 8
@@ -154,7 +154,7 @@
         validate_certs: false
         esxi_hostname: "{{ Target.FQDN }}"
         switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
         vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
         security:
           promiscuous_mode: false
@@ -171,7 +171,7 @@
         validate_certs: false
         esxi_hostname: "{{ Target.FQDN }}"
         switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
         vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
         security:
           promiscuous_mode: false
@@ -182,12 +182,12 @@
 
     - name: Migrate uplinks to the VDS for Compute-A Hosts
       community.vmware.vmware_dvs_host:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         vmnics:
           - vmnic1
           - vmnic2
@@ -198,15 +198,15 @@
 
     - name: Migrate vmk0 to the VDS for Nested ESXi Compute-A Hosts
       community.vmware.vmware_migrate_vmk:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         device: 'vmk0'
         current_switch_name: 'vSwitch0'
         current_portgroup_name: 'Management Network'
-        migrate_switch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        migrate_switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         migrate_portgroup_name: "{{ item.value.vmk.vmk0.PortGroup }}"
       loop: "{{ Nested_ESXi.HostCA | dict2items }}"
       when: 
@@ -214,13 +214,13 @@
 
     - name: Create vmk1 for vMotion for Nested ESXi Compute-A Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk1.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         enable_vmotion: true
         mtu: "{{ item.value.vmk.vmk1.MTU }}"
         network:
@@ -268,13 +268,13 @@
 
     - name: Create vmk2 for vSAN Nested ESXi Compute-A Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk2.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         enable_vsan: true
         mtu: "{{ item.value.vmk.vmk2.MTU }}"
         network:
@@ -289,13 +289,13 @@
       
     - name: Create vmk3 for IP Storage (NFS) Nested ESXi Compute-A Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk3.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         mtu: "{{ item.value.vmk.vmk3.MTU }}"
         network:
           type: 'static'
@@ -323,79 +323,79 @@
 ############################################################################################################
     - name: Create distributed switch in the nested vCenter for Cluster-B
       community.vmware.vmware_dvswitch:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
         validate_certs: false
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         switch_version: "{% if Deploy.Software.vCenter.vSwitch == Deploy.Software.ESXi.vSwitch %}{{ omit }}{% else %}{{ Deploy.Software.ESXi.vSwitch }}{% endif %}"
-        mtu: "{{ Nested_vCenter.Networking.vSwitchB.Config.MTU }}"
-        uplink_quantity: "{{ Nested_vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}"
-        discovery_proto: "{{ Nested_vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}"
-        discovery_operation: "{{ Nested_vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}"
+        mtu: "{{ vCenter.Networking.vSwitchB.Config.MTU }}"
+        uplink_quantity: "{{ vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}"
+        discovery_proto: "{{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}"
+        discovery_operation: "{{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}"
         state: present
         
     - name: Create Management port group in the nested vCenter for Cluster-B
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.Management.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.Management.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create vMotion port group in the nested vCenter for Cluster-B
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.vMotion.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.vMotion.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create vSAN port group in the nested vCenter for Cluster-B
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.vSAN.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.vSAN.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create IP Storage port group for NFS in the nested vCenter for Cluster-B
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.IPStorage.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
-        vlan_id: "{{ Nested_vCenter.Networking.vSwitchB.PortGroup.IPStorage.VLAN.ID }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.VLAN.ID }}"
         num_ports: 8
         portgroup_type: earlyBinding
         state: present
 
     - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on vCenter
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchE.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
         vlan_trunk: true
         vlan_id: "0-4094"
         num_ports: 8
@@ -406,12 +406,12 @@
 
     - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on vCenter
       community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchE.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
         vlan_trunk: true
         vlan_id: "0-4094"
         num_ports: 8
@@ -428,7 +428,7 @@
         validate_certs: false
         esxi_hostname: "{{ Target.FQDN }}"
         switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
         vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
         security:
           promiscuous_mode: false
@@ -445,7 +445,7 @@
         validate_certs: false
         esxi_hostname: "{{ Target.FQDN }}"
         switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ Nested_vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
+        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
         vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
         security:
           promiscuous_mode: false
@@ -456,12 +456,12 @@
 
     - name: Migrate uplinks to the VDS for Compute-B Hosts
       community.vmware.vmware_dvs_host:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
-        switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         vmnics:
           - vmnic1
           - vmnic2
@@ -472,15 +472,15 @@
 
     - name: Migrate vmk0 to the VDS for Nested ESXi Compute-B Hosts
       community.vmware.vmware_migrate_vmk:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         device: 'vmk0'
         current_switch_name: 'vSwitch0'
         current_portgroup_name: 'Management Network'
-        migrate_switch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        migrate_switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         migrate_portgroup_name: "{{ item.value.vmk.vmk0.PortGroup }}"
       loop: "{{ Nested_ESXi.HostCB | dict2items }}"
       when: 
@@ -488,13 +488,13 @@
 
     - name: Create vmk1 for vMotion for Nested ESXi Compute-B Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk1.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         enable_vmotion: true
         mtu: "{{ item.value.vmk.vmk1.MTU }}"
         network:
@@ -542,13 +542,13 @@
 
     - name: Create vmk2 for vSAN Nested ESXi Compute-B Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk2.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         enable_vsan: true
         mtu: "{{ item.value.vmk.vmk2.MTU }}"
         network:
@@ -563,13 +563,13 @@
       
     - name: Create vmk3 for IP Storage (NFS) Nested ESXi Compute-B Hosts
       community.vmware.vmware_vmkernel:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN | lower }}"
         portgroup_name: "{{ item.value.vmk.vmk3.PortGroup }}"
-        dvswitch_name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         mtu: "{{ item.value.vmk.vmk3.MTU }}"
         network:
           type: 'static'

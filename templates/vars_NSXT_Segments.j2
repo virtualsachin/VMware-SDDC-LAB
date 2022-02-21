@@ -8,7 +8,7 @@
  #  Description: This script creates a data structure containing ALL Segments in the Pod Config file.  It's up 
  #               to the playbook using this template to filter only the type of Segments it wants to process.
  #}
-{% for Segment in Nested_NSXT.Networking.Segments %}
+{% for Segment in NSXT.Networking.Segments %}
   - display_name: "{{ Segment.Name }}"
     description:  "{{ Segment.Description }}"
     admin_state:  "{{ Segment.AdminState }}"
@@ -35,7 +35,7 @@
         scope: ""
 {% endif %}{# Segment.Tags is defined #}
 {###### Only include 'vlan_ids' for VLAN-backed segments #####}
-{% if Nested_NSXT.System.Fabric.TransportZone[Segment.TransportZone].Type == "VLAN" %}
+{% if NSXT.System.Fabric.TransportZone[Segment.TransportZone].Type == "VLAN" %}
 {###### Verify user included VLANS variable with at least one entry  #####}
 {% if (Segment.VLANS is defined) and (Segment.VLANS|length) > 0 %}
     vlan_ids:
@@ -45,7 +45,7 @@
 {% endif %}{# Segment.VLANS is defined #}
 {% endif %}{# Type==VLAN #}
 {###### Only include Subnets for Overlay-backed segments #####}
-{% if Nested_NSXT.System.Fabric.TransportZone[Segment.TransportZone].Type == "OVERLAY" %}
+{% if NSXT.System.Fabric.TransportZone[Segment.TransportZone].Type == "OVERLAY" %}
 {% if (Segment.Subnets is defined) and (Segment.Subnets|length) > 0 %}
     subnets:
 {% for Subnet in Segment.Subnets %}

@@ -14,32 +14,32 @@
                 "You must provide the 'deployment_option' key with a value, which will affect the VCSA's configuration parameters, such as the VCSA's number of vCPUs, the memory size, the storage size, and the maximum numbers of ESXi hosts and VMs which can be managed. For a list of acceptable values, run the supported deployment sizes help, i.e. vcsa-deploy --supported-deployment-sizes"
             ],
             "thin_disk_mode": true,
-            "deployment_option": "{{ Nested_vCenter.DeploymentSize }}",
-            "name": "{{ Nested_vCenter.VMName }}"
+            "deployment_option": "{{ vCenter.DeploymentSize }}",
+            "name": "{{ vCenter.VMName }}"
         },
         "network": {
             "ip_family": "ipv4",
             "mode": "static",
-            "system_name": "{{ Nested_vCenter.FQDN }}",
-            "ip": "{{ Nested_vCenter.Address.IPv4.Address }}",
-            "prefix": "{{ Nested_vCenter.Address.IPv4.Prefix }}",
-            "gateway": "{{ Nested_vCenter.Address.IPv4.Gateway }}",
+            "system_name": "{{ vCenter.FQDN }}",
+            "ip": "{{ vCenter.Address.IPv4.Address }}",
+            "prefix": "{{ vCenter.Address.IPv4.Prefix }}",
+            "gateway": "{{ vCenter.Address.IPv4.Gateway }}",
             "dns_servers": [
                 "{{ Common.DNS.Server1.IPv4 }}"
             ]
         },
         "os": {
-            "password": "{{ Nested_vCenter.Password }}",
+            "password": "{{ vCenter.Password }}",
             "ntp_servers":  [
                 "{{ Common.NTP.Server1.IPv4 }}"
             ],
             "ssh_enable": true
         },
         "sso": {
-            "password": "{{ Nested_vCenter.Password }}",
-            "domain_name": "{{ Nested_vCenter.SSO.Domain }}",
+            "password": "{{ vCenter.Password }}",
+            "domain_name": "{{ vCenter.SSO.Domain }}",
             "first_instance": false,
-            "replication_partner_hostname": "{{ Nested_vCenter.SSO.ReplicationPartner }}",
+            "replication_partner_hostname": "{{ vCenter.SSO.ReplicationPartner }}",
             "sso_port": 443
         }
     },

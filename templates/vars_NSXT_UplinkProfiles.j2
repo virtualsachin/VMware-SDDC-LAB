@@ -6,7 +6,7 @@
  #    Purpose: This Jinja2 template file is used to create the data structure that is provided to the nsxt_uplink_profiles module.
  #
  #}
-{% for UplinkProfile in Nested_NSXT.System.Fabric.Profile.UplinkProfiles %}
+{% for UplinkProfile in NSXT.System.Fabric.Profile.UplinkProfiles %}
   - display_name:  "{{ UplinkProfile.Name }}"
     description:   "{{ UplinkProfile.Description }}"
     transport_vlan: {{ UplinkProfile.Transport.VLAN }}

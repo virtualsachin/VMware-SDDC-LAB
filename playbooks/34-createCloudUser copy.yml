@@ -18,9 +18,9 @@
         path: "cloudconnectoruser"
         data:
           nsxt_credentials:
-              username: "{{ Nested_NSXT.Credential.admin.Name }}"
-              password: "{{ Nested_NSXT.Credential.admin.Password }}"
-          name: "{{ Nested_NSXT.Components.LocalManager.FQDN  }}"
+              username: "{{ NSXT.Credential.admin.Name }}"
+              password: "{{ NSXT.Credential.admin.Password }}"
+          name: "{{ NSXT.Components.LocalManager.FQDN  }}"
 
     - name: Create vCenter user credentials to  connect VMware vCenter/ESXi Cloud
       vmware.alb.avi_api_session:
@@ -29,15 +29,15 @@
         path: "cloudconnectoruser"
         data:
           vcenter_credentials:
-              username: "{{ Nested_vCenter.User }}"
-              password: "{{ Nested_vCenter.Password }}"
-          name: "{{ Nested_vCenter.FQDN }}"
+              username: "{{ vCenter.User }}"
+              password: "{{ vCenter.Password }}"
+          name: "{{ vCenter.FQDN }}"
 
     - name: Check existing Policy_API_Endpoint
       uri:
-        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
-        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
+        url: "https://{{ NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
+        url_username: "{{ NSXT.Credential.admin.Name | default(omit) }}"
+        url_password: "{{ NSXT.Credential.admin.Password | default(omit) }}"
         method: GET
         force_basic_auth: yes
         validate_certs: no
@@ -49,9 +49,9 @@
            msg: "{{policy_api.status}}"
     - name: Create Policy_API_Endpoint
       uri:
-        url: "https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
-        url_username: "{{ Nested_NSXT.Credential.admin.Name | default(omit) }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password | default(omit) }}"
+        url: "https://{{ NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/alb-endpoint"
+        url_username: "{{ NSXT.Credential.admin.Name | default(omit) }}"
+        url_password: "{{ NSXT.Credential.admin.Password | default(omit) }}"
         method: GET
         force_basic_auth: yes
         validate_certs: no

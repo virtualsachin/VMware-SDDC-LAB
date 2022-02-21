@@ -27,9 +27,9 @@
 
                                          Target.Deployment: {{ Target.Deployment }}
 
-                  Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+                  NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-          Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles: {{ Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles }}
+          NSXT.System.Fabric.Profile.TransportNodeProfiles: {{ NSXT.System.Fabric.Profile.TransportNodeProfiles }}
 
           =================================================================================================
       when:
@@ -57,9 +57,9 @@
 
     - name: Create Transport Node Profiles 
       nsxt_transport_node_profiles:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: False
         resource_type: TransportNodeProfile
         display_name: "{{ item.display_name }}"

@@ -36,9 +36,9 @@
                                      Target.Datastore: {{ Target.Datastore }}
                                       Target.VMFolder: {{ Target.VMFolder }}
 
-             Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-                       Nested_NSXT.Networking.IPPools: {{ Nested_NSXT.Networking.IPPools }}
+                       NSXT.Networking.IPPools: {{ NSXT.Networking.IPPools }}
                          Pool_Static_Subnets Template: {{ LOCAL_IPPools_Template }}
 
           =================================================================================================
@@ -68,9 +68,9 @@
 
     - name: Create NSX-T IP Pools using Polcy API
       nsxt_policy_ip_pool:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: false
         state: present
         display_name: "{{ item.display_name }}"

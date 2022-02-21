@@ -24,9 +24,9 @@
 
                                            Target.Deployment: {{ Target.Deployment }}
 
-                    Nested_NSXT.Components.LocalManager.FQDN: {{ Nested_NSXT.Components.LocalManager.FQDN }}
+                    NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
 
-          Nested_NSXT.System.Fabric.Nodes.EdgeTransportNodes: {{ Nested_NSXT.System.Fabric.Nodes.EdgeTransportNodes }}
+          NSXT.System.Fabric.Nodes.EdgeTransportNodes: {{ NSXT.System.Fabric.Nodes.EdgeTransportNodes }}
 
           =================================================================================================
       when:
@@ -57,9 +57,9 @@
 
     - name: Create NSX-T Edge Cluster
       nsxt_edge_clusters:
-        hostname: "{{ Nested_NSXT.Components.LocalManager.FQDN }}"
-        username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        hostname: "{{ NSXT.Components.LocalManager.FQDN }}"
+        username: "{{ NSXT.Credential.admin.Name }}"
+        password: "{{ NSXT.Credential.admin.Password }}"
         validate_certs: False
         display_name: "{{ item.display_name }}"
         description: "{{ item.description }}"
@@ -76,12 +76,12 @@
 
     - name:  Wait until the NSX-T API reports that the Edge Cluster is in realized state
       ansible.builtin.uri:
-        url: https://{{ Nested_NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/default/edge-clusters/{{ edge_cluster | json_query('results[].id') | first }}
+        url: https://{{ NSXT.Components.LocalManager.FQDN }}/policy/api/v1/infra/sites/default/enforcement-points/default/edge-clusters/{{ edge_cluster | json_query('results[].id') | first }}
         validate_certs: no
         timeout: 5
         force_basic_auth: yes
-        url_username: "{{ Nested_NSXT.Credential.admin.Name }}"
-        url_password: "{{ Nested_NSXT.Credential.admin.Password }}"
+        url_username: "{{ NSXT.Credential.admin.Name }}"
+        url_password: "{{ NSXT.Credential.admin.Password }}"
         method: GET
         body_format: json
         return_content: yes

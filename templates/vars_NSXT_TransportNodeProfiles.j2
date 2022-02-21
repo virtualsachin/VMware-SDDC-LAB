@@ -6,7 +6,7 @@
  #    Purpose: This Jinja2 template file is used to create the data structure that is provided to the nsxt_transport_node_profiles module.
  #
  #}
-{% for TransportNodeProfile in Nested_NSXT.System.Fabric.Profile.TransportNodeProfiles %}
+{% for TransportNodeProfile in NSXT.System.Fabric.Profile.TransportNodeProfiles %}
   - display_name: "{{ TransportNodeProfile.Name }}"
     description:  "{{ TransportNodeProfile.Description }}"
     host_switches:

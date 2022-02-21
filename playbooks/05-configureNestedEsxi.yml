@@ -23,10 +23,10 @@
 
                                      Ansible Playbook: {{ ansible_play_name }}
 
-                                  Nested_vCenter.FQDN: {{ Nested_vCenter.FQDN | lower }}
-                                  Nested_vCenter.User: {{ Nested_vCenter.User }}
-                              Nested_vCenter.Password: {{ Nested_vCenter.Password }}
-                            Nested_vCenter.DataCenter: {{ Nested_vCenter.DataCenter }}
+                                  vCenter.FQDN: {{ vCenter.FQDN | lower }}
+                                  vCenter.User: {{ vCenter.User }}
+                              vCenter.Password: {{ vCenter.Password }}
+                            vCenter.DataCenter: {{ vCenter.DataCenter }}
 
                                Common.NFS.Server.IPv4: {{ Common.NFS.Server.IPv4 }}
                                       Common.NFS.Path: {{ Common.NFS.Path  }} 
@@ -109,10 +109,10 @@
 
     - name: Add nested ESXi hosts to the vCenter for Cluster-A
       community.vmware.vmware_host:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
         validate_certs: false
         cluster_name: "{{ item.value.Cluster }}"
         esxi_hostname: "{{ item.value.FQDN }}"
@@ -125,10 +125,10 @@
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
     - name: Add nested ESXi hosts to the vCenter for Cluster-B
       community.vmware.vmware_host:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
-        datacenter_name: "{{ Nested_vCenter.DataCenter }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
         validate_certs: false
         cluster_name: "{{ item.value.Cluster }}"
         esxi_hostname: "{{ item.value.FQDN }}"
@@ -142,9 +142,9 @@
 
     - name: Mount NFS datastore on nested ESXi host for Cluster-A
       community.vmware.vmware_host_datastore:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN }}"
         datastore_name: "{{ Common.NFS.Datastore }}"
@@ -161,9 +161,9 @@
         - Deploy.Setting.UseNFS == true
     - name: Mount NFS datastore on nested ESXi host for Cluster-B
       community.vmware.vmware_host_datastore:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         esxi_hostname: "{{ item.value.FQDN }}"
         datastore_name: "{{ Common.NFS.Datastore }}"
@@ -181,9 +181,9 @@
 
     - name: Delete custom ESXi ISO image used for Pod ESXi deployment from the datastore for Cluster-A if Target Deploement is Host
       community.vmware.vsphere_file:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         datacenter: "{{ Target.DataCenter }}"
         datastore: "{{ Target.Datastore }}"
@@ -196,9 +196,9 @@
         - Target.Deployment == "Host"
     - name: Delete custom ESXi ISO image used for Pod ESXi deployment from the datastore for Cluster-B if Target Deploement is Host
       community.vmware.vsphere_file:
-        hostname: "{{ Nested_vCenter.FQDN | lower }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         datacenter: "{{ Target.DataCenter }}"
         datastore: "{{ Target.Datastore }}"
@@ -247,9 +247,9 @@
 
     - name: Configure deployed ESXi hosts firewall to permit syslog traffic for Cluster
       community.vmware.vmware_host_firewall_manager:
-        hostname: "{{ Nested_vCenter.FQDN }}"
-        username: "{{ Nested_vCenter.User }}"
-        password: "{{ Nested_vCenter.Password }}"
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
         validate_certs: false
         cluster_name: "{{ item.key }}"
         rules: "{{ Nested_ESXi.FirewallRules }}"

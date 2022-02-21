@@ -6,7 +6,7 @@
  #    Purpose: This Jinja2 template file is used to create the data structure that is provided to the nsxt_transport_nodes module.
  #
  #}
-{% for EdgeTransportNode in Nested_NSXT.System.Fabric.Nodes.EdgeTransportNodes %}
+{% for EdgeTransportNode in NSXT.System.Fabric.Nodes.EdgeTransportNodes %}
   - display_name: "{{ EdgeTransportNode.Name }}"
     tags:
 {###### Make sure Tags is defined #####}
@@ -83,7 +83,7 @@
             prefix_length: "{{ EdgeTransportNode.Deployment.ManagementIPPrefix }}"
           default_gateway_addresses: 
           - "{{ EdgeTransportNode.Deployment.Gateway }}"
-          compute: "{{ Nested_NSXT.System.Fabric.Nodes.vSphereEdgeCluster }}"
+          compute: "{{ NSXT.System.Fabric.Nodes.vSphereEdgeCluster }}"
           storage: "{{ EdgeTransportNode.Deployment.Datastore }}"
           host: "{{ EdgeHosts[(loop.index0 % (EdgeHosts|length))] }}"
           reservation_info:

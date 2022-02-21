@@ -9,8 +9,8 @@
   vars_files:
     - ../answerfile.yml  
   name: prepareISOInstaller.yml
-#  vars:
-#    ISOMountPoint: "{{ Target.ISOMount }}/{{ Deploy.Software.ESXi.Vendor }}_{{ Deploy.Software.ESXi.Product }}_{{ Deploy.Software.ESXi.Version }}"
+  vars:
+    ISOMountPoint: "{{ Target.ISOMount }}/{{ Deploy.Software.ESXi.Vendor }}_{{ Deploy.Software.ESXi.Product }}_{{ Deploy.Software.ESXi.Version }}"
   tasks:
     - name: prepareISOInstaller_Playbook
       ansible.builtin.debug:

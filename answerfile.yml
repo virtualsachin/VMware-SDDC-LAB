@@ -21,12 +21,6 @@ DEBUG:
   KeepConfigFiles: false
   KeepInstallerFiles: false
 
-SiteCode: vSDDC # I prefere to put LAB name here
-
-Pod:
-  Number: 10
-  Name: vSDDC
-  VLANOffset: 0
 
 Deploy:
   Product:
@@ -108,7 +102,7 @@ Deploy:
 Common:
   Annotation: "*** Auto-Deployed by VirtualSach ***"
   DNS:
-    Domain: virtualsachin.com
+    Domain: virtualsachin.lab
     Server1:
       IPv4: 198.51.100.53
     Server2:
@@ -142,10 +136,10 @@ Target:
   Cluster: "" #if Target/Deployment is vCenter put the cluster name
   Physical_Cluster: "Physical-Cluster"
   DataCenter: vSDDC
-  Datastore: HDD
-  DatastoreSSD: SSD #This DataStore is used for vCenter, NSX Manager and EDGE Appliances VM deployments
+  Datastore: SSD-500GB
+  DatastoreSSD: SSD-1TB #This DataStore is used for vCenter, NSX Manager and EDGE Appliances VM deployments
   Deployment: Host #Value should be Host (Physical ESXi Host) or vCenter for Target deployment
-  FQDN: vSphere.virtualsachin.com
+  FQDN: vSphere.virtualsachin.lab
   ISOFolder: /ISO-Storage
   ISOMount: /media
   PortGroup:
@@ -213,7 +207,7 @@ Nested_ESXi:
     Compute-A-1:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-1.virtualsachin.com
+      FQDN: Compute-A-1.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-A-1
@@ -265,7 +259,7 @@ Nested_ESXi:
     Compute-A-2:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-2.virtualsachin.com
+      FQDN: Compute-A-2.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-A-2
@@ -317,7 +311,7 @@ Nested_ESXi:
     Compute-A-3:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-3.virtualsachin.com
+      FQDN: Compute-A-3.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-A-3
@@ -371,7 +365,7 @@ Nested_ESXi:
     Compute-B-1:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-1.virtualsachin.com
+      FQDN: Compute-B-1.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-B-1
@@ -423,7 +417,7 @@ Nested_ESXi:
     Compute-B-2:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-2.virtualsachin.com
+      FQDN: Compute-B-2.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-B-2
@@ -475,7 +469,7 @@ Nested_ESXi:
     Compute-B-3:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-3.virtualsachin.com
+      FQDN: Compute-B-3.virtualsachin.lab
       Password: VMware1!
       User: root
       VMName: vSDDC-Compute-B-3
@@ -525,7 +519,7 @@ Nested_ESXi:
           Stack: default
           VLAN: "0"
 
-Nested_vCenter:
+vCenter:
   Address:
     IPv4:
       Address: 198.51.100.5
@@ -533,7 +527,7 @@ Nested_vCenter:
       Prefix: "24"
   DataCenter: vSDDC
   DeploymentSize: tiny
-  FQDN: vcsa.virtualsachin.com
+  FQDN: vcsa.virtualsachin.lab
   Networking:
     vSwitchE:
       Clusters:
@@ -684,7 +678,7 @@ Nested_vCenter:
   User: administrator@virtualsachin.local
   VMName: vSDDC-vCenter
 
-Nested_NSXT:
+NSXT:
   Components:
     LocalManager:
       Address:
@@ -698,7 +692,7 @@ Nested_NSXT:
         Role: NSX Manager
         SiteName: NSX-vSDDC
         Size: small
-      FQDN: nsxt-1.virtualsachin.com
+      FQDN: nsxt-1.virtualsachin.lab
       VMName: vSDDC-NSXT-LM-1
   Credential:
     admin:
@@ -714,7 +708,7 @@ Nested_NSXT:
     IPPools:
       - Allocations:
           - DNS:
-              Domain: virtualsachin.com
+              Domain: virtualsachin.lab
               Server: 198.51.100.1
             Description: IP Pool for EDGE TEPs
             Gateway: 10.5.5.1
@@ -731,7 +725,7 @@ Nested_NSXT:
             Tag: Second-Tag-For-Testing
       - Allocations:
           - DNS:
-              Domain: virtualsachin.com
+              Domain: virtualsachin.lab
               Server: 198.51.100.1
             Description: IP Pool for Cluster-A TEPs
             Gateway: 10.1.5.1
@@ -746,7 +740,7 @@ Nested_NSXT:
             Tag: Auto-Created
       - Allocations:
           - DNS:
-              Domain: virtualsachin.com
+              Domain: virtualsachin.lab
               Server: 198.51.100.1
             Description: IP Pool for Cluster-B TEPs
             Gateway: 10.2.5.1
@@ -1038,7 +1032,7 @@ Nested_NSXT:
               EnableSSH: true
               FormFactor: SMALL
               Gateway: 198.51.100.1
-              Hostname: vSDDC-T0-EdgeVM-01.virtualsachin.com
+              Hostname: vSDDC-T0-EdgeVM-01.virtualsachin.lab
               ManagementIPAddress: 198.51.100.26
               ManagementIPPrefix: "24"
               ManagementPortGroup: "{{ Target.PortGroup.Management.Name }}"
@@ -1051,8 +1045,8 @@ Nested_NSXT:
               RootPassword: VMware1!VMware1!
               VMName: vSDDC-T0-EdgeVM-01
               vCenterName: vSDDC-vCenter
-              vCenterPassword: "{{ Nested_vCenter.Password }}"
-              vCenterUser: "{{ Nested_vCenter.User }}"
+              vCenterPassword: "{{ vCenter.Password }}"
+              vCenterUser: "{{ vCenter.User }}"
             Description: Tier-0 Edge Transport Node
             HostSwitches:
               - IPPool:
@@ -1084,7 +1078,7 @@ Nested_NSXT:
               EnableSSH: true
               FormFactor: SMALL
               Gateway: 198.51.100.1
-              Hostname: vSDDC-T0-EdgeVM-02.virtualsachin.com
+              Hostname: vSDDC-T0-EdgeVM-02.virtualsachin.lab
               ManagementIPAddress: 198.51.100.27
               ManagementIPPrefix: "24"
               ManagementPortGroup: "{{ Target.PortGroup.Management.Name }}"
@@ -1097,8 +1091,8 @@ Nested_NSXT:
               RootPassword: VMware1!VMware1!
               VMName: vSDDC-T0-EdgeVM-02
               vCenterName: vSDDC-vCenter
-              vCenterPassword: "{{ Nested_vCenter.Password }}"
-              vCenterUser: "{{ Nested_vCenter.User }}"
+              vCenterPassword: "{{ vCenter.Password }}"
+              vCenterUser: "{{ vCenter.User }}"
             Description: Tier-0 Edge Transport Node
             HostSwitches:
               - IPPool:
@@ -1129,7 +1123,7 @@ Nested_NSXT:
                   Name: vSDDC-CC-A-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
-                Name: "{{ Nested_vCenter.Networking.vSwitchA.Name }}"
+                Name: "{{ vCenter.Networking.vSwitchA.Name }}"
                 TransportZones:
                   - Name: TZ-Overlay
                   - Name: TZ-VLAN
@@ -1148,7 +1142,7 @@ Nested_NSXT:
                   Name: vSDDC-CC-B-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
-                Name: "{{ Nested_vCenter.Networking.vSwitchB.Name }}"
+                Name: "{{ vCenter.Networking.vSwitchB.Name }}"
                 TransportZones:
                   - Name: TZ-Overlay
                   - Name: TZ-VLAN
@@ -1251,11 +1245,11 @@ AVI:
     IP: "198.51.100.31"
     Name: "vSDDC-AVI-1"
   controller2:
-    IP: "198.51.100.32"
-    Name: "vSDDC-AVI-2"
+    IP: ""
+    Name: ""
   controller3:
-    IP: "198.51.100.33"
-    Name: "vSDDC-AVI-3"
+    IP: ""
+    Name: ""
  #
  # Info for Controller Placement
  con_mgmt_portgroup: "{{ Target.PortGroup.Management.Name }}" # VMware MGMT PortGroup for Controller
@@ -1275,12 +1269,12 @@ AVI:
  # Controller default password (https://portal.avinetworks.com/)
  #
  old_password: "58NFaGDJm(PJH0G"
- #old_password: "VMware1!"
+
 
  # Avi System Configuration
 
  #Email for admin user (password resets)
- admin_email: avi@virtualsachin.com
+ admin_email: avi@virtualsachin.lab
 
  # Backup Passphrase (encrypt sensitive fields)
- backup_passphrase: "test@Passphrase1"
+ backup_passphrase: "VMware1!VMware1!"
