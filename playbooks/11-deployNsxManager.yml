@@ -13,60 +13,6 @@
     - name: deployNsxManager_Playbook
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
-
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{Pod.Name}} ==================================
-
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                  Target.DatastoreSSD: {{ Target.DatastoreSSD }}
-                                      Target.VMFolder: {{ Target.VMFolder }}
-
-                                           NSX-T Role: {{ NSXT.Components.LocalManager.Deployment.Role }}
-                                        NSX-T Version: {{ Deploy.Software.NSXT.Version }}
-                                   NSX-T Manager FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-                                         NSX-T VMName: {{ NSXT.Components.LocalManager.VMName }}
-
-
-                                                OVF Variables
-                                                =============
-
-                                         NSX-T VMName: {{ NSXT.Components.LocalManager.VMName }}
-                                           NSX-T Size: {{ NSXT.Components.LocalManager.Deployment.Size  }}
-                                    Network PortGroup: {{ Target.PortGroup.Management.Name }}
-
-                                           Audit User: {{ NSXT.Credential.audit.Name }}
-                                       Audit Password: {{ NSXT.Credential.audit.Password }}
-
-                                             CLI User: {{ NSXT.Credential.admin.Name }}
-                                         CLI Password: {{ NSXT.Credential.admin.Password }}
-
-                                 Network IPv4 Address: {{ NSXT.Components.LocalManager.Address.IPv4.Address }}
-                                      Network Netmask: {{ (NSXT.Components.LocalManager.Address.IPv4.Address + '/' + NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}
-                                      Network Gateway: {{ NSXT.Components.LocalManager.Address.IPv4.Gateway }}
-
-                                   Network NTP Server: {{ Common.NTP.Server1.IPv4 }}
-                                   Network DNS Server: {{ Common.DNS.Server1.IPv4 }}
-                                   Network DNS Domain: {{ Common.DNS.Domain }}
-
-                                     NSX-T Media Path: {{ Deploy.Software.NSXT.Directory }}
-                                     NSX-T Media File: {{ Deploy.Software.NSXT.File }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
     - name: Check if NSX-T Local Manager is already installed
       ansible.builtin.uri:
         url: https://{{ NSXT.Components.LocalManager.FQDN }}
@@ -78,52 +24,6 @@
       no_log: true
       when: Deploy.Product.NSXT.LocalManager == true
 
-    - name: Deploy NSX-T Local Manager from OVA when deployment options is vCenter
-      community.vmware.vmware_deploy_ovf:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: no
-        datastore: "{{ Target.DatastoreSSD }}"
-        allow_duplicates: no
-        folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"         # For vCenter deployment, VM Folder path must be the FULL path: /<DataCenter>/vm/<ParentFolder>/<ChildFolder>
-        datacenter: "{{ Target.DataCenter }}"
-        cluster: "{{ Target.Physical_Cluster }}"
-        name: "{{ NSXT.Components.LocalManager.VMName }}"
-        ovf:  "{{ Deploy.Software.NSXT.Directory }}/{{ Deploy.Software.NSXT.File }}"
-        deployment_option: "{{ NSXT.Components.LocalManager.Deployment.Size }}"
-        networks:
-          "Network 1": "{{ Target.PortGroup.Management.Name }}"
-        disk_provisioning: "{{ Common.DiskProvisioning }}"
-        power_on: yes
-        fail_on_spec_warnings: yes
-        wait: yes
-        wait_for_ip_address: yes
-        inject_ovf_env: yes
-        properties:
-          nsx_cli_audit_username: "{{ NSXT.Credential.audit.Name }}"
-          nsx_cli_audit_passwd_0: "{{ NSXT.Credential.audit.Password }}"
-          nsx_cli_username: "{{ NSXT.Credential.admin.Name }}"
-          nsx_cli_passwd_0: "{{ NSXT.Credential.admin.Password }}"
-          nsx_allowSSHRootLogin: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
-          nsx_isSSHEnabled: "{{ NSXT.Components.LocalManager.Deployment.EnableSSH }}"
-          nsx_dns1_0: "{{ Common.DNS.Server1.IPv4 }}"
-          nsx_domain_0: "{{ Common.DNS.Domain }}"
-          nsx_gateway_0: "{{ NSXT.Components.LocalManager.Address.IPv4.Gateway }}"
-          nsx_hostname:  "{{ NSXT.Components.LocalManager.FQDN }}"
-          nsx_ip_0:      "{{ NSXT.Components.LocalManager.Address.IPv4.Address }}"
-          nsx_netmask_0: "{{ (NSXT.Components.LocalManager.Address.IPv4.Address + '/' + NSXT.Components.LocalManager.Address.IPv4.Prefix) | ipaddr('netmask') }}"
-          nsx_ntp_0:     "{{ Common.NTP.Server1.IPv4 }}"
-          nsx_passwd_0:  "{{ NSXT.Credential.admin.Password }}"
-          nsx_role:      "{{ NSXT.Components.LocalManager.Deployment.Role }}"
-      delegate_to: localhost
-      when:
-        - Deploy.Product.NSXT.LocalManager == true
-        - Target.Deployment == "vCenter"
-        - nsxman_check.status != 200
-      async: 7200
-      poll: 0
-      register: deployment
 
     - name: Deploy NSX-T Local Manager from OVA when deployment options is Host
       community.vmware.vmware_deploy_ovf:
@@ -133,14 +33,14 @@
         validate_certs: no
         datastore: "{{ Target.DatastoreSSD }}"
         allow_duplicates: no
-        folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"         # For vCenter deployment, VM Folder path must be the FULL path: /<DataCenter>/vm/<ParentFolder>/<ChildFolder>
+#        folder: "{% if Target.Deployment == 'vCenter' %}/{{ Target.DataCenter }}/vm/{{ Target.VMFolder }}{% else %}{{ Target.VMFolder }}{% endif %}"         # For vCenter deployment, VM Folder path must be the FULL path: /<DataCenter>/vm/<ParentFolder>/<ChildFolder>
         datacenter: "{{ Target.DataCenter }}"
         cluster: "{{ Target.Physical_Cluster }}"
         name: "{{ NSXT.Components.LocalManager.VMName }}"
         ovf:  "{{ Deploy.Software.NSXT.Directory }}/{{ Deploy.Software.NSXT.File }}"
         deployment_option: "{{ NSXT.Components.LocalManager.Deployment.Size }}"
         networks:
-          "Network 1": "{{ Target.PortGroup.Management.Name }}"
+          "Network 1": "{{ vCenter.Networking.Physical.PortGroup.Management.Name }}"
         disk_provisioning: "{{ Common.DiskProvisioning }}"
         power_on: yes
         fail_on_spec_warnings: yes
@@ -207,25 +107,6 @@
       delay: 60
       when: 
         - Deploy.Product.NSXT.LocalManager == true
-
-    - name: Write annotation on the NSX-T Local Manager VM when Target Deployment is vCenter
-      community.vmware.vmware_guest:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: no
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        name: "{{ NSXT.Components.LocalManager.VMName }}"
-        annotation: | 
-                    {{ Common.Annotation }}
-                    {{ Deploy.Software.NSXT.Vendor }} {{ Deploy.Software.NSXT.Product}} {{ Deploy.Software.NSXT.Version }}
-                    Username: {{ NSXT.Credential.admin.Name }}
-                    Password: {{ NSXT.Credential.admin.Password }}
-      when: 
-        - Deploy.Product.NSXT.LocalManager == true
-        - Target.Deployment == "vCenter"
     - name: Write annotation on the NSX-T Local Manager VM when Target Deployment is Host
       community.vmware.vmware_guest:
         hostname: "{{ vCenter.FQDN }}"

@@ -1,0 +1,194 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/deployNestedEsxi.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: deployNestedEsxi.yml
+  tasks:
+    - name: deployNestedEsxi_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+############################################################################################################
+#                                          ESXi Host deployment for Cluster-A                              #
+############################################################################################################
+    - name: Deploy nested ESXi hosts on vCenter when Deploement is Host for Cluster-A
+      community.vmware.vmware_guest:
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter: "{{ Target.DataCenter }}"
+        validate_certs: false
+        name: "{{ item.value.VMName }}"
+        state: poweredon
+        guest_id: vmkernel7Guest
+        cluster: "{{ Target.Physical_Cluster }}"
+        folder: "{{ Target.VMFolder }}"
+        disk:
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['BootDiskSize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['vSAN']['CacheSize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['vSAN']['CapacitySize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        hardware:
+          nested_virt: true
+          memory_mb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['Memory'] }}"
+          num_cpus: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['CPU'] }}"
+          num_cpu_cores_per_socket: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['CoresPerSocket'] }}"
+          scsi: paravirtual
+        networks:
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+#          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+#            device_type: vmxnet3
+#          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+#            device_type: vmxnet3
+        cdrom:
+          type: "iso"
+          iso_path: "[{{ Target.Datastore }}] {{ Target.ISOFolder }}/{{ item.key }}"
+        annotation: | 
+                    {{ Common.Annotation }}
+                    {{ Deploy.Software.ESXi.Vendor }} {{ Deploy.Software.ESXi.Product }} {{ Deploy.Software.ESXi.Version }}
+                    Username: {{ item.value.User }}
+                    Password: {{ item.value.Password }}
+      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
+      async: 1800
+      poll: 0
+      register: deployment
+      when:
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+        - Target.Deployment == "Host"
+    - name: Wait 1 minutes before start checking wheter the hosts are ready in Host Deployment
+      pause: seconds=60
+      when:
+        - Target.Deployment == "Host"      
+    - name: Result check for deployment
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: job_result
+      with_items: "{{ deployment.results }}"
+      when:
+        - Target.Deployment == "Host"      
+
+
+############################################################################################################
+#                                          ESXi Host deployment for Cluster-B                              #
+############################################################################################################
+    - name: Deploy nested ESXi hosts on vCenter when Deploement is Host for Cluster-B
+      community.vmware.vmware_guest:
+        hostname: "{{ vCenter.FQDN | lower }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter: "{{ Target.DataCenter }}"
+        validate_certs: false
+        name: "{{ item.value.VMName }}"
+        state: poweredon
+        guest_id: vmkernel7Guest
+        cluster: "{{ Target.Physical_Cluster }}"
+        folder: "{{ Target.VMFolder }}"
+        disk:
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['BootDiskSize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['vSAN']['CacheSize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        - size_gb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['vSAN']['CapacitySize'] }}"
+          type: "{{ Common.DiskProvisioning }}"
+          datastore: "{{ Target.Datastore }}"
+        hardware:
+          nested_virt: true
+          memory_mb: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['Memory'] }}"
+          num_cpus: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['CPU'] }}"
+          num_cpu_cores_per_socket: "{{ Nested_ESXi.HardwareSettings[item.value.Cluster]['CoresPerSocket'] }}"
+          scsi: paravirtual
+        networks:
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+            device_type: vmxnet3
+#          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+#            device_type: vmxnet3
+#          - name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+#            device_type: vmxnet3
+        cdrom:
+          type: "iso"
+          iso_path: "[{{ Target.Datastore }}] {{ Target.ISOFolder }}/{{ item.key }}"
+        annotation: | 
+                    {{ Common.Annotation }}
+                    {{ Deploy.Software.ESXi.Vendor }} {{ Deploy.Software.ESXi.Product }} {{ Deploy.Software.ESXi.Version }}
+                    Username: {{ item.value.User }}
+                    Password: {{ item.value.Password }}
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      async: 1800
+      poll: 0
+      register: deployment
+      when:
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+        - Target.Deployment == "Host"
+    - name: Wait 1 minutes before start checking wheter the hosts are ready in Host Deployment
+      pause: seconds=60
+      when:
+        - Target.Deployment == "Host"      
+    - name: Result check for deployment
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: job_result
+      with_items: "{{ deployment.results }}"
+      when:
+        - Target.Deployment == "Host"      
+
+############################################################################################################
+#                                 ESXi Host deployment for for both  Clusters                            #
+############################################################################################################
+    - name: Check if the nested ESXi hosts are ready if Deployment is on Host for Cluster-A
+      community.vmware.vmware_guest_info:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: false
+        datacenter: "{{ Target.DataCenter }}"
+        name: "{{ item.value.VMName }}"
+        schema: "vsphere"
+      register: vm_facts
+      until: vm_facts is search(item.value.vmk.vmk0.Address.IPv4.Address)
+      retries: 15
+      delay: 60
+      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+        - Target.Deployment == "Host"
+    - name: Check if the nested ESXi hosts are ready if Deployment is on Host for Cluster-B
+      community.vmware.vmware_guest_info:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: false
+        datacenter: "{{ Target.DataCenter }}"
+        name: "{{ item.value.VMName }}"
+        schema: "vsphere"
+      register: vm_facts
+      until: vm_facts is search(item.value.vmk.vmk0.Address.IPv4.Address)
+      retries: 15
+      delay: 60
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+        - Target.Deployment == "Host"
+
+  tags: nestedESX

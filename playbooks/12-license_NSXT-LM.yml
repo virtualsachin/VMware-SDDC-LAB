@@ -16,31 +16,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                             Deploy.Product.NSXT.LocalManager: {{ Deploy.Product.NSXT.LocalManager }}
-             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-                                         License File: {{ LOCAL_LicenseFile }}
-
-                                               NSX-T Deployed
-                                               ==============
-                                               Vendor: {{ Deploy.Software.NSXT.Vendor }}
-                                              Product: {{ Deploy.Software.NSXT.Product }}
-                                              Version: {{ Deploy.Software.NSXT.Version }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-        - Deploy.Product.NSXT.LocalManager == true
 
 
 ###
@@ -102,7 +77,7 @@
         license_key: "{{ item.KeyCode }}"
         state: present
       loop: "{{ License.VMware.NSXT.Licenses | default([]) }}"
-      ignore_errors: yes                                                             # If license in already in use or not applicable, it will result in 'failure', so need to ensure we continue by ignoring the error
+ #     ignore_errors: yes                                                             # If license in already in use or not applicable, it will result in 'failure', so need to ensure we continue by ignoring the error
       no_log: true
       when:
         - Deploy.Product.NSXT.LocalManager == true

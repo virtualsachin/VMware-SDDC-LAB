@@ -76,7 +76,7 @@
 {% for DataPortGroup in EdgeTransportNode.Deployment.DataPortGroups %}
           - "{{ DataPortGroup.Name }}"
 {% endfor %}{# DataPortGroup #}
-          management_network: "{{ EdgeTransportNode.Deployment.ManagementPortGroup }}"
+          management_network: "{{ vCenter.Networking.Physical.PortGroup.Management.Name }}"
           management_port_subnets:
           - ip_addresses:
             - "{{ EdgeTransportNode.Deployment.ManagementIPAddress }}"

@@ -14,36 +14,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{Pod.Name}} ==================================
-
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                     Target.Datastore: {{ Target.Datastore }}
-                                      Target.VMFolder: {{ Target.VMFolder }}
-
-             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-           NSXT.Components.LocalManager.VMName: {{ NSXT.Components.LocalManager.VMName }}
-
-                                  vCenter.FQDN: {{ vCenter.FQDN }}
-                                vCenter.VMName: {{ vCenter.VMName }}
-                                  vCenter.User: {{ vCenter.User }}
-                              vCenter.Password: {{ vCenter.Password }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
 
     - name: Register NSX-T Compute Manager
       nsxt_fabric_compute_managers:
@@ -59,6 +29,6 @@
             username: "{{ vCenter.User }}"
             password: "{{ vCenter.Password }}"
           state: present
-      when: Deploy.Product.NSXT.LocalManager == true
-      async: 1800
-      poll: 0
+#      when: Deploy.Product.NSXT.LocalManager == true
+#      async: 1800
+#      poll: 0

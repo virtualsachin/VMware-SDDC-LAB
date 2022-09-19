@@ -16,32 +16,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                     Target.Datastore: {{ Target.Datastore }}
-                                     Target.ISOFolder: {{ Target.ISOFolder }}
-                                    Target.TempFolder: {{ Target.TempFolder }}
-
-                                        ISOMountPoint: {{ ISOMountPoint }}
-
-                         Deploy.Software.ESXi.Version: {{ Deploy.Software.ESXi.Version }}
-                       Deploy.Software.ESXi.Installer: {{ Deploy.Software.ESXi.Installer }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
     - name: Create temp directory
       ansible.builtin.file:
         path: "{{ Target.TempFolder }}"
@@ -142,22 +116,6 @@
         - Target.Deployment == "Host"
       tags: esxi-install-media
 
-    - name: Upload the ESXi ISO to the datastore if Target is vCenter for Cluster-A
-      community.vmware.vsphere_copy: 
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: no
-        datacenter: "{{ Target.DataCenter }}"
-        src: "{{ Target.TempFolder }}/{{ item.key }}" 
-        datastore: "{{ Target.Datastore }}" 
-        path: "{{ Target.ISOFolder }}/{{ item.key }}"
-      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
-      when:
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
-      tags: esxi-install-media
-
     - name: Upload the ESXi ISO to the datastore if Target is Host for Cluster-B
       community.vmware.vsphere_copy: 
         hostname: "{{ Target.FQDN }}"
@@ -171,22 +129,6 @@
       when:
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
         - Target.Deployment == "Host"
-      tags: esxi-install-media
-
-    - name: Upload the ESXi ISO to the datastore if Target is vCenter for Cluster-B
-      community.vmware.vsphere_copy: 
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: no
-        datacenter: "{{ Target.DataCenter }}"
-        src: "{{ Target.TempFolder }}/{{ item.key }}" 
-        datastore: "{{ Target.Datastore }}" 
-        path: "{{ Target.ISOFolder }}/{{ item.key }}"
-      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
-      when:
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
       tags: esxi-install-media
 
     - name: Delete local ISO content directory 

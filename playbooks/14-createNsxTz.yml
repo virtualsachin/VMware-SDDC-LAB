@@ -15,35 +15,6 @@
         msg: "Starting playbook: {{ ansible_play_name }}"
 
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================= Display Variables For Pod {{Pod.Name}} ============================
-
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                     Target.Datastore: {{ Target.Datastore }}
-                                      Target.VMFolder: {{ Target.VMFolder }}
-
-             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-              NSXT.System.Fabric.TransportZone: {{ NSXT.System.Fabric.TransportZone }}
-
-              NSXT.System.Fabric.TransportZone: {{ NSXT.System.Fabric.TransportZone | dict2items }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
     - name: Create NSX-T transport zones
       nsxt_transport_zones:
         hostname: "{{ NSXT.Components.LocalManager.FQDN }}"

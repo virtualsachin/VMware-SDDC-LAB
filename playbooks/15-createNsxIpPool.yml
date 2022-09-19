@@ -17,36 +17,6 @@
         msg: "Starting playbook: {{ ansible_play_name }}"
 
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{Pod.Name}} ==================================
-
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                     Target.Datastore: {{ Target.Datastore }}
-                                      Target.VMFolder: {{ Target.VMFolder }}
-
-             NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-                       NSXT.Networking.IPPools: {{ NSXT.Networking.IPPools }}
-                         Pool_Static_Subnets Template: {{ LOCAL_IPPools_Template }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-        - Deploy.Product.NSXT.LocalManager == true
-
-
     - name: Get list of IP Pools
       ansible.builtin.set_fact:
         IPPoolsToCreate: "{{ lookup('template', LOCAL_IPPools_Template) | from_yaml }}"

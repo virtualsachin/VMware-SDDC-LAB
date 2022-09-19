@@ -40,15 +40,6 @@
         - vcenter_check.status != 200
         - Target.Deployment == "Host"
 
-    - name: Create vCenter with embedded PSC installation template (Target=vCenter) - No Replication Partner
-      ansible.builtin.template: 
-        src:  "{{ Target.TemplateFolder }}/{{ Deploy.Software.vCenter.Template.vCenter }}"
-        dest: "{{ Target.TempFolder }}/{{ Deploy.Software.vCenter.Config }}"
-        mode: "666"
-      when:
-        - vcenter_check.status != 200
-        - Target.Deployment == "vCenter"
-
     - name: Mount vCenter ISO as read-only and do not automatically mount with 'mount -a'
       ansible.posix.mount:
         path:   "{{ ISOMountPoint }}"
@@ -101,25 +92,6 @@
       when:
         - vcenter_check.status != 200
         - Target.Deployment == "Host"
-    - name: Write annotation on the vCenter VM when Deployment is on vCenter
-      community.vmware.vmware_guest:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: no
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        name: "{{ vCenter.VMName }}"
-        annotation: | 
-                    {{ Common.Annotation }}
-                    {{ vCenter.FQDN | lower }}
-                    {{ Deploy.Software.vCenter.Vendor }} {{ Deploy.Software.vCenter.Product }} {{ Deploy.Software.vCenter.Version }}
-                    Username: {{ vCenter.User }}
-                    Password: {{ vCenter.Password }}
-      when:
-        - vcenter_check.status != 200
-        - Target.Deployment == "vCenter"
 
     - name: Create Datacenter on Nested vCenter
       community.vmware.vmware_datacenter:
@@ -152,10 +124,10 @@
         datacenter_name: "{{ vCenter.DataCenter }}"
         cluster_name: "{{ item.key }}"
         validate_certs: False
-        enable_drs: "{{ item.value.DRS }}"
+        enable: "{{ item.value.DRS }}"
       loop: "{{ Nested_Clusters | dict2items }}"
       when: 
-        - vcenter_check.status != 200
+#        - vcenter_check.status != 200
         - item.value.DeployHosts == true
 
     - name: Create Cluster for Physical host when Deployment is on Host
@@ -167,7 +139,7 @@
         cluster_name: "{{ Target.Physical_Cluster }}"
         validate_certs: False
       when:
-        - vcenter_check.status != 200
+#        - vcenter_check.status != 200
         - Target.Deployment == "Host"
     - name: Add Physical ESXi Host to vCSA for SDDC Lab deployment
       community.vmware.vmware_host:
@@ -182,7 +154,7 @@
         esxi_password: "{{ Target.Password }}"
         state: present
       when:
-        - vcenter_check.status != 200
+#        - vcenter_check.status != 200
         - Target.Deployment == "Host"       
 
 

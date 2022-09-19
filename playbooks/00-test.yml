@@ -1,0 +1,200 @@
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: deployNestedEsxi.yml
+  tasks:
+    - name: deployNestedEsxi_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+
+    - name: Create distributed switch in the nested vCenter for Cluster-B
+      community.vmware.vmware_dvswitch:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
+        validate_certs: false
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        switch_version: "{% if Deploy.Software.vCenter.vSwitch == Deploy.Software.ESXi.vSwitch %}{{ omit }}{% else %}{{ Deploy.Software.ESXi.vSwitch }}{% endif %}"
+        mtu: "{{ vCenter.Networking.vSwitchB.Config.MTU }}"
+        uplink_quantity: "{{ vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}"
+        discovery_proto: "{{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}"
+        discovery_operation: "{{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}"
+        state: present
+        
+    - name: Create Management port group in the nested vCenter for Cluster-B
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.VLAN.ID }}"
+        num_ports: 120
+        port_binding: static
+        state: present
+
+    - name: Create vMotion port group in the nested vCenter for Cluster-B
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.VLAN.ID }}"
+        num_ports: 120
+        port_binding: static
+        state: present
+
+    - name: Create vSAN port group in the nested vCenter for Cluster-B
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.VLAN.ID }}"
+        num_ports: 120
+        port_binding: static
+        state: present
+
+    - name: Create IP Storage port group for NFS in the nested vCenter for Cluster-B
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.Name }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.VLAN.ID }}"
+        num_ports: 120
+        port_binding: static
+        state: present
+
+    - name: Migrate uplinks to the VDS for Compute-B Hosts
+      community.vmware.vmware_dvs_host:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ item.value.FQDN | lower }}"
+        switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        vmnics:
+          - vmnic1
+          - vmnic2
+        state: present
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+
+    - name: Migrate vmk0 to the VDS for Nested ESXi Compute-B Hosts
+      community.vmware.vmware_migrate_vmk:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ item.value.FQDN | lower }}"
+        device: 'vmk0'
+        current_switch_name: 'vSwitch0'
+        current_portgroup_name: 'Management Network'
+        migrate_switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        migrate_portgroup_name: "{{ item.value.vmk.vmk0.PortGroup }}"
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+
+    - name: Create vmk1 for vMotion for Nested ESXi Compute-B Hosts
+      community.vmware.vmware_vmkernel:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ item.value.FQDN | lower }}"
+        portgroup_name: "{{ item.value.vmk.vmk1.PortGroup }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        enable_vmotion: true
+        mtu: "{{ item.value.vmk.vmk1.MTU }}"
+        network:
+          type: 'static'
+          ip_address: "{{ item.value.vmk.vmk1.Address.IPv4.Address }}"
+          subnet_mask: "{{ (item.value.vmk.vmk1.Address.IPv4.Address + '/' + item.value.vmk.vmk1.Address.IPv4.Prefix) | ipaddr('netmask') }}"
+          tcpip_stack: "{{ item.value.vmk.vmk1.Stack }}"
+        state: present
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+
+    - name: Configure vMotion TCP/IP stack gateway address on Nested ESXi Compute-B Hosts
+      community.vmware.vmware_vm_shell:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: false
+        vm_id: "{{ item.value.VMName }}"
+        vm_username: "{{ item.value.User }}"
+        vm_password: "{{ item.value.Password }}"
+        vm_shell: /bin/esxcli
+        vm_shell_args: "network ip route ipv4 add --netstack vmotion --network default --gateway {{ item.value.vmk.vmk1.Address.IPv4.Gateway }}"
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when:
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+
+    - name: Create vmk2 for vSAN Nested ESXi Compute-B Hosts
+      community.vmware.vmware_vmkernel:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ item.value.FQDN | lower }}"
+        portgroup_name: "{{ item.value.vmk.vmk2.PortGroup }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        enable_vsan: true
+        mtu: "{{ item.value.vmk.vmk2.MTU }}"
+        network:
+          type: 'static'
+          ip_address: "{{ item.value.vmk.vmk2.Address.IPv4.Address }}"
+          subnet_mask: "{{ (item.value.vmk.vmk2.Address.IPv4.Address + '/' + item.value.vmk.vmk2.Address.IPv4.Prefix) | ipaddr('netmask') }}"
+          tcpip_stack: "{{ item.value.vmk.vmk2.Stack }}"
+        state: present
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+      
+    - name: Create vmk3 for IP Storage (NFS) Nested ESXi Compute-B Hosts
+      community.vmware.vmware_vmkernel:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ item.value.FQDN | lower }}"
+        portgroup_name: "{{ item.value.vmk.vmk3.PortGroup }}"
+        dvswitch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
+        mtu: "{{ item.value.vmk.vmk3.MTU }}"
+        network:
+          type: 'static'
+          ip_address: "{{ item.value.vmk.vmk3.Address.IPv4.Address }}"
+          subnet_mask: "{{ (item.value.vmk.vmk3.Address.IPv4.Address + '/' + item.value.vmk.vmk3.Address.IPv4.Prefix) | ipaddr('netmask') }}"
+          tcpip_stack: "{{ item.value.vmk.vmk3.Stack }}"
+        state: present
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+      
+    - name: Remove the standard switch from the ESXi hosts for Cluster-B
+      community.vmware.vmware_vswitch:
+        hostname: '{{ item.value.FQDN }}'
+        username: '{{ item.value.User }}'
+        password: '{{ item.value.Password }}'
+        validate_certs: false
+        switch: 'vSwitch0'
+        state: absent
+      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
+      when: 
+        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+

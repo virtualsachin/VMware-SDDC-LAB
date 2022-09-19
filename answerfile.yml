@@ -11,8 +11,8 @@ LOCAL_Segments_Template: "{{ Target.TemplateFolder }}/vars_NSXT_Segments.j2"
 LOCAL_T0Gateways_Template: "{{ Target.TemplateFolder }}/vars_NSXT_T0Gateways.j2"
 LOCAL_T1Gateways_Template: "{{ Target.TemplateFolder }}/vars_NSXT_T1Gateways.j2"
 
-SDDCLab:
-  Version: 3
+#SDDCLab:
+#  Version: 3
 
 DEBUG:
   DisplayDelayInSeconds: 5
@@ -47,49 +47,49 @@ Deploy:
     vCenter:
       Vendor: "VMware"
       Product: "vCenter"
-      Version: "7.0U3A"
+      Version: "7.0U3G"
       Patch: False
-      Config: "vSDDC-vCenter.conf"
-      Installer: "vSDDC-Installer-vCenter"
+      Config: "vCenter.conf"
+      Installer: "Installer-vCenter"
       Template:
         Repl_vCenter: "vCenter_v7.0.0_embedded_vCSA_replication_on_VC.j2"
         Repl_ESXi: "vCenter_v7.0.0_embedded_vCSA_replication_on_ESXi.j2"
         vCenter: "vCenter_v7.0.0_embedded_vCSA_on_VC.j2"
         ESXi: "vCenter_v7.0.0_embedded_vCSA_on_ESXi.j2"
-      Directory: "/HDD/Software/VMware/vCenter/v7.0.U3A"
-      File: "VMware-VCSA-all-7.0.3-18778458.iso"
+      Directory: "/hdd/Software/VMware/vCenter/v7.0U3G"
+      File: "VMware-VCSA-all-7.0.3-20150588.iso"
       FileExt: "iso"
       vSwitch: "7.0.0"
     ESXi:
       Vendor: "VMware"
       Product: "ESXi"
-      Version: "7.0U3"
+      Version: "7.0U3G"
       Patch: False
       Config: "KS.CFG"
-      Installer: "vSDDC-Installer-ESXi"
+      Installer: "Installer-ESXi"
       Template: "ESXi_v7.x.x_Kickstart.j2"
-      Directory: "/HDD/Software/VMware/ESXi/v7.0.0U3"
-      File: "VMware-VMvisor-Installer-7.0U3-18644231.x86_64.iso"
+      Directory: "/hdd/Software/VMware/ESXi/7.0U3G"
+      File: "VMware-VMvisor-Installer-7.0U3g-20328353.x86_64.iso"
       FileExt: "iso"
       vSwitch: "7.0.0"
     NSXT:
       Vendor: "VMware"
       Product: "NSXT"
-      Version: "3.2.0"
+      Version: "4.0.0"
       Patch: False
-      Config: "vSDDC-NSXT.conf"
-      Installer: "vSDDC-Installer-NSXT"
-      Directory: "/HDD/Software/VMware/NSX-T/v3.2.0"
-      File: "nsx-unified-appliance-3.2.0.0.0.19067081.ova"
+      Config: "NSXT.conf"
+      Installer: "Installer-NSXT"
+      Directory: "/hdd/Software/VMware/NSX-T/v4.0.0"
+      File: "nsx-unified-appliance-4.0.0.1.0.20159694.ova"
       FileExt: "ova"
     AVI:
       Vendor: "VMware"
       Product: "ALB"
-      Version: "21.1.3"
+      Version: "22.1.1"
       Patch: False
-      Config: "vSDDC-NSXT.conf"
-      Installer: "vSDDC-Installer-AVI"
-      Directory: "/HDD/Software/VMware/AVI/21.1.3"
+      Config: "AVI.conf"
+      Installer: "Installer-AVI"
+      Directory: "/hdd/Software/VMware/AVI/22.1.1"
       File: "controller-21.1.3-9051.ova"
       FileExt: "ova"
 
@@ -100,9 +100,9 @@ Deploy:
 ## The DNS servers listed below MUST be able to resolve DNS names on the public Internet.
 ##
 Common:
-  Annotation: "*** Auto-Deployed by VirtualSach ***"
+  Annotation: "*** Auto-Deployed by Ansible Infrastrcture as a code ***"
   DNS:
-    Domain: virtualsachin.lab
+    Domain: nsxcloud.lab
     Server1:
       IPv4: 198.51.100.53
     Server2:
@@ -110,9 +110,9 @@ Common:
   DiskProvisioning: thin
   NFS:
     Datastore: NFS-HDD
-    Path: /HDD/VMware
+    Path: /hdd/nfs-hdd
     Server:
-      IPv4: 198.51.100.10
+      IPv4: 198.51.100.7
     Type: nfs
   NTP:
     Server1:
@@ -123,11 +123,11 @@ Common:
     Nested: VMware1!
     Physical: VMware1!
   Syslog:
-    IPv4: 198.51.100.100
+    IPv4: 198.51.100.7
     Port: 514
     Protocol: udp
-  Motd: "This is Secure Server managed by VirtualSachIN"
-  Banner: "This is Secure Server managed by VirtualSachIN"
+  Motd: "This is Secure Server managed by nsxcloud"
+  Banner: "This is Secure Server managed by nsxcloud"
 
 ##
 ## Users should specify their deployment target settings in the 'TargetConfig' section
@@ -135,29 +135,29 @@ Common:
 Target:
   Cluster: "" #if Target/Deployment is vCenter put the cluster name
   Physical_Cluster: "Physical-Cluster"
-  DataCenter: vSDDC
+  DataCenter: NSX-Cloud
   Datastore: SSD-500GB
   DatastoreSSD: SSD-1TB #This DataStore is used for vCenter, NSX Manager and EDGE Appliances VM deployments
   Deployment: Host #Value should be Host (Physical ESXi Host) or vCenter for Target deployment
-  FQDN: vSphere.virtualsachin.lab
+  FQDN: vsphere.nsxcloud.lab
   ISOFolder: /ISO-Storage
   ISOMount: /media
   PortGroup:
     Management:
-      Name: vSDDC-MGMT-PG
+      Name: Physical-MGMT-PG
       VLAN: "0"
-    RouterUplink: Lab-Routers
+#    RouterUplink: Lab-Routers
     Trunk:
-      Name: vSDDC-TRUNK-PG
+      Name: Physical-TRUNK-PG
       VLAN: "4095"
-  TempFolder: /tmp/vSDDC
+  TempFolder: /tmp/Cloud
   TemplateFolder: ../templates
   User: root
   Password: VMware1!
-  VMFolder: vSDDC/vm
-  vSwitch: vSphere-vSS
-  DvSwitch: vSphere-VDS
-  vSwitchVersion: ""
+  VMFolder: LAB/vm
+  vSwitch: vSwitch0    #vSwitch name should match with physical ESXi host 
+ # DvSwitch: vSphere-VDS
+ # vSwitchVersion: ""
 
 Nested_Clusters:
   Compute-A:
@@ -168,16 +168,16 @@ Nested_Clusters:
     NSXT_TNP: TNP1
     Prep_NSX: true
     vSAN: false
-    vsanDatastore: Compute-A-vSAN-DS
+    vsanDatastore: Cluster-A-vSAN-DS
   Compute-B:
     DRS: true
     DeployHosts: true
     HA: false
-    NSXT_TransportNodeProfile: TNP-Compute-B-Hosts
+    NSXT_TransportNodeProfile: TNP-Compute--Hosts
     NSXT_TNP: TNP2
     Prep_NSX: true
     vSAN: false
-    vsanDatastore: Compute-B-vSAN-DS
+    vsanDatastore: Cluster-B-vSAN-DS
 
 Nested_ESXi:
   FirewallRules: # ESXi host firewall rules to configure on all deployed ESXi hosts
@@ -207,10 +207,10 @@ Nested_ESXi:
     Compute-A-1:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-1.virtualsachin.lab
+      FQDN: Compute-A-1.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-A-1
+      VMName: vSphere-Compute-A-1
       vmk:
         vmk0:
           Address:
@@ -220,7 +220,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-A-MGMT
+          PortGroup: Compute-A-MGMT-DPG
           Stack: default
           VLAN: "10"
         vmk1:
@@ -231,7 +231,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vMotion
+          PortGroup: Compute-A-vMotion-DPG
           Stack: vmotion
           VLAN: "11"
         vmk2:
@@ -242,7 +242,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vSAN
+          PortGroup: Compute-A-vSAN-DPG
           Stack: default
           VLAN: "12"
         vmk3:
@@ -253,16 +253,16 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-NFS
+          PortGroup: Compute-A-NFS-DPG
           Stack: default
           VLAN: "0"
     Compute-A-2:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-2.virtualsachin.lab
+      FQDN: Compute-A-2.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-A-2
+      VMName: vSphere-Compute-A-2
       vmk:
         vmk0:
           Address:
@@ -272,7 +272,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-A-MGMT
+          PortGroup: Compute-A-MGMT-DPG
           Stack: default
           VLAN: "10"
         vmk1:
@@ -283,7 +283,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vMotion
+          PortGroup: Compute-A-vMotion-DPG
           Stack: vmotion
           VLAN: "11"
         vmk2:
@@ -294,7 +294,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vSAN
+          PortGroup: Compute-A-vSAN-DPG
           Stack: default
           VLAN: "12"
         vmk3:
@@ -305,16 +305,16 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-NFS
+          PortGroup: Compute-A-NFS-DPG
           Stack: default
           VLAN: "0"
     Compute-A-3:
       Cluster: Compute-A
       EnableSSH: true
-      FQDN: Compute-A-3.virtualsachin.lab
+      FQDN: Compute-A-3.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-A-3
+      VMName: vSphere-Compute-A-3
       vmk:
         vmk0:
           Address:
@@ -324,7 +324,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-A-MGMT
+          PortGroup: Compute-A-MGMT-DPG
           Stack: default
           VLAN: "10"
         vmk1:
@@ -335,7 +335,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vMotion
+          PortGroup: Compute-A-vMotion-DPG
           Stack: vmotion
           VLAN: "11"
         vmk2:
@@ -346,7 +346,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-vSAN
+          PortGroup: Compute-A-vSAN-DPG
           Stack: default
           VLAN: "12"
         vmk3:
@@ -357,7 +357,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-A-NFS
+          PortGroup: Compute-A-NFS-DPG
           Stack: default
           VLAN: "0"
 
@@ -365,10 +365,10 @@ Nested_ESXi:
     Compute-B-1:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-1.virtualsachin.lab
+      FQDN: Compute-B-1.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-B-1
+      VMName: vSphere-Compute-B-1
       vmk:
         vmk0:
           Address:
@@ -378,7 +378,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-B-MGMT
+          PortGroup: Compute-B-MGMT-DPG
           Stack: default
           VLAN: "20"
         vmk1:
@@ -389,7 +389,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vMotion
+          PortGroup: Compute-B-vMotion-DPG
           Stack: vmotion
           VLAN: "21"
         vmk2:
@@ -400,7 +400,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vSAN
+          PortGroup: Compute-B-vSAN-DPG
           Stack: default
           VLAN: "22"
         vmk3:
@@ -411,16 +411,16 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-NFS
+          PortGroup: Compute-B-NFS-DPG
           Stack: default
           VLAN: "0"
     Compute-B-2:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-2.virtualsachin.lab
+      FQDN: Compute-B-2.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-B-2
+      VMName: vSphere-Compute-B-2
       vmk:
         vmk0:
           Address:
@@ -430,7 +430,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-B-MGMT
+          PortGroup: Compute-B-MGMT-DPG
           Stack: default
           VLAN: "20"
         vmk1:
@@ -441,7 +441,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vMotion
+          PortGroup: Compute-B-vMotion-DPG
           Stack: vmotion
           VLAN: "21"
         vmk2:
@@ -452,7 +452,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vSAN
+          PortGroup: Compute-B-vSAN-DPG
           Stack: default
           VLAN: "22"
         vmk3:
@@ -463,16 +463,16 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-NFS
+          PortGroup: Compute-B-NFS-DPG
           Stack: default
           VLAN: "0"
     Compute-B-3:
       Cluster: Compute-B
       EnableSSH: true
-      FQDN: Compute-B-3.virtualsachin.lab
+      FQDN: Compute-B-3.nsxcloud.lab
       Password: VMware1!
       User: root
-      VMName: vSDDC-Compute-B-3
+      VMName: vSphere-Compute-B-3
       vmk:
         vmk0:
           Address:
@@ -482,7 +482,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 1500
-          PortGroup: Compute-B-MGMT
+          PortGroup: Compute-B-MGMT-DPG
           Stack: default
           VLAN: "20"
         vmk1:
@@ -493,7 +493,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vMotion
+          PortGroup: Compute-B-vMotion-DPG
           Stack: vmotion
           VLAN: "21"
         vmk2:
@@ -504,7 +504,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-vSAN
+          PortGroup: Compute-B-vSAN-DPG
           Stack: default
           VLAN: "22"
         vmk3:
@@ -515,7 +515,7 @@ Nested_ESXi:
               Prefix: "24"
           IPSettings: ipv4
           MTU: 9000
-          PortGroup: Compute-B-NFS
+          PortGroup: Compute-B-NFS-DPG
           Stack: default
           VLAN: "0"
 
@@ -525,41 +525,64 @@ vCenter:
       Address: 198.51.100.5
       Gateway: 198.51.100.1
       Prefix: "24"
-  DataCenter: vSDDC
+  DataCenter: NSX-Cloud
   DeploymentSize: tiny
-  FQDN: vcsa.virtualsachin.lab
+  FQDN: vcsa.nsxcloud.lab
   Networking:
-    vSwitchE:
+    Physical:
       Clusters:
-        - Edge
+        - Target.Physical_Cluster
       Config:
         LinkDiscoveryProtocol:
           Operation: both
           Type: lldp
         MTU: 9000
         NumberOfUplinks: 2
-      Name: vSDDC-EDGE-VDS
+      Name: Physical-VDS
       PortGroup:
-        NSXEdgeUplink1:
+        Management:
           Create: true
-          Name: NSXEdgeUplink1
+          Name: Physical-MGMT-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
             PromiscuousMode: false
           VLAN:
-            ID: "100"
+            ID: "0"
             Type: VLAN
-        NSXEdgeUplink2:
+        Trunk:
           Create: true
-          Name: NSXEdgeUplink2
+          Name: Physical-TRUNK-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
             PromiscuousMode: false
           VLAN:
-            ID: "200"
-            Type: VLAN
+            ID: "1-200, 205, 400-4094"
+            Type: TRUNK
+        Uplink1:
+          Create: true
+          Name: ETN-1-Trunk-DPG
+          Security:
+            ForgedTransmits: false
+            MACAddressChanges: false
+            PromiscuousMode: false
+          VLAN:
+            ID: "1-500"
+            Type: TRUNK
+        Uplink2:
+          Create: true
+          Name: ETN-2-Trunk-DPG
+          Security:
+            ForgedTransmits: false
+            MACAddressChanges: false
+            PromiscuousMode: false
+          VLAN:
+            ID: "1-500"
+            Type: TRUNK
+
+    vSwitchE:       #This VDS is used for EDGE Cluster deployment
+      Clusters:
     vSwitchA:
       Clusters:
         - Compute-A
@@ -569,11 +592,11 @@ vCenter:
           Type: lldp
         MTU: 9000
         NumberOfUplinks: 2
-      Name: vSDDC-Compute-A-VDS
+      Name: Compute-A-VDS
       PortGroup:
         Management:
           Create: true
-          Name: Compute-A-MGMT
+          Name: Compute-A-MGMT-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -583,7 +606,7 @@ vCenter:
             Type: VLAN
         vMotion:
           Create: true
-          Name: Compute-A-vMotion
+          Name: Compute-A-vMotion-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -593,7 +616,7 @@ vCenter:
             Type: VLAN
         vSAN:
           Create: true
-          Name: Compute-A-vSAN
+          Name: Compute-A-vSAN-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -603,7 +626,7 @@ vCenter:
             Type: VLAN
         IPStorage:
           Create: true
-          Name: Compute-A-NFS
+          Name: Compute-A-NFS-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -611,7 +634,6 @@ vCenter:
           VLAN:
             ID: "0"
             Type: VLAN
-
     vSwitchB:
       Clusters:
         - Compute-B
@@ -621,11 +643,11 @@ vCenter:
           Type: lldp
         MTU: 9000
         NumberOfUplinks: 2
-      Name: vSDDC-Compute-B-VDS
+      Name: Compute-B-VDS
       PortGroup:
         Management:
           Create: true
-          Name: Compute-B-MGMT
+          Name: Compute-B-MGMT-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -635,7 +657,7 @@ vCenter:
             Type: VLAN
         vMotion:
           Create: true
-          Name: Compute-B-vMotion
+          Name: Compute-B-vMotion-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -645,7 +667,7 @@ vCenter:
             Type: VLAN
         vSAN:
           Create: true
-          Name: Compute-B-vSAN
+          Name: Compute-B-vSAN-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -655,7 +677,7 @@ vCenter:
             Type: VLAN
         IPStorage:
           Create: true
-          Name: Compute-B-NFS
+          Name: Compute-B-NFS-DPG
           Security:
             ForgedTransmits: false
             MACAddressChanges: false
@@ -673,10 +695,10 @@ vCenter:
       Answer: true
       Enabled: true
   SSO:
-    Domain: virtualsachin.local
-    Site: vSDDC-Site
-  User: administrator@virtualsachin.local
-  VMName: vSDDC-vCenter
+    Domain: nsxcloud.local
+    Site: NSX-Cloud-Site
+  User: administrator@nsxcloud.local
+  VMName: vCSA
 
 NSXT:
   Components:
@@ -690,10 +712,10 @@ NSXT:
         AllowRootSSH: true
         EnableSSH: true
         Role: NSX Manager
-        SiteName: NSX-vSDDC
+        SiteName: NSX-Cloud
         Size: small
-      FQDN: nsxt-1.virtualsachin.lab
-      VMName: vSDDC-NSXT-LM-1
+      FQDN: nsxt-1.nsxcloud.lab
+      VMName: NSX-LM-1
   Credential:
     admin:
       Name: admin
@@ -708,53 +730,51 @@ NSXT:
     IPPools:
       - Allocations:
           - DNS:
-              Domain: virtualsachin.lab
+              Domain: nsxcloud.lab
               Server: 198.51.100.1
-            Description: IP Pool for EDGE TEPs
+            Description: IP Pool for ETN EDGE TEPs
             Gateway: 10.5.5.1
             IPRanges:
-              - End: 10.5.5.19
+              - End: 10.5.5.29
                 Start: 10.5.5.11
             Prefix: "24"
-        Description: IP Pool for EDGE TEPs
-        Name: vSDDC-EDGE-TEP-Pool
+        Description: IP Pool for ETN EDGE TEPs
+        Name: ETN-TEP-Pool
         Tags:
-          - Scope: SDDC.Lab
-            Tag: Auto-Created
-          - Scope: SDDC.Lab
-            Tag: Second-Tag-For-Testing
+          - Scope: IP-Pool
+            Tag: ETN-TEP
       - Allocations:
           - DNS:
-              Domain: virtualsachin.lab
+              Domain: nsxcloud.lab
               Server: 198.51.100.1
-            Description: IP Pool for Cluster-A TEPs
+            Description: IP Pool for TN Cluster-A TEPs
             Gateway: 10.1.5.1
             IPRanges:
-              - End: 10.1.5.19
+              - End: 10.1.5.29
                 Start: 10.1.5.11
             Prefix: "24"
-        Description: IP Pool for Cluster-A TEPs
-        Name: vSDDC-CC-A-TEP-Pool
+        Description: IP Pool for TN Cluster-A TEPs
+        Name: TN-CC-A-TEP-Pool
         Tags:
-          - Scope: SDDC.Lab
-            Tag: Auto-Created
+          - Scope: IP-Pool
+            Tag: TN-CC-A-TEP
       - Allocations:
           - DNS:
-              Domain: virtualsachin.lab
+              Domain: nsxcloud.lab
               Server: 198.51.100.1
             Description: IP Pool for Cluster-B TEPs
             Gateway: 10.2.5.1
             IPRanges:
-              - End: 10.2.5.19
+              - End: 10.2.5.29
                 Start: 10.2.5.11
               - End: 10.2.5.99
                 Start: 10.2.5.50
             Prefix: "24"
-        Description: IP Pool for Cluster-B TEPs
-        Name: vSDDC-CC-B-TEP-Pool
+        Description: IP Pool for TN Cluster-B TEPs
+        Name: TN-CC-B-TEP-Pool
         Tags:
-          - Scope: SDDC.Lab
-            Tag: Auto-Created
+          - Scope: IP-Pool
+            Tag: TN-CC-B-TEP
     Segments:
       - AdminState: UP
         Description: NSX T0-Edge Uplink 1
@@ -763,7 +783,7 @@ NSXT:
         Tags:
           - Scope: SDDC.Lab
             Tag: Auto-Created
-        TransportZone: TZ-Edge
+        TransportZone: TZ-EDGE
         VLANS:
           - "100"
       - AdminState: UP
@@ -773,7 +793,7 @@ NSXT:
         Tags:
           - Scope: SDDC.Lab
             Tag: Auto-Created
-        TransportZone: TZ-Edge
+        TransportZone: TZ-EDGE
         VLANS:
           - "200"
       - AdminState: UP
@@ -788,7 +808,7 @@ NSXT:
         Tags:
           - Scope: SDDC.Lab
             Tag: Auto-Created
-        TransportZone: TZ-Overlay
+        TransportZone: TZ-OVERLAY
         VLANS: null
       - AdminState: UP
         ConnectedTo:
@@ -802,7 +822,7 @@ NSXT:
         Tags:
           - Scope: null
             Tag: null
-        TransportZone: TZ-Overlay
+        TransportZone: TZ-OVERLAY
         VLANS: null
       - AdminState: UP
         ConnectedTo:
@@ -816,7 +836,7 @@ NSXT:
         Tags:
           - Scope: SDDC.Lab
             Tag: Auto-Created
-        TransportZone: TZ-Overlay
+        TransportZone: TZ-OVERLAY
         VLANS: null
       - AdminState: UP
         Description: Example Test Segment with many VLANs and Tags
@@ -851,7 +871,7 @@ NSXT:
             Tag: Auto-Created
           - Scope: Disney
             Tag: Donald
-        TransportZone: TZ-Overlay
+        TransportZone: TZ-OVERLAY
 
     Tier0Gateways:
       - BGP:
@@ -861,11 +881,11 @@ NSXT:
             Mode: HELPER_ONLY
           InterSRiBGP: true
           Interfaces:
-            - Description: vSDDC-T0-EdgeVM-01 Uplink 1
+            - Description: ETN-01 Uplink 1
               EdgeNodeInfo:
-                EdgeClusterName: vSDDC-T0-Edge-Cluster-01
-                EdgeNodeName: vSDDC-T0-EdgeVM-01
-              Name: vSDDC-T0-EdgeVM-01-1_VLAN-100
+                EdgeClusterName: ETN-Cluster-01
+                EdgeNodeName: ETN-01
+              Name: ETN-01-1_VLAN-100
               SegmentName: SEG-T0-Edge-Uplink1_VLAN-100
               Subnets:
                 - Address: 10.10.0.2
@@ -875,11 +895,11 @@ NSXT:
                   Tag: Auto-Created
               Type: EXTERNAL
               URPFMode: NONE
-            - Description: vSDDC-T0-EdgeVM-01 Uplink 2
+            - Description: ETN-01 Uplink 2
               EdgeNodeInfo:
-                EdgeClusterName: vSDDC-T0-Edge-Cluster-01
-                EdgeNodeName: vSDDC-T0-EdgeVM-01
-              Name: vSDDC-T0-EdgeVM-01-2_VLAN-200
+                EdgeClusterName: ETN-Cluster-01
+                EdgeNodeName: ETN-01
+              Name: ETN-01-2_VLAN-200
               SegmentName: SEG-T0-Edge-Uplink2_VLAN-200
               Subnets:
                 - Address: 10.20.0.2
@@ -889,11 +909,11 @@ NSXT:
                   Tag: Auto-Created
               Type: EXTERNAL
               URPFMode: NONE
-            - Description: vSDDC-T0-EdgeVM-02 Uplink 1
+            - Description: ETN-02 Uplink 1
               EdgeNodeInfo:
-                EdgeClusterName: vSDDC-T0-Edge-Cluster-01
-                EdgeNodeName: vSDDC-T0-EdgeVM-02
-              Name: vSDDC-T0-EdgeVM-02-1_VLAN-100
+                EdgeClusterName: ETN-Cluster-01
+                EdgeNodeName: ETN-02
+              Name: ETN-02-1_VLAN-100
               SegmentName: SEG-T0-Edge-Uplink1_VLAN-100
               Subnets:
                 - Address: 10.10.0.3
@@ -903,11 +923,11 @@ NSXT:
                   Tag: Auto-Created
               Type: EXTERNAL
               URPFMode: NONE
-            - Description: vSDDC-T0-EdgeVM-02 Uplink 2
+            - Description: ETN-02 Uplink 2
               EdgeNodeInfo:
-                EdgeClusterName: vSDDC-T0-Edge-Cluster-01
-                EdgeNodeName: vSDDC-T0-EdgeVM-02
-              Name: vSDDC-T0-EdgeVM-02-2_VLAN-200
+                EdgeClusterName: ETN-Cluster-01
+                EdgeNodeName: ETN-02
+              Name: ETN-02-2_VLAN-200
               SegmentName: SEG-T0-Edge-Uplink2_VLAN-200
               Subnets:
                 - Address: 10.20.0.3
@@ -956,7 +976,7 @@ NSXT:
         LocaleServices:
           - Description: T0-Gateway-01 Locale Services Description
             EdgeCluster:
-              Name: vSDDC-T0-Edge-Cluster-01
+              Name: ETN-Cluster-01
             Name: T0-Gateway-01_Locale_Services
             RouteRedistributionConfig:
               BGP_Enabled: true
@@ -1015,9 +1035,9 @@ NSXT:
               - Name: nsx-default-edge-high-availability-profile
             Description: Edge Cluster
             Members:
-              - Name: vSDDC-T0-EdgeVM-01
-              - Name: vSDDC-T0-EdgeVM-02
-            Name: vSDDC-T0-Edge-Cluster-01
+              - Name: ETN-01
+              - Name: ETN-02
+            Name: ETN-Cluster-01
             Tags:
               - Scope: SDDC.Lab
                 Tag: Auto-Created
@@ -1026,13 +1046,13 @@ NSXT:
               AllowRootSSH: true
               CLIPassword: VMware1!VMware1!
               DataPortGroups:
-                - Name: NSXEdgeUplink1
-                - Name: NSXEdgeUplink2
+                - Name: ETN-1-Trunk-DPG
+                - Name: ETN-2-Trunk-DPG
               Datastore: "{{ Target.DatastoreSSD }}"
               EnableSSH: true
-              FormFactor: SMALL
+              FormFactor: MEDIUM
               Gateway: 198.51.100.1
-              Hostname: vSDDC-T0-EdgeVM-01.virtualsachin.lab
+              Hostname: ETN-01.nsxcloud.lab
               ManagementIPAddress: 198.51.100.26
               ManagementIPPrefix: "24"
               ManagementPortGroup: "{{ Target.PortGroup.Management.Name }}"
@@ -1043,28 +1063,28 @@ NSXT:
                 Memory:
                   Percentage: 0
               RootPassword: VMware1!VMware1!
-              VMName: vSDDC-T0-EdgeVM-01
-              vCenterName: vSDDC-vCenter
+              VMName: ETN-01
+              vCenterName: vCSA
               vCenterPassword: "{{ vCenter.Password }}"
               vCenterUser: "{{ vCenter.User }}"
             Description: Tier-0 Edge Transport Node
             HostSwitches:
               - IPPool:
-                  Name: vSDDC-EDGE-TEP-Pool
+                  Name: ETN-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
                 Name: NVDS-1
                 TransportZones:
-                  - Name: TZ-Edge
-                  - Name: TZ-Overlay
+                  - Name: TZ-EDGE
+                  - Name: TZ-OVERLAY
                 UplinkProfile:
-                  Name: Edge-Uplink-Profile
+                  Name: ETN-Uplink-Profile
                 Uplinks:
                   - DeviceName: fp-eth0
                     NSXUplinkName: uplink-1
                   - DeviceName: fp-eth1
                     NSXUplinkName: uplink-2
-            Name: vSDDC-T0-EdgeVM-01
+            Name: ETN-01
             Tags:
               - Scope: SDDC.Lab
                 Tag: Auto-Created
@@ -1072,13 +1092,13 @@ NSXT:
               AllowRootSSH: true
               CLIPassword: VMware1!VMware1!
               DataPortGroups:
-                - Name: NSXEdgeUplink1
-                - Name: NSXEdgeUplink2
+                - Name: ETN-1-Trunk-DPG
+                - Name: ETN-2-Trunk-DPG
               Datastore: "{{ Target.DatastoreSSD }}"
               EnableSSH: true
-              FormFactor: SMALL
+              FormFactor: MEDIUM
               Gateway: 198.51.100.1
-              Hostname: vSDDC-T0-EdgeVM-02.virtualsachin.lab
+              Hostname: ETN-02.nsxcloud.lab
               ManagementIPAddress: 198.51.100.27
               ManagementIPPrefix: "24"
               ManagementPortGroup: "{{ Target.PortGroup.Management.Name }}"
@@ -1089,28 +1109,28 @@ NSXT:
                 Memory:
                   Percentage: 0
               RootPassword: VMware1!VMware1!
-              VMName: vSDDC-T0-EdgeVM-02
-              vCenterName: vSDDC-vCenter
+              VMName: ETN-02
+              vCenterName: vCSA
               vCenterPassword: "{{ vCenter.Password }}"
               vCenterUser: "{{ vCenter.User }}"
             Description: Tier-0 Edge Transport Node
             HostSwitches:
               - IPPool:
-                  Name: vSDDC-EDGE-TEP-Pool
+                  Name: ETN-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
                 Name: NVDS-1
                 TransportZones:
-                  - Name: TZ-Edge
-                  - Name: TZ-Overlay
+                  - Name: TZ-EDGE
+                  - Name: TZ-OVERLAY
                 UplinkProfile:
-                  Name: Edge-Uplink-Profile
+                  Name: ETN-Uplink-Profile
                 Uplinks:
                   - DeviceName: fp-eth0
                     NSXUplinkName: uplink-1
                   - DeviceName: fp-eth1
                     NSXUplinkName: uplink-2
-            Name: vSDDC-T0-EdgeVM-02
+            Name: ETN-02
             Tags:
               - Scope: SDDC.Lab
                 Tag: Auto-Created
@@ -1120,12 +1140,12 @@ NSXT:
           - Description: ESXi Transport Node Profile for Compute-A Cluster
             HostSwitches:
               - IPPool:
-                  Name: vSDDC-CC-A-TEP-Pool
+                  Name: TN-CC-A-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
                 Name: "{{ vCenter.Networking.vSwitchA.Name }}"
                 TransportZones:
-                  - Name: TZ-Overlay
+                  - Name: TZ-OVERLAY
                   - Name: TZ-VLAN
                 Type: VDS
                 UplinkProfile:
@@ -1139,12 +1159,12 @@ NSXT:
           - Description: ESXi Transport Node Profile for Compute-B Cluster
             HostSwitches:
               - IPPool:
-                  Name: vSDDC-CC-B-TEP-Pool
+                  Name: TN-CC-B-TEP-Pool
                   Type: StaticIpPoolSpec
                 Mode: STANDARD
                 Name: "{{ vCenter.Networking.vSwitchB.Name }}"
                 TransportZones:
-                  - Name: TZ-Overlay
+                  - Name: TZ-OVERLAY
                   - Name: TZ-VLAN
                 Type: VDS
                 UplinkProfile:
@@ -1189,7 +1209,7 @@ NSXT:
                   Type: PNIC
               Policy: LOADBALANCE_SRCID
             Description: Edge Transport Node Uplink Profile
-            Name: Edge-Uplink-Profile
+            Name: ETN-Uplink-Profile
             Transport:
               MTU: 9000
               VLAN: "55"
@@ -1215,13 +1235,13 @@ NSXT:
               MTU: 9000
               VLAN: "55"
       TransportZone:
-        TZ-Edge:
+        TZ-EDGE:
           Description: Edge Cluster Peering Segments
           SetAsDefault: false
           Switch: NVDS-1
           TeamingPolicies: []
           Type: VLAN
-        TZ-Overlay:
+        TZ-OVERLAY:
           Description: GEVEVE Overlay Transport Zone
           SetAsDefault: true
           Switch: NVDS-1
@@ -1274,7 +1294,7 @@ AVI:
  # Avi System Configuration
 
  #Email for admin user (password resets)
- admin_email: avi@virtualsachin.lab
+ admin_email: avi@nsxcloud.lab
 
  # Backup Passphrase (encrypt sensitive fields)
  backup_passphrase: "VMware1!VMware1!"

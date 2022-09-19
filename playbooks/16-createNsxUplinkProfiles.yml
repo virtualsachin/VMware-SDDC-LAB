@@ -16,26 +16,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
-
-
-                                          Ansible Playbook: {{ ansible_play_name }}
-
-                                         Target.Deployment: {{ Target.Deployment }}
-
-                  NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-          NSXT.System.Fabric.Profile.UplinkProfiles: {{ NSXT.System.Fabric.Profile.UplinkProfiles }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-        - Deploy.Product.NSXT.LocalManager == true
-
     - name: Get list of Uplink Profiles
       ansible.builtin.set_fact:
         UplinkProfilesToCreate: "{{ lookup('template', LOCAL_UplinkProfiles_Template) | from_yaml }}"

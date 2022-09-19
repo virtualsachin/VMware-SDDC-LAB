@@ -15,34 +15,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-
-                                         License File: {{ LOCAL_LicenseFile }}
-
-                                               vCenter Server
-                                               ==============
-                                               Vendor: {{ Deploy.Software.vCenter.Vendor }}
-                                              Product: {{ Deploy.Software.vCenter.Product }}
-                                              Version: {{ Deploy.Software.vCenter.Version }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
 ##
 ## License vCenter Server
 ##

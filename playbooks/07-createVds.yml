@@ -14,36 +14,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                      Ansible Playbook: {{ ansible_play_name }}
-
-                                     Target.Deployment: {{ Target.Deployment }}
-
-                                   vCenter.FQDN: {{ vCenter.FQDN }}
-                                   vCenter.User: {{ vCenter.User }}
-                               vCenter.Password: {{ vCenter.Password }}
-                             vCenter.DataCenter: {{ vCenter.DataCenter }}
-
-                                          vSwitch.Name: {{ vCenter.Networking.vSwitchA.Name }}
-                                    vSwitch.Config.MTU: {{ vCenter.Networking.vSwitchA.Config.MTU }}
-                        vSwitch.Config.NumberOfUplinks: {{ vCenter.Networking.vSwitchA.Config.NumberOfUplinks }}
-                            LinkDiscoveryProtocol.Type: {{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Type }}
-                       LinkDiscoveryProtocol.Operation: {{ vCenter.Networking.vSwitchA.Config.LinkDiscoveryProtocol.Operation }}
-
-                                          vSwitch.Name: {{ vCenter.Networking.vSwitchB.Name }}
-                                    vSwitch.Config.MTU: {{ vCenter.Networking.vSwitchB.Config.MTU }}
-                        vSwitch.Config.NumberOfUplinks: {{ vCenter.Networking.vSwitchB.Config.NumberOfUplinks }}
-                            LinkDiscoveryProtocol.Type: {{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Type }}
-                       LinkDiscoveryProtocol.Operation: {{ vCenter.Networking.vSwitchB.Config.LinkDiscoveryProtocol.Operation }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
 ############################################################################################################
 #                                ESXi Host networking deployment for Cluster-A                             #
 ############################################################################################################
@@ -71,8 +41,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.Management.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.Management.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create vMotion port group in the nested vCenter for Cluster-A
@@ -84,8 +54,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.vMotion.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.vMotion.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create vSAN port group in the nested vCenter for Cluster-A
@@ -97,8 +67,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.vSAN.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.vSAN.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create IP Storage port group for NFS in the nested vCenter for Cluster-A
@@ -110,75 +80,10 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchA.PortGroup.IPStorage.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchA.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchA.PortGroup.IPStorage.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
-    - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on vCenter
-      community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ vCenter.FQDN }}"
-        username: "{{ vCenter.User }}"
-        password: "{{ vCenter.Password }}"
-        validate_certs: false
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
-        vlan_trunk: true
-        vlan_id: "0-4094"
-        num_ports: 8
-        portgroup_type: earlyBinding
-        state: present
-      when: 
-        - Target.Deployment == "vCenter"
-
-    - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on vCenter
-      community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ vCenter.FQDN }}"
-        username: "{{ vCenter.User }}"
-        password: "{{ vCenter.Password }}"
-        validate_certs: false
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
-        vlan_trunk: true
-        vlan_id: "0-4094"
-        num_ports: 8
-        portgroup_type: earlyBinding
-        state: present
-      when: 
-        - Target.Deployment == "vCenter"
-
-    - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on Host
-      community.vmware.vmware_portgroup:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        esxi_hostname: "{{ Target.FQDN }}"
-        switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
-        security:
-          promiscuous_mode: false
-          forged_transmits: false
-          mac_changes: false
-      when: 
-        - Target.Deployment == "Host"
-
-    - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on Host
-      community.vmware.vmware_portgroup:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        esxi_hostname: "{{ Target.FQDN }}"
-        switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
-        security:
-          promiscuous_mode: false
-          forged_transmits: false
-          mac_changes: false
-      when: 
-        - Target.Deployment == "Host"
 
     - name: Migrate uplinks to the VDS for Compute-A Hosts
       community.vmware.vmware_dvs_host:
@@ -211,6 +116,7 @@
       loop: "{{ Nested_ESXi.HostCA | dict2items }}"
       when: 
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
+
 
     - name: Create vmk1 for vMotion for Nested ESXi Compute-A Hosts
       community.vmware.vmware_vmkernel:
@@ -247,24 +153,6 @@
       loop: "{{ Nested_ESXi.HostCA | dict2items }}"
       when:
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-    - name: Configure vMotion TCP/IP stack gateway address on Nested ESXi Compute-A Hosts
-      community.vmware.vmware_vm_shell:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        validate_certs: false
-        vm_id: "{{ item.value.VMName }}"
-        vm_username: "{{ item.value.User }}"
-        vm_password: "{{ item.value.Password }}"
-        vm_shell: /bin/esxcli
-        vm_shell_args: "network ip route ipv4 add --netstack vmotion --network default --gateway {{ item.value.vmk.vmk1.Address.IPv4.Gateway }}"
-      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
-      when:
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
 
     - name: Create vmk2 for vSAN Nested ESXi Compute-A Hosts
       community.vmware.vmware_vmkernel:
@@ -345,8 +233,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.Management.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create vMotion port group in the nested vCenter for Cluster-B
@@ -358,8 +246,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vMotion.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create vSAN port group in the nested vCenter for Cluster-B
@@ -371,8 +259,8 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.vSAN.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
 
     - name: Create IP Storage port group for NFS in the nested vCenter for Cluster-B
@@ -384,75 +272,9 @@
         portgroup_name: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.Name }}"
         switch_name: "{{ vCenter.Networking.vSwitchB.Name }}"
         vlan_id: "{{ vCenter.Networking.vSwitchB.PortGroup.IPStorage.VLAN.ID }}"
-        num_ports: 8
-        portgroup_type: earlyBinding
+        num_ports: 120
+        port_binding: static
         state: present
-
-    - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on vCenter
-      community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ vCenter.FQDN }}"
-        username: "{{ vCenter.User }}"
-        password: "{{ vCenter.Password }}"
-        validate_certs: false
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
-        vlan_trunk: true
-        vlan_id: "0-4094"
-        num_ports: 8
-        portgroup_type: earlyBinding
-        state: present
-      when: 
-        - Target.Deployment == "vCenter"
-
-    - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on vCenter
-      community.vmware.vmware_dvs_portgroup:
-        hostname: "{{ vCenter.FQDN }}"
-        username: "{{ vCenter.User }}"
-        password: "{{ vCenter.Password }}"
-        validate_certs: false
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        switch_name: "{{ vCenter.Networking.vSwitchE.Name }}"
-        vlan_trunk: true
-        vlan_id: "0-4094"
-        num_ports: 8
-        portgroup_type: earlyBinding
-        state: present
-      when: 
-        - Target.Deployment == "vCenter"
-
-    - name: Create NSX EDGE Uplink1 port group on vCenter DVS if Target Deployment is on Host
-      community.vmware.vmware_portgroup:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        esxi_hostname: "{{ Target.FQDN }}"
-        switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink1.Name }}"
-        vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
-        security:
-          promiscuous_mode: false
-          forged_transmits: false
-          mac_changes: false
-      when: 
-        - Target.Deployment == "Host"
-
-    - name: Create NSX EDGE Uplink2 port group on vCenter DVS if Target Deployment is on Host
-      community.vmware.vmware_portgroup:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        esxi_hostname: "{{ Target.FQDN }}"
-        switch_name: "{{ Target.vSwitch }}"
-        portgroup_name: "{{ vCenter.Networking.vSwitchE.PortGroup.NSXEdgeUplink2.Name }}"
-        vlan_id: "{{ Target.PortGroup.Trunk.VLAN }}"
-        security:
-          promiscuous_mode: false
-          forged_transmits: false
-          mac_changes: false
-      when: 
-        - Target.Deployment == "Host"
 
     - name: Migrate uplinks to the VDS for Compute-B Hosts
       community.vmware.vmware_dvs_host:
@@ -521,24 +343,6 @@
       loop: "{{ Nested_ESXi.HostCB | dict2items }}"
       when:
         - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-    - name: Configure vMotion TCP/IP stack gateway address on Nested ESXi Compute-A Hosts
-      community.vmware.vmware_vm_shell:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        validate_certs: false
-        vm_id: "{{ item.value.VMName }}"
-        vm_username: "{{ item.value.User }}"
-        vm_password: "{{ item.value.Password }}"
-        vm_shell: /bin/esxcli
-        vm_shell_args: "network ip route ipv4 add --netstack vmotion --network default --gateway {{ item.value.vmk.vmk1.Address.IPv4.Gateway }}"
-      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
-      when:
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
 
     - name: Create vmk2 for vSAN Nested ESXi Compute-B Hosts
       community.vmware.vmware_vmkernel:

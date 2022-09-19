@@ -13,26 +13,6 @@
     - name: attachNsxTnp_Playbook
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
-
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
-
-
-                                          Ansible Playbook: {{ ansible_play_name }}
-
-                                         Target.Deployment: {{ Target.Deployment }}
-
-                  NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-          NSXT.System.Fabric.Profile.TransportNodeProfiles.Name: {{ NSXT.System.Fabric.Profile.TransportNodeProfiles }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-        - Deploy.Product.NSXT.LocalManager == true
       
     - name: Attach NSX-T transport node profile to vSphere cluster
       nsxt_transport_node_collections:
@@ -52,7 +32,7 @@
         - Deploy.Product.NSXT.LocalManager == true
         - item.value.Prep_NSX == true
         - item.value.DeployHosts == true
-        - item.value.NSXT_TransportNodeProfile != ""
+#        - item.value.NSXT_TransportNodeProfile != ""
 
     - name: Wait until the NSX-T API reports that the Transport Zones are in "UP" state
       ansible.builtin.uri:
@@ -72,4 +52,4 @@
       delay: 60
       when: 
         - Deploy.Product.NSXT.LocalManager == true
-        - Deploy.Product.NSXT.Edge != true
+#        - Deploy.Product.NSXT.Edge != true

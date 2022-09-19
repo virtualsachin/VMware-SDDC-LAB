@@ -14,34 +14,6 @@
       ansible.builtin.debug:
         msg: "Starting playbook: {{ ansible_play_name }}"
 
-
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                    Target.Deployment: {{ Target.Deployment }}
-
-                                          Target.FQDN: {{ Target.FQDN }}
-                                          Target.User: {{ Target.User }}
-                                      Target.Password: {{ Target.Password }}
-                                       Target.Cluster: {{ Target.Cluster }}
-                                    Target.DataCenter: {{ Target.DataCenter }}
-                                     Target.Datastore: {{ Target.Datastore }}
-                                      Target.VMFolder: {{ Target.VMFolder }}
-                                    Target.TempFolder: {{ Target.TempFolder }}
-
-                                  vCenter.FQDN: {{ vCenter.FQDN | lower }}
-                                vCenter.VMName: {{ vCenter.VMName }}
-                              vCenter.Password: {{ vCenter.Password }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
     - name: Create temp directory
       ansible.builtin.file:
         path: "{{ Target.TempFolder }}"
@@ -98,47 +70,6 @@
         - item.value.DeployHosts == true
         - Target.Deployment == "Host"
 
-    - name: Copy Ruby script to the nested vCenter when Target Deployment is vCenter
-      community.vmware.vmware_guest_file_operation:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        validate_certs: false
-        vm_id: "{{ vCenter.VMName }}"
-        vm_username: "root"
-        vm_password: "{{ vCenter.Password }}"
-        copy:
-            src: "{{ Target.TempFolder }}/{{ item.key }}"
-            dest: "/tmp/{{ item.key }}"
-            overwrite: true
-      loop: "{{ Nested_Clusters | dict2items }}"
-      when:
-        - item.value.vSAN == true
-        - item.value.DeployHosts == true
-        - Target.Deployment == "vCenter"
-
-    - name: Run Ruby script on the nested vCenter when Target Deployment is vCenter
-      community.vmware.vmware_vm_shell:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        cluster: "{{ Target.Cluster }}"
-        datacenter: "{{ Target.DataCenter }}"
-        folder: "{{ Target.VMFolder }}"
-        validate_certs: false
-        vm_id: "{{ vCenter.VMName }}"
-        vm_username: "root"
-        vm_password: "{{ vCenter.Password }}"
-        vm_shell: /usr/bin/rvc
-        vm_shell_args: '{{ vCenter.User }}:VMware1\!@{{ vCenter.FQDN | lower }} -s /tmp/{{ item.key }}'
-      loop: "{{ Nested_Clusters | dict2items }}"
-      when:
-        - item.value.vSAN == true
-        - item.value.DeployHosts == true
-        - Target.Deployment == "vCenter"
 
     - name: Delete the Ruby script from the Ansible controller
       ansible.builtin.file: 

@@ -15,63 +15,6 @@
         msg: "Starting playbook: {{ ansible_play_name }}"
 
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ============================ Display Variables For Pod {{Pod.Name}} ===========================
-
-                                     Ansible Playbook: {{ ansible_play_name }}
-
-                                  vCenter.FQDN: {{ vCenter.FQDN | lower }}
-                                  vCenter.User: {{ vCenter.User }}
-                              vCenter.Password: {{ vCenter.Password }}
-                            vCenter.DataCenter: {{ vCenter.DataCenter }}
-
-                               Common.NFS.Server.IPv4: {{ Common.NFS.Server.IPv4 }}
-                                      Common.NFS.Path: {{ Common.NFS.Path  }} 
-                                 Common.NFS.Datastore: {{ Common.NFS.Datastore }}
-                                 Common.NFS.Datastore: {{ Common.NFS.Type }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-
-    - name: Check if the nested ESXi hosts are ready if Deployment is on vCenter for Cluster-A
-      community.vmware.vmware_guest_info:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        datacenter: "{{ Target.DataCenter }}"
-        name: "{{ item.value.VMName }}"
-        schema: "vsphere"
-      register: vm_facts
-      until: vm_facts is search(item.value.vmk.vmk0.Address.IPv4.Address)
-      retries: 15
-      delay: 60
-      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
-      when: 
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
-    - name: Check if the nested ESXi hosts are ready if Deployment is on vCenter for Cluster-B
-      community.vmware.vmware_guest_info:
-        hostname: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        datacenter: "{{ Target.DataCenter }}"
-        name: "{{ item.value.VMName }}"
-        schema: "vsphere"
-      register: vm_facts
-      until: vm_facts is search(item.value.vmk.vmk0.Address.IPv4.Address)
-      retries: 15
-      delay: 60
-      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
-      when: 
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - Target.Deployment == "vCenter"
-
     - name: Check if the nested ESXi hosts are ready if Deployment is on Host for Cluster-A
       community.vmware.vmware_guest_info:
         hostname: "{{ Target.FQDN }}"
@@ -210,36 +153,7 @@
         - DEBUG.KeepInstallerFiles != true
         - Target.Deployment == "Host"
 
-    - name: Delete custom ESXi ISO image used for Pod ESXi deployment from the datastore for Cluster-A if Target Deploement is vCenter
-      community.vmware.vsphere_file:
-        host: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        datacenter: "{{ Target.DataCenter }}"
-        datastore: "{{ Target.Datastore }}"
-        path: "{{ Target.ISOFolder }}/{{ item.key }}"
-        state: absent
-      loop: "{{ Nested_ESXi.HostCA | dict2items }}"
-      when: 
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - DEBUG.KeepInstallerFiles != true
-        - Target.Deployment == "vCenter"
-    - name: Delete custom ESXi ISO image used for Pod ESXi deployment from the datastore for Cluster-B if Target Deploement is vCenter
-      community.vmware.vsphere_file:
-        host: "{{ Target.FQDN }}"
-        username: "{{ Target.User }}"
-        password: "{{ Target.Password }}"
-        validate_certs: false
-        datacenter: "{{ Target.DataCenter }}"
-        datastore: "{{ Target.Datastore }}"
-        path: "{{ Target.ISOFolder }}/{{ item.key }}"
-        state: absent
-      loop: "{{ Nested_ESXi.HostCB | dict2items }}"
-      when: 
-        - Nested_Clusters[item.value.Cluster]['DeployHosts'] == true
-        - DEBUG.KeepInstallerFiles != true
-        - Target.Deployment == "vCenter"
+
 
 ##
 ## Nested ESXi host deployment complete, so below we apply configuration settings to the ESXi hosts

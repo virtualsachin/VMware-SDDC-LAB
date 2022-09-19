@@ -17,28 +17,6 @@
         msg: "Starting playbook: {{ ansible_play_name }}"
 
 
-    - name: DEBUG -- Display Target Variables (Pause)
-      ansible.builtin.pause:
-        seconds: "{{ DEBUG.DisplayDelayInSeconds }}"
-        prompt: |
-          ================================ Display Variables For Pod {{ Pod.Name }} ==================================
-
-
-                                          Ansible Playbook: {{ ansible_play_name }}
-
-                                         Target.Deployment: {{ Target.Deployment }}
-
-                  NSXT.Components.LocalManager.FQDN: {{ NSXT.Components.LocalManager.FQDN }}
-
-          NSXT.System.Fabric.Nodes.EdgeTransportNodes: {{ NSXT.System.Fabric.Nodes.EdgeTransportNodes }}
-
-          =================================================================================================
-      when:
-        - DEBUG.DisplayVariables == true
-        - Deploy.Product.NSXT.LocalManager == true
-        - Deploy.Product.NSXT.Edge == true
-
-
 ##
 ## Get vCenter session ID
 ##

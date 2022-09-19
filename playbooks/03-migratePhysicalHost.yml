@@ -1,0 +1,145 @@
+##
+##    Project: VMware NSXT SDDC Design POC Lab
+##    Authors: VirtualSachIN
+##    Filename: playbooks/createVds.yml
+##
+---
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../answerfile.yml 
+  name: createVds.yml
+  tasks:
+    - name: createVds_Playbook
+      ansible.builtin.debug:
+        msg: "Starting playbook: {{ ansible_play_name }}"
+
+############################################################################################################
+#                           ESXi Host networking deployment for Physical Host                              #
+############################################################################################################
+    - name: Create distributed switch in the nested vCenter for Physical Cluster
+      community.vmware.vmware_dvswitch:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        datacenter_name: "{{ vCenter.DataCenter }}"
+        validate_certs: false
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        switch_version: "{% if Deploy.Software.vCenter.vSwitch == Deploy.Software.ESXi.vSwitch %}{{ omit }}{% else %}{{ Deploy.Software.ESXi.vSwitch }}{% endif %}"
+        mtu: "{{ vCenter.Networking.Physical.Config.MTU }}"
+        uplink_quantity: "{{ vCenter.Networking.Physical.Config.NumberOfUplinks }}"
+        discovery_proto: "{{ vCenter.Networking.Physical.Config.LinkDiscoveryProtocol.Type }}"
+        discovery_operation: "{{ vCenter.Networking.Physical.Config.LinkDiscoveryProtocol.Operation }}"
+        state: present
+        
+    - name: Create Management port group in the  vCenter for Physical Cluster
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.Physical.PortGroup.Management.Name }}"
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        vlan_id: "{{ vCenter.Networking.Physical.PortGroup.Management.VLAN.ID }}"
+        num_ports: 120
+        port_binding: static
+        state: present
+
+    - name: Create Trunk port group in the vCenter for Physical Cluster for ESXi Hosts
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.Physical.PortGroup.Trunk.Name }}"
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        vlan_id: "{{ vCenter.Networking.Physical.PortGroup.Trunk.VLAN.ID }}"
+        vlan_trunk: True
+        num_ports: 120
+        port_binding: static
+        network_policy:
+          promiscuous: true                                                                            # Must be true in order for NSX-T Edge Transport Node deployment to succeed
+          forged_transmits: true                                                                       # Must be true in order for NSX-T Edge Transport Node deployment to succeed
+          mac_changes: false      
+        state: present
+
+    - name: Create Uplink1 port group in the vCenter for Physical Cluster ETN Uplink1
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.Physical.PortGroup.Uplink1.Name }}"
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        vlan_id: "{{ vCenter.Networking.Physical.PortGroup.Uplink1.VLAN.ID }}"
+        vlan_trunk: True
+        num_ports: 120
+        network_policy:
+          promiscuous: true                                                                            # Must be true in order for vmk migration to succeed
+          forged_transmits: true                                                                       # Must be true in order for vmk migration to succeed
+          mac_changes: false
+        port_binding: static
+        
+        state: present
+    - name: Create Uplink2 port group in the vCenter for Physical Cluster ETN Uplink2
+      community.vmware.vmware_dvs_portgroup:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        portgroup_name: "{{ vCenter.Networking.Physical.PortGroup.Uplink2.Name }}"
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        vlan_id: "{{ vCenter.Networking.Physical.PortGroup.Uplink2.VLAN.ID }}"
+        vlan_trunk: True
+        num_ports: 120
+        port_binding: static
+        network_policy:
+          promiscuous: true                                                                            # Must be true in order for vmk migration to succeed
+          forged_transmits: true                                                                       # Must be true in order for vmk migration to succeed
+          mac_changes: false
+        state: present
+
+    - name: Remove an uplink vmnic0 from  VMware vSphere Standard Switch (vSS) on the physical ESXi host
+      community.vmware.vmware_vswitch:
+        hostname: "{{ Target.FQDN }}"
+        username: "{{ Target.User }}"
+        password: "{{ Target.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ Target.FQDN }}"
+        switch_name: "{{ Target.vSwitch }}"
+        nics:
+#        -  vmnic0            #Add the uplink name assign to this vSwitch
+        -  vmnic1            #delete the second uplink if have a single physical nic
+        mtu: 9000
+        state: present
+
+    - name: Wait 10 seconds for the Port Groups to become available
+      ansible.builtin.pause: seconds=10
+
+
+    - name: Migrate uplink vmnic0 to the VDS on the  Physical Hosts
+      community.vmware.vmware_dvs_host:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ Target.FQDN | lower }}"
+        switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        vmnics:
+          - vmnic0
+#          - vmnic1
+        state: present
+
+    - name: Migrate vmk0 to the VDS from the VS for Physical ESXi  Hosts
+      community.vmware.vmware_migrate_vmk:
+        hostname: "{{ vCenter.FQDN }}"
+        username: "{{ vCenter.User }}"
+        password: "{{ vCenter.Password }}"
+        validate_certs: false
+        esxi_hostname: "{{ Target.FQDN | lower }}"
+        device: 'vmk0'
+        current_switch_name: "{{ Target.vSwitch }}"
+        current_portgroup_name: "Management"
+        migrate_switch_name: "{{ vCenter.Networking.Physical.Name }}"
+        migrate_portgroup_name: "{{ vCenter.Networking.Physical.PortGroup.Management.Name }}"
+
